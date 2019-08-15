@@ -1,0 +1,14 @@
+.header-container {
+	box-shadow: 0 3px 8px 0 rgba(66, 66, 66, 0.2);
+	height: 100px;
+	width: 100%;
+	position: fixed;
+}
+
+.title {
+	font-family: roboto;
+	font-size: 30px;
+	position: relative;
+	margin-top: 20px;
+	margin-left: 20px;
+}
