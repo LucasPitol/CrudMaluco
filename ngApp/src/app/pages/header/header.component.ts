@@ -19,9 +19,9 @@ export class HeaderComponent implements OnInit {
 
 	currentTab: number
 
-	HOME_TAB = TabsEnum.HOME
- 	BEST_SALLERS_TAB = TabsEnum.BEST_SALLERS
- 	PROFIT_TAB = TabsEnum.PROFIT
+	readonly HOME_TAB = TabsEnum.HOME
+	readonly BEST_SALLERS_TAB = TabsEnum.BEST_SALLERS
+	readonly PROFIT_TAB = TabsEnum.PROFIT
 
 	tabs = [
         { label: 'Home', id: this.HOME_TAB },
@@ -31,9 +31,6 @@ export class HeaderComponent implements OnInit {
 	
 	ngOnInit(): void {
 		this.currentTab = this.HOME_TAB;
-
-		console.log(this.HOME_TAB)
-		console.log(this.currentTab)
 	}
 
 	constructor() {
