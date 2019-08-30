@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { HomeService } from '../../services/homeService';
 
 @Component({
 	selector: 'home-component',
@@ -6,4 +7,29 @@ import { Component } from "@angular/core";
 	styleUrls: ['./home.component.css'],
 })
 
-export class HomeComponent { }
+export class HomeComponent implements OnInit {
+
+	
+	cards: any = []
+	
+	cardsLoading = true
+
+	constructor(private homeService: HomeService) {}
+	
+	ngOnInit(): void {
+		if (this.cards.length <= 0)
+		{
+			this.getUsers()
+		}
+	}
+
+	getUsers()
+	{
+		this.homeService.getUsers()
+			.subscribe(
+				res => {
+					this.cards = res
+				}
+			)
+	}
+}
