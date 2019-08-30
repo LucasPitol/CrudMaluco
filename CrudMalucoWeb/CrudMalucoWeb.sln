@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudMalucoWeb", "CrudMalucoWeb\CrudMalucoWeb.csproj", "{7AC2F4A4-9BD6-4891-8261-86667B627764}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudMalucoWeb.Services", "CrudMalucoWeb.Services\CrudMalucoWeb.Services.csproj", "{8B12EB46-3ACA-4B02-9F94-74C47E49B761}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7AC2F4A4-9BD6-4891-8261-86667B627764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AC2F4A4-9BD6-4891-8261-86667B627764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AC2F4A4-9BD6-4891-8261-86667B627764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B12EB46-3ACA-4B02-9F94-74C47E49B761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B12EB46-3ACA-4B02-9F94-74C47E49B761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B12EB46-3ACA-4B02-9F94-74C47E49B761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B12EB46-3ACA-4B02-9F94-74C47E49B761}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
