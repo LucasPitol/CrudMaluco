@@ -285,6 +285,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CrudMalucoWeb.Models\CrudMalucoWeb.Models.csproj">
+      <Project>{CD982F28-910B-4FE6-B18F-C76890EB6298}</Project>
+      <Name>CrudMalucoWeb.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CrudMalucoWeb.Services\CrudMalucoWeb.Services.csproj">
       <Project>{7d48b073-ec77-48fd-99e1-bc5f8fd0e0be}</Project>
       <Name>CrudMalucoWeb.Services</Name>

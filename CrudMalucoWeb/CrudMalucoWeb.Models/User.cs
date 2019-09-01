@@ -10,9 +10,9 @@ namespace CrudMalucoWeb.Models
 
 		public DateTime BirthDate { get; set; }
 
-		public string Tel { get; set; }
+		public string Phone { get; set; }
 
-		public string Tel2 { get; set; }
+		public string Phone2 { get; set; }
 
 		public string Email { get; set; }
 
@@ -20,7 +20,7 @@ namespace CrudMalucoWeb.Models
 
 		public string Cep { get; set; }
 
-		public string Bairro { get; set; }
+		public string Neighborhood { get; set; }
 
 		public string Complement { get; set; }
 

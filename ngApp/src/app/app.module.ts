@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { CardComponent } from './pages/card/card.component';
 import { HomeService } from './services/homeService';
+import { MatExpansionModule, MatFormFieldModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { HomeService } from './services/homeService';
 	HeaderComponent,
 	HomeComponent,
 	CardComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -24,9 +27,13 @@ import { HomeService } from './services/homeService';
 	AppRoutingModule,
 	HttpModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatFormFieldModule
+    
   ],
   providers: [
-	  HomeService,
+    HomeService,
   ],
   bootstrap: [AppComponent]
 })

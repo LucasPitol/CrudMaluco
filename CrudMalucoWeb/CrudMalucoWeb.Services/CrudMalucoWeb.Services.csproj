@@ -43,5 +43,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CrudMalucoWeb.Models\CrudMalucoWeb.Models.csproj">
+      <Project>{CD982F28-910B-4FE6-B18F-C76890EB6298}</Project>
+      <Name>CrudMalucoWeb.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

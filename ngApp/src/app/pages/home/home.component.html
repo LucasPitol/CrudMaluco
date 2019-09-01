@@ -2,6 +2,10 @@
 	<span>Home</span>
 
 	<div *ngFor="let card of cards">
-		<card-component></card-component>
+		
+		<card-component 
+			[card]="card">
+		</card-component>
+
 	</div>
 </div>
