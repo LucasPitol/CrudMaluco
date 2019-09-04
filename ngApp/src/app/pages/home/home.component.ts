@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
 
 	private db = firebase.firestore();
 
+	filterImageUrl = 'assets/filter.png';
+
 	constructor(private homeService: HomeService,
 				private clientService: ClientService,
 		) {}
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
 			this.cards = cardsx
 			console.log(this.cards)
 		});
+
 		//this.cards = this.clientService.getClients()
 
 		// this.homeService.getUsers()

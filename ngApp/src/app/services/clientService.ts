@@ -27,4 +27,26 @@ export class ClientService {
 		});
 		//return cards
 	}
+
+	public addNewClient() {
+		
+		this.db.collection("client").add({
+			bairro: "Barra da Tijuca",
+			cidade: "Rio de Janeiro",
+			cep: "22596-099",
+			complement: "Condominio Malibu",
+			cpf: "157.562.354-46",
+			email: "Ada@gmail.com",
+			largadouro: "Rua sem nome, 56",
+			name: "Ada",
+			phone1: "(21) 9 9850-7070",
+			uf: "RJ",
+		})
+		.then(function(docRef) {
+			console.log("Document written with ID: ", docRef.id);
+		})
+		.catch(function(error) {
+			console.error("Error adding document: ", error);
+		});
+	}
  }

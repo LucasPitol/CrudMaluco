@@ -1,11 +1,42 @@
-<div class="container">
-	<span>Home</span>
+<div class="backGround">
+	<mat-drawer-container class="container" autosize>
 
-	<div *ngFor="let card of cards">
-		
-		<card-component 
-			[card]="card">
-		</card-component>
+		<mat-drawer #filterBar class="filter-sidenav" mode="side" opened>
 
-	</div>
+			<mat-accordion>
+
+				<div>
+					<div>
+						<label>
+							<strong>Localização</strong>
+						</label>
+					</div>
+					<div>
+						<span>lalau</span>
+					</div>
+				</div>
+
+
+				
+			</mat-accordion>
+
+		</mat-drawer>
+
+		<div class="filter-sidenav-content">
+				<button class="filter-btn" type="button" mat-raised-button (click)="filterBar.toggle()">
+						<img [src]="filterImageUrl"> <span>Filtros</span>
+			</button>
+		</div>
+
+		<div class="listagem">
+			<div *ngFor="let card of cards">
+				
+				<card-component 
+					[card]="card">
+				</card-component>
+
+			</div>
+		</div>
+
+	</mat-drawer-container>
 </div>

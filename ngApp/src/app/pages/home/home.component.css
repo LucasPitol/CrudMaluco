@@ -1,4 +1,42 @@
-.container {
+.backGround {
 	position: absolute;
 	margin-top: 100px;
+	width: 100%;
+}
+
+.container {
+	height: 100%;
+	background-color: white;
+}
+
+.listagem {
+	display: table;
+	margin: 0 auto;
+}
+
+
+
+/*
+Filtros 
+ */
+.filter-btn{
+	margin: 20px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.filter-btn span {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.filter-btn img {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.filter-sidenav {
+    padding: 20px;
+    width: 200px;
 }
