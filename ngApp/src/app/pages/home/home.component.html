@@ -42,7 +42,11 @@
 			</button>
 		</div>
 
-		<div class="listagem">
+		<div *ngIf="cardsLoading" class="loader">
+			<mat-spinner></mat-spinner>
+		</div>
+
+		<div *ngIf="!cardsLoading" class="listagem">
 			<div *ngFor="let card of cards">
 				
 				<card-component 

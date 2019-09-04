@@ -50,7 +50,9 @@ export class HomeComponent implements OnInit {
 	
 	applyFilter()
 	{
-		//this.cards = []
+		this.cardsLoading = true;
+
+		this.cards = []
 		
 		let cardsx: any = []
 
@@ -60,10 +62,10 @@ export class HomeComponent implements OnInit {
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
-					console.log(doc.data())
 					cardsx = cardsx.concat(doc.data())
 				});
 				this.cards = cardsx
+				this.cardsLoading = false
 			})
 			.catch(function(error) {
 				console.log("Error getting documents: ", error)
@@ -79,6 +81,7 @@ export class HomeComponent implements OnInit {
 				cardsx = cardsx.concat(doc.data())
 			});
 			this.cards = cardsx
+			this.cardsLoading = false
 		});
 
 		//this.cards = this.clientService.getClients()
