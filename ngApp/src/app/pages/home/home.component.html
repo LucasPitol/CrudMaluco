@@ -13,8 +13,14 @@
 					</div>
 					<div class="filter-input">
 						<mat-form-field appearance="outline">
-							<mat-label>País</mat-label>
-							<input matInput>
+							<mat-label>Cidade</mat-label>
+							<input matInput type="text" [(ngModel)]="filterForm.local.city">
+						</mat-form-field>
+					</div>
+					<div class="filter-input">
+						<mat-form-field appearance="outline">
+							<mat-label>UF</mat-label>
+							<input matInput [(ngModel)]="filterForm.local.uf">
 						</mat-form-field>
 					</div>
 				</div>

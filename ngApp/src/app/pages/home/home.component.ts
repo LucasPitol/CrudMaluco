@@ -19,6 +19,18 @@ export class HomeComponent implements OnInit {
 
 	filterImageUrl = 'assets/filter.png';
 
+	filterForm = {
+		local: {
+			city: '',
+			uf: ''
+		},
+		age: {
+			minAge: '',
+			maxAge: '',
+		},
+		categoria: '',
+	}
+
 	constructor(private homeService: HomeService,
 				private clientService: ClientService,
 		) {}
@@ -30,6 +42,34 @@ export class HomeComponent implements OnInit {
 		}
 	}
 
+	clearFilter()
+	{
+		this.filterForm.local.city = ""
+		this.filterForm.local.uf = ""
+	}
+	
+	applyFilter()
+	{
+		//this.cards = []
+		
+		let cardsx: any = []
+
+		let cidade = this.filterForm.local.city
+
+		this.db.collection("client").where("cidade", "==", cidade)
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					console.log(doc.data())
+					cardsx = cardsx.concat(doc.data())
+				});
+				this.cards = cardsx
+			})
+			.catch(function(error) {
+				console.log("Error getting documents: ", error)
+			})
+	}
+
 	getUsers()
 	{
 		let cardsx: any = []
@@ -39,7 +79,6 @@ export class HomeComponent implements OnInit {
 				cardsx = cardsx.concat(doc.data())
 			});
 			this.cards = cardsx
-			console.log(this.cards)
 		});
 
 		//this.cards = this.clientService.getClients()

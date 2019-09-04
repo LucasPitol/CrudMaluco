@@ -12,6 +12,7 @@ import { HomeService } from './services/homeService';
 import { MatExpansionModule, MatFormFieldModule, MatSidenavModule, MatButtonModule, MatInputModule, MatDividerModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ClientService } from './services/clientService';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ClientService } from './services/clientService';
 	MatSidenavModule,
 	MatButtonModule,
 	MatInputModule,
-	MatDividerModule
+	MatDividerModule,
+	FormsModule
     
   ],
   providers: [

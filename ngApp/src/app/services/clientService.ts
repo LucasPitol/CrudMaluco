@@ -29,18 +29,18 @@ export class ClientService {
 	}
 
 	public addNewClient() {
-		
+
 		this.db.collection("client").add({
-			bairro: "Barra da Tijuca",
-			cidade: "Rio de Janeiro",
-			cep: "22596-099",
-			complement: "Condominio Malibu",
-			cpf: "157.562.354-46",
-			email: "Ada@gmail.com",
-			largadouro: "Rua sem nome, 56",
-			name: "Ada",
-			phone1: "(21) 9 9850-7070",
-			uf: "RJ",
+			bairro: "Paraibanei",
+			cidade: "Belem do para",
+			cep: "22556-999",
+			complement: "Condominio paraiba",
+			cpf: "357.502.354-46",
+			email: "Paraíba@gmail.com",
+			largadouro: "Rua lula, 13",
+			name: "Rivaldo",
+			phone1: "(99) 9 9650-7870",
+			uf: "PA",
 		})
 		.then(function(docRef) {
 			console.log("Document written with ID: ", docRef.id);
