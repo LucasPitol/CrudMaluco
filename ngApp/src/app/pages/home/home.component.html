@@ -6,19 +6,27 @@
 			<mat-accordion>
 
 				<div>
-					<div>
+					<div class="filter-header">
 						<label>
 							<strong>Localização</strong>
 						</label>
 					</div>
-					<div>
-						<span>lalau</span>
+					<div class="filter-input">
+						<mat-form-field appearance="outline">
+							<mat-label>País</mat-label>
+							<input matInput>
+						</mat-form-field>
 					</div>
 				</div>
 
 
-				
 			</mat-accordion>
+
+			<mat-divider></mat-divider>
+			<div class="filter-bottom">
+				<button mat-raised-button (click)="clearFilter()">Limpar</button>
+				<button mat-raised-button color="primary" (click)="applyFilter()">Filtrar</button>
+			</div>
 
 		</mat-drawer>
 

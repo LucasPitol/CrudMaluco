@@ -38,5 +38,22 @@ Filtros
 
 .filter-sidenav {
     padding: 20px;
-    width: 200px;
+    width: 260px;
+}
+
+.filter-header {
+	margin-top: 5px;
+}
+
+.filter-input {
+	margin-top: 5px;
+}
+
+.filter-bottom {
+	margin-top: 20px;
+}
+
+.filter-bottom button {
+	margin-left: 5px;
+	margin-right: 5px;
 }

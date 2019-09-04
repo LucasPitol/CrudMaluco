@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { CardComponent } from './pages/card/card.component';
 import { HomeService } from './services/homeService';
-import { MatExpansionModule, MatFormFieldModule, MatSidenavModule, MatButtonModule } from '@angular/material';
+import { MatExpansionModule, MatFormFieldModule, MatSidenavModule, MatButtonModule, MatInputModule, MatDividerModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ClientService } from './services/clientService';
 
@@ -32,7 +32,9 @@ import { ClientService } from './services/clientService';
     MatExpansionModule,
 	MatFormFieldModule,
 	MatSidenavModule,
-	MatButtonModule
+	MatButtonModule,
+	MatInputModule,
+	MatDividerModule
     
   ],
   providers: [
