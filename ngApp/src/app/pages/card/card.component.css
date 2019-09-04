@@ -1,0 +1,31 @@
+.holder {
+	margin: 20px;
+}
+
+.card {
+	width: 800px;
+}
+
+.group {
+	display: inline-block;
+	/* border-right: solid 1px #ebecec; */
+    padding: 0 20px;
+}
+
+.card-group-row {
+	display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.group .card-group-row
+{
+	/* width: 49%; */
+	/* cima, direita, baixo, esquerda */
+	margin: 10px;
+	z-index: 10;
+}
+
+.bloco {
+	margin: 10px;
+}

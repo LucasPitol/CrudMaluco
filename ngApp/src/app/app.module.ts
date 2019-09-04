@@ -11,6 +11,7 @@ import { CardComponent } from './pages/card/card.component';
 import { HomeService } from './services/homeService';
 import { MatExpansionModule, MatFormFieldModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ClientService } from './services/clientService';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     
   ],
   providers: [
-    HomeService,
+	HomeService,
+	ClientService
   ],
   bootstrap: [AppComponent]
 })

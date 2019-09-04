@@ -10,5 +10,29 @@
 </head>
 <body>
 	<app-root></app-root>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-firestore.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#config-web-app -->
+
+	<script>
+		//const firebase = require("firebase");
+		// Required for side-effects
+		//require("firebase/firestore");
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyAF5gAN5uJ71tydTbMKZwol1zzLTLjYFPE",
+			authDomain: "crud-maluco.firebaseapp.com",
+			databaseURL: "https://crud-maluco.firebaseio.com",
+			projectId: "crud-maluco",
+			storageBucket: "",
+			messagingSenderId: "990961054227",
+			appId: "1:990961054227:web:109d15e1665475ecef85e6"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
 </body>
 </html>

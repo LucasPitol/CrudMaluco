@@ -1,17 +1,92 @@
 <div>
-	<mat-accordion>
-		<mat-expansion-panel>
+	<mat-accordion class="holder">
+		<mat-expansion-panel class="card">
 			<mat-expansion-panel-header>
 
-				<span>Nome</span>
-				<label>{{card.Name}}</label>
+				<div class="card-header">
+
+					<div class="group">
+						<div class="card-group-row">
+							<div class="bloco">
+								<div>
+									<label>Nome</label>
+								</div>
+								<div>
+									<span>{{card.name}}</span>
+								</div>
+							</div>
+							
+							<div class="bloco">
+								<div>
+									<label>City</label>
+								</div>
+								<div>
+									<span>{{card.cidade}}</span>
+								</div>
+							</div>
+
+							<div class="bloco">
+									<div>
+										<label>Favorite</label>
+									</div>
+									<div>
+										<span>{{card.favorite}}</span>
+									</div>
+								</div>
+						</div>
+					</div>
+
+				</div>
 			  
 			</mat-expansion-panel-header>
-		
+			
+			<div class="card-header">
+
+					<div class="group">
+						<div class="card-group-row">
+							<div class="bloco">
+								<div>
+									<label>CPF</label>
+								</div>
+								<div>
+									<span>{{card.cpf}}</span>
+								</div>
+							</div>
+							
+							<div class="bloco">
+								<div>
+									<label>Email</label>
+								</div>
+								<div>
+									<span>{{card.email}}</span>
+								</div>
+							</div>
+
+							<div class="bloco">
+								<div>
+									<label>UF</label>
+								</div>
+								<div>
+									<span>{{card.uf}}</span>
+								</div>
+							</div>
+
+							<div class="bloco">
+								<div>
+									<label>Address</label>
+								</div>
+								<div>
+									<span>{{card.largadouro}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
 
 		</mat-expansion-panel>
 
-		<mat-expansion-panel (opened)="panelOpenState = true"
+		<!-- <mat-expansion-panel (opened)="panelOpenState = true"
 							   (closed)="panelOpenState = false">
 			<mat-expansion-panel-header>
 			  <mat-panel-title>
@@ -22,6 +97,6 @@
 			  </mat-panel-description>
 			</mat-expansion-panel-header>
 			<p>I'm visible because I am open</p>
-		</mat-expansion-panel>
+		</mat-expansion-panel> -->
 	</mat-accordion>
 </div>

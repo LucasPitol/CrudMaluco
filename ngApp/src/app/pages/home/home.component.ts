@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HomeService } from '../../services/homeService';
+import { ClientService } from '../../services/clientService';
 
 @Component({
 	selector: 'home-component',
@@ -14,7 +15,11 @@ export class HomeComponent implements OnInit {
 	
 	cardsLoading = true
 
-	constructor(private homeService: HomeService) {}
+	private db = firebase.firestore();
+
+	constructor(private homeService: HomeService,
+				private clientService: ClientService,
+		) {}
 	
 	ngOnInit(): void {
 		if (this.cards.length <= 0)
@@ -25,12 +30,22 @@ export class HomeComponent implements OnInit {
 
 	getUsers()
 	{
-		console.log()
-		this.homeService.getUsers()
-			.subscribe(
-				res => {
-					this.cards = res
-				}
-			)
+		let cardsx: any = []
+
+		this.db.collection("client").get().then((querySnapshot) => {
+			querySnapshot.forEach((doc) => {
+				cardsx = cardsx.concat(doc.data())
+			});
+			this.cards = cardsx
+			console.log(this.cards)
+		});
+		//this.cards = this.clientService.getClients()
+
+		// this.homeService.getUsers()
+		// 	.subscribe(
+		// 		res => {
+		// 			this.cards = res
+		// 		}
+		// 	)
 	}
 }

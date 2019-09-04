@@ -45,3 +45,8 @@ body
     height: 100%;
     background-color: #ffffff;
 }
+
+.row div
+{
+    text-align: center;
+}
