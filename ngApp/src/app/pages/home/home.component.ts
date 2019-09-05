@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { HomeService } from '../../services/homeService';
 import { ClientService } from '../../services/clientService';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import { constants } from '../../utils/constants';
+
 
 @Component({
 	selector: 'home-component',
@@ -10,6 +15,16 @@ import { ClientService } from '../../services/clientService';
 
 export class HomeComponent implements OnInit {
 
+	citiesStr: string[] = 
+	[
+		"Rio de Janeiro",
+		"São Paulo",
+		"Belem do Pará"
+	]
+
+	myControl = new FormControl()
+	options: string[] = this.citiesStr
+	filteredOptions: Observable<string[]>
 	
 	cards: any = []
 	
@@ -36,10 +51,21 @@ export class HomeComponent implements OnInit {
 		) {}
 	
 	ngOnInit(): void {
+		this.filteredOptions = this.myControl.valueChanges
+			.pipe(
+				startWith(''),
+				map(value => this._filter(value))
+			);
 		if (this.cards.length <= 0)
 		{
 			this.getUsers()
 		}
+	}
+
+	private _filter(value: string): string[] {
+		const filterValue = value.toLowerCase();
+	
+		return this.options.filter(option => option.toLowerCase().includes(filterValue));
 	}
 
 	clearFilter()
@@ -58,18 +84,25 @@ export class HomeComponent implements OnInit {
 
 		let cidade = this.filterForm.local.city
 
-		this.db.collection("client").where("cidade", "==", cidade)
-			.get()
-			.then((querySnapshot) => {
-				querySnapshot.forEach((doc) => {
-					cardsx = cardsx.concat(doc.data())
-				});
-				this.cards = cardsx
-				this.cardsLoading = false
-			})
-			.catch(function(error) {
-				console.log("Error getting documents: ", error)
-			})
+		if (cidade == undefined || cidade == ""){
+			this.getUsers()
+		} 
+		else 
+		{
+			this.db.collection("client").where("cidade", "==", cidade)
+				.get()
+				.then((querySnapshot) => {
+					querySnapshot.forEach((doc) => {
+						cardsx = cardsx.concat(doc.data())
+					});
+					this.cards = cardsx
+					this.cardsLoading = false
+				})
+				.catch(function(error) {
+					console.log("Error getting documents: ", error)
+				})
+		}
+
 	}
 
 	getUsers()
@@ -86,10 +119,11 @@ export class HomeComponent implements OnInit {
 
 		//this.cards = this.clientService.getClients()
 
-		// this.homeService.getUsers()
+		// this.clientService.getClients()
 		// 	.subscribe(
 		// 		res => {
 		// 			this.cards = res
+		// 			this.cardsLoading = false
 		// 		}
 		// 	)
 	}
