@@ -13,6 +13,7 @@ import { MatExpansionModule, MatFormFieldModule, MatSidenavModule, MatButtonModu
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ClientService } from './services/clientService';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddClientComponent } from './pages/add-client-modal/add-client.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		AppComponent,
 		HeaderComponent,
 		HomeComponent,
-		CardComponent
+		CardComponent,
+		AddClientComponent,
 		
 	],
 	imports: [
@@ -43,6 +45,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		MatDialogModule
 		
   ],
+  entryComponents: [AddClientComponent],
   providers: [
 	  HomeService,
 	  ClientService

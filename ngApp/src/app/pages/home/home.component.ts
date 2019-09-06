@@ -5,6 +5,8 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { constants } from '../../utils/constants';
+import { MatDialog, MatDialogRef } from "@angular/material";
+import { AddClientComponent } from "../add-client-modal/add-client.component";
 
 
 @Component({
@@ -15,12 +17,15 @@ import { constants } from '../../utils/constants';
 
 export class HomeComponent implements OnInit {
 
+	addClientDialogRef: MatDialogRef<AddClientComponent>
+
 	citiesStr: string[] = 
 	[
 		"Rio de Janeiro",
 		"São Paulo",
 		"Belem do Pará"
 	]
+	
 
 	myControl = new FormControl()
 	options: string[] = this.citiesStr
@@ -50,6 +55,7 @@ export class HomeComponent implements OnInit {
 
 	constructor(private homeService: HomeService,
 				private clientService: ClientService,
+				public addClientDialog: MatDialog
 		) {}
 	
 	ngOnInit(): void {
@@ -128,5 +134,14 @@ export class HomeComponent implements OnInit {
 		// 			this.cardsLoading = false
 		// 		}
 		// 	)
+	}
+
+	openAddClientDialog()
+	{
+		this.addClientDialogRef = this.addClientDialog.open(AddClientComponent)
+
+		this.addClientDialogRef.afterClosed().subscribe(res => {
+			console.log(res)
+		})
 	}
 }
