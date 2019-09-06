@@ -50,6 +50,48 @@
                 
             </div>
 
+            <div class="input-line">
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Cidade</mat-label>
+                    <input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="client.client.cidade">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Cep</mat-label>
+                    <input matInput [(ngModel)]="client.client.cep">
+                </mat-form-field>
+                
+            </div>
+
+            <div class="input-line largadouro">
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Largadouro</mat-label>
+                    <input matInput [(ngModel)]="client.client.largadouro">
+                </mat-form-field>
+                
+            </div>
+
+            <div class="input-line">
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Bairro</mat-label>
+                    <input matInput [(ngModel)]="client.client.bairro">
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Complemento</mat-label>
+                    <input matInput [(ngModel)]="client.client.complement">
+                </mat-form-field>
+                
+            </div>
+
         </div>
         
     

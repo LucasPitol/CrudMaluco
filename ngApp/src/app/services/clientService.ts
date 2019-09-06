@@ -25,19 +25,18 @@ export class ClientService {
 	}
 
 
-	public addNewClient() {
+	public addNewClient(client) {
 
 		// this.db.collection("client").add({
-		// 	bairro: "Paraibanei",
-		// 	cidade: "Belem do para",
-		// 	cep: "22556-999",
-		// 	complement: "Condominio paraiba",
-		// 	cpf: "357.502.354-46",
-		// 	email: "Paraíba@gmail.com",
-		// 	largadouro: "Rua lula, 13",
-		// 	name: "Rivaldo",
-		// 	phone1: "(99) 9 9650-7870",
-		// 	uf: "PA",
+		// 	bairro: client.bairro,
+		// 	cidade: client.cidade,
+		// 	cep: client.cep,
+		// 	complement: client.complement,
+		// 	cpf: client.cpf,
+		// 	email: client.email,
+		// 	largadouro: client.largadouro,
+		// 	name: client.name,
+		// 	phone1: client.phone1,
 		// })
 		// .then(function(docRef) {
 		// 	console.log("Document written with ID: ", docRef.id);

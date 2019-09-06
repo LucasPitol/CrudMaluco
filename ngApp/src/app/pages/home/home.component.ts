@@ -8,6 +8,7 @@ import { constants } from '../../utils/constants';
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { AddClientComponent } from "../add-client-modal/add-client.component";
 import { Client } from "src/app/models/client";
+import { Values } from "src/app/utils/values";
 
 
 @Component({
@@ -19,14 +20,8 @@ import { Client } from "src/app/models/client";
 export class HomeComponent implements OnInit {
 
 	addClientDialogRef: MatDialogRef<AddClientComponent>
-
-	citiesStr: string[] = 
-	[
-		"Rio de Janeiro",
-		"São Paulo",
-		"Belem do Pará"
-	]
 	
+	citiesStr = this.values.citiesStr
 
 	myControl = new FormControl()
 	options: string[] = this.citiesStr
@@ -56,7 +51,8 @@ export class HomeComponent implements OnInit {
 
 	constructor(private homeService: HomeService,
 				private clientService: ClientService,
-				public addClientDialog: MatDialog
+				public addClientDialog: MatDialog,
+				private values: Values
 		) {}
 	
 	ngOnInit(): void {
@@ -146,7 +142,27 @@ export class HomeComponent implements OnInit {
 		});
 
 		this.addClientDialogRef.afterClosed().subscribe(res => {
-			console.log(res)
+			if (res != undefined)
+			{
+				this.db.collection("client").add({
+					bairro: client.bairro,
+					cidade: client.cidade,
+					cep: client.cep,
+					complement: client.complement,
+					cpf: client.cpf,
+					email: client.email,
+					largadouro: client.largadouro,
+					name: client.name,
+					phone1: client.phone1,
+				})
+				.then(function(docRef) {
+					alert("Sucesso!")
+				})
+				.catch(function(error) {
+					alert(error)//console.error("Error adding document: ", error);
+				});
+					
+			}
 		})
 	}
 }

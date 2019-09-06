@@ -15,6 +15,7 @@ import { ClientService } from './services/clientService';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddClientComponent } from './pages/add-client-modal/add-client.component';
 import { Client } from './models/client';
+import { Values } from './utils/values';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { Client } from './models/client';
 	  HomeService,
 	  ClientService,
 	  Client,
+	  Values
 	],
 	bootstrap: [AppComponent]
 })
