@@ -1,3 +1,42 @@
 <div class="container">
 
+    <h1 mat-dialog-title>Novo cliente</h1>
+
+    <div mat-dialog-content>
+
+        <div class="content">
+
+            <div class="input-line">
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput [(ngModel)]="client.name">
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>CPF</mat-label>
+                    <input matInput [(ngModel)]="client.cpf">
+                </mat-form-field>
+                
+            </div>
+
+            <div class="input-line">
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>email</mat-label>
+                    <input matInput [(ngModel)]="client.email">
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Telefone</mat-label>
+                    <input matInput [(ngModel)]="client.phone1">
+                </mat-form-field>
+                
+            </div>
+
+        </div>
+        
+    
+    </div>
+
 </div>

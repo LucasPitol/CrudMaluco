@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
+import { Client } from "src/app/models/client";
 
 @Component({
 	selector: 'add-client-component',
@@ -9,9 +10,13 @@ import { MatDialogRef } from "@angular/material";
 
 export class AddClientComponent {
 
+    client: Client
+
     constructor(
         public addClientDialogRef: MatDialogRef<AddClientComponent>
-    ) { }
+    ) {
+        this.client = new Client()
+     }
 
     onNoClick()
     {

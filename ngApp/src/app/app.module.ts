@@ -14,6 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ClientService } from './services/clientService';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddClientComponent } from './pages/add-client-modal/add-client.component';
+import { Client } from './models/client';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AddClientComponent } from './pages/add-client-modal/add-client.componen
   entryComponents: [AddClientComponent],
   providers: [
 	  HomeService,
-	  ClientService
+	  ClientService,
+	  Client
 	],
 	bootstrap: [AppComponent]
 })
