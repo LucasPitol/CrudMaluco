@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
 
 	filterImageUrl = 'assets/filter.png';
 
+	addNewCLientImage = 'assets/plus.png'
+
 	filterForm = {
 		local: {
 			city: '',
