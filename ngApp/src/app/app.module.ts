@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { CardComponent } from './pages/card/card.component';
 import { HomeService } from './services/homeService';
-import { MatExpansionModule, MatFormFieldModule, MatSidenavModule, MatButtonModule, MatInputModule, MatDividerModule, MatProgressSpinnerModule, MatAutocompleteModule, MatDialogModule } from '@angular/material';
+import { MatExpansionModule, MatFormFieldModule, MatSidenavModule, MatButtonModule, MatInputModule, MatDividerModule, MatProgressSpinnerModule, MatAutocompleteModule, MatDialogModule, MatDatepickerModule, DateAdapter, MatNativeDateModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ClientService } from './services/clientService';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -43,14 +43,15 @@ import { Client } from './models/client';
 		FormsModule,
 		MatProgressSpinnerModule,
 		MatAutocompleteModule,
-		MatDialogModule
-		
+		MatDialogModule,
+		MatDatepickerModule,
+		MatNativeDateModule
   ],
   entryComponents: [AddClientComponent],
   providers: [
 	  HomeService,
 	  ClientService,
-	  Client
+	  Client,
 	],
 	bootstrap: [AppComponent]
 })

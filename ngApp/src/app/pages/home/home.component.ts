@@ -7,6 +7,7 @@ import {map, startWith} from 'rxjs/operators';
 import { constants } from '../../utils/constants';
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { AddClientComponent } from "../add-client-modal/add-client.component";
+import { Client } from "src/app/models/client";
 
 
 @Component({
@@ -138,7 +139,11 @@ export class HomeComponent implements OnInit {
 
 	openAddClientDialog()
 	{
-		this.addClientDialogRef = this.addClientDialog.open(AddClientComponent)
+		let client: Client = new Client()
+
+		this.addClientDialogRef = this.addClientDialog.open(AddClientComponent, {
+			data: {client}
+		});
 
 		this.addClientDialogRef.afterClosed().subscribe(res => {
 			console.log(res)
