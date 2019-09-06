@@ -36,7 +36,7 @@
 			<mat-divider></mat-divider>
 			<div class="filter-bottom">
 				<button mat-raised-button (click)="clearFilter()">Limpar</button>
-				<button mat-raised-button color="primary" (click)="applyFilter()">Filtrar</button>
+				<button mat-raised-button color="primary" (click)=" filterBar.toggle(); applyFilter();">Filtrar</button>
 			</div>
 
 		</mat-drawer>
