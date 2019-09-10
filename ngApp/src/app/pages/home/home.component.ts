@@ -116,19 +116,20 @@ export class HomeComponent implements OnInit {
 
 		
 
-		this.clientService.getClients()
-							.subscribe( res => {
-								this.cards = res
-								this.cardsLoading = false
-							})
-
 		// this.clientService.getClients()
-		// 	.subscribe(
-		// 		res => {
-		// 			this.cards = res
-		// 			this.cardsLoading = false
-		// 		}
-		// 	)
+		// 					.subscribe( res => {
+		// 						this.cards = res
+		// 						this.cardsLoading = false
+		// 					})
+
+		this.clientService.getClients()
+			.subscribe(
+				res => {
+					console.log(res)
+					this.cards = res
+					this.cardsLoading = false
+				}
+			)
 	}
 
 	openAddClientDialog()
