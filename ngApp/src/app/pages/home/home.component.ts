@@ -114,15 +114,13 @@ export class HomeComponent implements OnInit {
 	{
 		let cardsx: any = []
 
-		this.db.collection("client").get().then((querySnapshot) => {
-			querySnapshot.forEach((doc) => {
-				cardsx = cardsx.concat(doc.data())
-			});
-			this.cards = cardsx
-			this.cardsLoading = false
-		});
+		
 
-		//this.cards = this.clientService.getClients()
+		this.clientService.getClients()
+							.subscribe( res => {
+								this.cards = res
+								this.cardsLoading = false
+							})
 
 		// this.clientService.getClients()
 		// 	.subscribe(

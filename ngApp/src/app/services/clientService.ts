@@ -15,13 +15,13 @@ export class ClientService {
 
 	constructor(private http: HttpClient) {}
 
-	public getClients()
+	public getClients() : any
 	{
 		// const url=  this.url + "api/user/listAsync";
 		// return this.http.get(url)
 		// 	.map(res => res.json());
 
-		return this.http.get<any>(this.url + "api/user/listAsync")
+		return this.http.get<any>(this.url + "api/user/list")
 	}
 
 

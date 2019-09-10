@@ -1,38 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CrudMalucoWeb.Models.Dto
 {
-    public class CardUserDto
-    {
-        public string Name { get; set; }
+	[DataContract]
+	public class CardUserDto
+	{
+		[DataMember(Name = "name")]
+		public string Name { get; set; }
 
-        public string Cpf { get; set; }
+		[DataMember(Name = "cpf")]
+		public string Cpf { get; set; }
 
-        public DateTime BirthDate { get; set; }
+		[DataMember(Name = "birthDate")]
+		public DateTime BirthDate { get; set; }
 
-        public string Phone { get; set; }
+		[DataMember(Name = "phone1")]
+		public string Phone { get; set; }
 
-        public string Phone2 { get; set; }
+		[DataMember(Name = "phone2")]
+		public string Phone2 { get; set; }
 
-        public string Email { get; set; }
+		[DataMember(Name = "email")]
+		public string Email { get; set; }
 
-        public string Largadouro { get; set; }
+		[DataMember(Name = "largadouro")]
+		public string Largadouro { get; set; }
 
-        public string Cep { get; set; }
+		[DataMember(Name = "cep")]
+		public string Cep { get; set; }
 
-        public string Neighborhood { get; set; }
+		[DataMember(Name = "bairro")]
+		public string Neighborhood { get; set; }
 
-        public string Complement { get; set; }
+		[DataMember(Name = "complement")]
+		public string Complement { get; set; }
 
-        public string City { get; set; }
+		[DataMember(Name = "cidade")]
+		public string City { get; set; }
 
-        public string Uf { get; set; }
+		[DataMember(Name = "uf")]
+		public string Uf { get; set; }
 
-        public string FavoriteProduct { get; set; }
-    }
+		[DataMember(Name = "favorite")]
+		public string FavoriteProduct { get; set; }
+	}
 }

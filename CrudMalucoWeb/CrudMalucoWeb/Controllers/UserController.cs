@@ -21,7 +21,7 @@ namespace CrudMalucoWeb.Controllers
 		[Route("list")]
 		public HttpResponseMessage GetCardsForHome()
 		{
-            List<CardUserDto> cards = this.UserService.GetUserCards();
+			List<CardUserDto> cards = this.UserService.GetUserCards();
 
 			HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, cards);
 			return response;
