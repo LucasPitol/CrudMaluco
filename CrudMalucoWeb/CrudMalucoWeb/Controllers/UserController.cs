@@ -23,7 +23,7 @@ namespace CrudMalucoWeb.Controllers
 		[Route("list")]
 		public HttpResponseMessage GetCardsForHome()
 		{
-			string URL = "http://localhost:8000/api/books";
+			string URL = "http://localhost:8000/api/clients";
 
 			HttpClient client = new HttpClient();
 
@@ -34,7 +34,7 @@ namespace CrudMalucoWeb.Controllers
 
 			HttpResponseMessage res = client.GetAsync(URL).Result;
 
-			var dataObjects = res.Content.ReadAsAsync<IEnumerable<object>>().Result;
+			var dataObjects = res.Content.ReadAsAsync<IEnumerable<CardUserDto>>().Result;
 
 			List<CardUserDto> cards = this.UserService.GetUserCards();
 

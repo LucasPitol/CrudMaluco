@@ -1,14 +1,18 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
 
-	//"strconv"
+	firebase "firebase.google.com/go"
 	"github.com/gorilla/mux"
+	"google.golang.org/api/iterator"
+	"google.golang.org/api/option"
 )
 
 //Book struct (model)
@@ -19,11 +23,52 @@ type Book struct {
 	Author *Author `json:"author"`
 }
 
+type Client struct {
+	Bairro string `json:"bairro"`
+	Cep    string `json:"cep"`
+}
+
 type Author struct {
 	Name string `json:"name"`
 }
 
 var books []Book
+
+func getClients(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	sa := option.WithCredentialsFile("./crud-maluco-firebase-adminsdk-btjm5-52f653b8cc.json")
+
+	ctx := context.Background()
+	//conf := &firebase.Config{ProjectID: "crud-maluco-gcp"}
+	app, err := firebase.NewApp(ctx, nil, sa)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	client, err := app.Firestore(ctx)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer client.Close()
+
+	var clients []Client
+
+	iter := client.Collection("client").Documents(ctx)
+
+	for {
+		doc, err := iter.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			log.Fatalf("Failed to iterate: %v", err)
+		}
+		fmt.Println(doc.Data())
+	}
+
+	json.NewEncoder(w).Encode(clients)
+}
 
 func getBooks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -81,6 +126,8 @@ func main() {
 	//init router
 	router := mux.NewRouter()
 
+	// Use the application default credentials
+
 	//mocação
 	books = append(books, Book{
 		Id:     "1",
@@ -90,6 +137,7 @@ func main() {
 
 	//endponts
 
+	router.HandleFunc("/api/clients", getClients).Methods("GET")
 	router.HandleFunc("/api/books", getBooks).Methods("GET")
 	router.HandleFunc("/api/books/{id}", getBook).Methods("GET")
 	router.HandleFunc("/api/books", createBook).Methods("POST")
