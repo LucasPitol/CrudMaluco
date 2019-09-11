@@ -36,7 +36,7 @@ namespace CrudMalucoWeb.Controllers
 
 			var dataObjects = res.Content.ReadAsAsync<IEnumerable<CardUserDto>>().Result;
 
-			List<CardUserDto> cards = this.UserService.GetUserCards();
+			List<CardUserDto> cards = this.UserService.GetUserCards(dataObjects);
 
 			HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, cards);
 			return response;

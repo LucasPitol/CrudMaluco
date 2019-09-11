@@ -24,8 +24,18 @@ type Book struct {
 }
 
 type Client struct {
-	Bairro string `json:"bairro"`
-	Cep    string `json:"cep"`
+	dataMap map[string]interface{}
+	// Id         string `json:"id"`
+	// Bairro     string `json:"bairro"`
+	// Cep        string `json:"cep"`
+	// Cidade     string `json:"cidade"`
+	// Complement string `json:"complement"`
+	// Cpf        string `json:"cpf"`
+	// Email      string `json:"email"`
+	// Largadouro string `json:"largadouro"`
+	// Name       string `json:"name"`
+	// Phone1     string `json:"phone1"`
+	// Uf         string `json:"uf"`
 }
 
 type Author struct {
@@ -46,15 +56,14 @@ func getClients(w http.ResponseWriter, r *http.Request) {
 		log.Fatalln(err)
 	}
 
-	client, err := app.Firestore(ctx)
+	connection, err := app.Firestore(ctx)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	defer client.Close()
 
-	var clients []Client
+	var clients []map[string]interface{}
 
-	iter := client.Collection("client").Documents(ctx)
+	iter := connection.Collection("client").Documents(ctx)
 
 	for {
 		doc, err := iter.Next()
@@ -64,10 +73,35 @@ func getClients(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatalf("Failed to iterate: %v", err)
 		}
-		fmt.Println(doc.Data())
+
+		dataMap := doc.Data()
+
+		dataMap["id"] = doc.Ref.ID
+
+		//var c Client
+
+		//c.Id = doc.Ref.ID
+
+		//c.Bairro = getStringValue(dataMap, "bairro")
+
+		clients = append(clients, dataMap)
 	}
 
+	defer connection.Close()
+
+	fmt.Println(clients)
 	json.NewEncoder(w).Encode(clients)
+}
+
+func getStringValue(dataMap map[string]interface{}, key string) string {
+
+	str, ok := dataMap[key].(string)
+
+	if ok {
+		return str
+	} else {
+		return ""
+	}
 }
 
 func getBooks(w http.ResponseWriter, r *http.Request) {
