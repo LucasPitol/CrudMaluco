@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.InteropServices.ComTypes;
 using System.Web.Http;
 
 namespace CrudMalucoWeb.Controllers
@@ -35,7 +34,7 @@ namespace CrudMalucoWeb.Controllers
 
 			HttpResponseMessage res = client.GetAsync(URL).Result;
 
-			var dataObjects = res.Content.ReadAsAsync<IEnumerable<IDataObject>>().Result;
+			var dataObjects = res.Content.ReadAsAsync<IEnumerable<object>>().Result;
 
 			List<CardUserDto> cards = this.UserService.GetUserCards();
 
