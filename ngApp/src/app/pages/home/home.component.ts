@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 	
 	cardsLoading = true
 
-	private db = firebase.firestore();
+	// 
 
 	filterImageUrl = 'assets/filter.png';
 
@@ -94,18 +94,18 @@ export class HomeComponent implements OnInit {
 		} 
 		else 
 		{
-			this.db.collection("client").where("cidade", "==", cidade)
-				.get()
-				.then((querySnapshot) => {
-					querySnapshot.forEach((doc) => {
-						cardsx = cardsx.concat(doc.data())
-					});
-					this.cards = cardsx
-					this.cardsLoading = false
-				})
-				.catch(function(error) {
-					console.log("Error getting documents: ", error)
-				})
+			// this.db.collection("client").where("cidade", "==", cidade)
+			// 	.get()
+			// 	.then((querySnapshot) => {
+			// 		querySnapshot.forEach((doc) => {
+			// 			cardsx = cardsx.concat(doc.data())
+			// 		});
+			// 		this.cards = cardsx
+			// 		this.cardsLoading = false
+			// 	})
+			// 	.catch(function(error) {
+			// 		console.log("Error getting documents: ", error)
+			// 	})
 		}
 
 	}
@@ -141,27 +141,27 @@ export class HomeComponent implements OnInit {
 		});
 
 		this.addClientDialogRef.afterClosed().subscribe(res => {
-			if (res != undefined)
-			{
-				this.db.collection("client").add({
-					bairro: client.bairro,
-					cidade: client.cidade,
-					cep: client.cep,
-					complement: client.complement,
-					cpf: client.cpf,
-					email: client.email,
-					largadouro: client.largadouro,
-					name: client.name,
-					phone1: client.phone1,
-				})
-				.then(function(docRef) {
-					alert("Sucesso!")
-				})
-				.catch(function(error) {
-					alert(error)//console.error("Error adding document: ", error);
-				});
+			// if (res != undefined)
+			// {
+			// 	this.db.collection("client").add({
+			// 		bairro: client.bairro,
+			// 		cidade: client.cidade,
+			// 		cep: client.cep,
+			// 		complement: client.complement,
+			// 		cpf: client.cpf,
+			// 		email: client.email,
+			// 		largadouro: client.largadouro,
+			// 		name: client.name,
+			// 		phone1: client.phone1,
+			// 	})
+			// 	.then(function(docRef) {
+			// 		alert("Sucesso!")
+			// 	})
+			// 	.catch(function(error) {
+			// 		alert(error)//console.error("Error adding document: ", error);
+			// 	});
 					
-			}
+			// }
 		})
 	}
 }
