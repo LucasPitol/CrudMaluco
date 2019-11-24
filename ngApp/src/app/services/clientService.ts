@@ -31,14 +31,21 @@ export class ClientService {
 	getClients(): Observable<any> {
 		return new Observable((observer) => {
 		  this.db.collection('client').onSnapshot((querySnapshot) => {
-			let cards = [];
+			let cards = []
 			querySnapshot.forEach((doc) => {
-			  let data = doc.data();
+			  let data = doc.data()
 			  cards.push({
 				key: doc.id,
 				name: data.name,
 				bairro: data.bairro,
-				birthDate: data.birthDate
+				birthDate: data.birthDate,
+				cep: data.cep,
+				complement: data.complement,
+				cpf: data.cpf,
+				email: data.email,
+				largadouro: data.largadouro,
+				phone1: data.phone1,
+				cidade: data.cidade
 			  });
 			});
 			observer.next(cards);
@@ -48,22 +55,22 @@ export class ClientService {
 
 	public addNewClient(client) {
 
-		// this.db.collection("client").add({
-		// 	bairro: client.bairro,
-		// 	cidade: client.cidade,
-		// 	cep: client.cep,
-		// 	complement: client.complement,
-		// 	cpf: client.cpf,
-		// 	email: client.email,
-		// 	largadouro: client.largadouro,
-		// 	name: client.name,
-		// 	phone1: client.phone1,
-		// })
-		// .then(function(docRef) {
-		// 	console.log("Document written with ID: ", docRef.id);
-		// })
-		// .catch(function(error) {
-		// 	console.error("Error adding document: ", error);
-		// });
+		this.db.collection("client").add({
+			bairro: client.bairro,
+			cidade: client.cidade,
+			cep: client.cep,
+			complement: client.complement,
+			cpf: client.cpf,
+			email: client.email,
+			largadouro: client.largadouro,
+			name: client.name,
+			phone1: client.phone1,
+		})
+		.then(function(docRef) {
+			console.log("Document written with ID: ", docRef.id);
+		})
+		.catch(function(error) {
+			console.error("Error adding document: ", error);
+		});
 	}
  }

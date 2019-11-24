@@ -141,8 +141,9 @@ export class HomeComponent implements OnInit {
 		});
 
 		this.addClientDialogRef.afterClosed().subscribe(res => {
-			// if (res != undefined)
-			// {
+			if (res != undefined)
+			{
+				this.clientService.addNewClient(client)
 			// 	this.db.collection("client").add({
 			// 		bairro: client.bairro,
 			// 		cidade: client.cidade,
@@ -161,7 +162,7 @@ export class HomeComponent implements OnInit {
 			// 		alert(error)//console.error("Error adding document: ", error);
 			// 	});
 					
-			// }
+			}
 		})
 	}
 }
