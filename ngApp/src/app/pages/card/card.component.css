@@ -3,7 +3,7 @@
 }
 
 .card {
-	width: 800px;
+	width: 700px;
 }
 
 .group {
@@ -28,4 +28,5 @@
 
 .bloco {
 	margin: 10px;
+	margin-right: 50px;
 }
