@@ -8,7 +8,7 @@
 				<div>
 					<div class="filter-header">
 						<label>
-							<strong>Localização</strong>
+							<strong>Location</strong>
 						</label>
 					</div>
 					<div class="filter-input">
@@ -35,15 +35,15 @@
 
 			<mat-divider></mat-divider>
 			<div class="filter-bottom">
-				<button mat-raised-button (click)="clearFilter()">Limpar</button>
-				<button mat-raised-button color="primary" (click)=" filterBar.toggle(); applyFilter();">Filtrar</button>
+				<button mat-raised-button (click)="clearFilter()">Clear</button>
+				<button mat-raised-button color="primary" (click)=" filterBar.toggle(); applyFilter();">Apply</button>
 			</div>
 
 		</mat-drawer>
 
 		<div class="filter-sidenav-content">
 				<button class="filter-btn" type="button" mat-raised-button (click)="filterBar.toggle()">
-						<img [src]="filterImageUrl"> <span>Filtros</span>
+						<img [src]="filterImageUrl"> <span>Filters</span>
 			</button>
 		</div>
 
