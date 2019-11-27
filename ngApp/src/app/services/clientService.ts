@@ -54,7 +54,7 @@ export class ClientService {
 	}
 
 	public addNewClient(client) {
-
+		console.log(client)
 		this.db.collection("client").add({
 			bairro: client.bairro,
 			cidade: client.cidade,
@@ -65,6 +65,7 @@ export class ClientService {
 			largadouro: client.largadouro,
 			name: client.name,
 			phone1: client.phone1,
+			birthDate: client.birthDate,
 		})
 		.then(function(docRef) {
 			console.log("Document written with ID: ", docRef.id);
