@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { ClientService } from "src/app/services/clientService";
 
 @Component({
 	selector: 'card-component',
@@ -8,10 +9,14 @@ import { Component, Input } from "@angular/core";
 })
 
 export class CardComponent { 
-	@Input("card") card: any;
+	@Input("card") card: any
+
+	constructor(private clientService: ClientService)
+	{}
+	
 
 	delete()
 	{
-		console.log(this.card.key)
+		this.clientService.delete(this.card.key)
 	}
 }

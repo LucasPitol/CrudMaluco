@@ -7,26 +7,9 @@ import * as firebase from 'firebase';
 @Injectable()
 export class ClientService {
 
-	private url = environment.crudApiUrl
-
 	private db = firebase.firestore();
 
-	//public firebase = require("firebase/firestore");
-	// Required for side-effects
-	//require("firebase/firestore");
-
-	//private db = firebase.firestore();
-
 	constructor(private http: HttpClient) {}
-
-	// public getClients() : any
-	// {
-	// 	// const url=  this.url + "api/user/listAsync";
-	// 	// return this.http.get(url)
-	// 	// 	.map(res => res.json());
-
-	// 	return this.http.get<any>(this.url + "api/user/list")
-	// }
 
 	getClients(): Observable<any> {
 		return new Observable((observer) => {
@@ -65,5 +48,15 @@ export class ClientService {
 		.catch(function(error) {
 			console.error("Error adding document: ", error);
 		});
+	}
+
+	public delete(key)
+	{
+		this.db.collection("client").doc(key).delete()
+		.then(function() {
+			console.log("Document successfully deleted!")
+		}).catch(function(error) {
+			console.error("Error removing document: ", error)
+		})
 	}
  }
