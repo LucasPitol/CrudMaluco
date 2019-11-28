@@ -31,8 +31,6 @@ export class HomeComponent implements OnInit {
 	
 	cardsLoading = true
 
-	// 
-
 	filterImageUrl = 'assets/filter.png';
 
 	addNewCLientImage = 'assets/plus.png'
@@ -112,16 +110,6 @@ export class HomeComponent implements OnInit {
 
 	getUsers()
 	{
-		let cardsx: any = []
-
-		
-
-		// this.clientService.getClients()
-		// 					.subscribe( res => {
-		// 						this.cards = res
-		// 						this.cardsLoading = false
-		// 					})
-
 		this.clientService.getClients()
 			.subscribe(
 				res => {
@@ -144,24 +132,6 @@ export class HomeComponent implements OnInit {
 			if (res != undefined)
 			{
 				this.clientService.addNewClient(client)
-			// 	this.db.collection("client").add({
-			// 		bairro: client.bairro,
-			// 		cidade: client.cidade,
-			// 		cep: client.cep,
-			// 		complement: client.complement,
-			// 		cpf: client.cpf,
-			// 		email: client.email,
-			// 		largadouro: client.largadouro,
-			// 		name: client.name,
-			// 		phone1: client.phone1,
-			// 	})
-			// 	.then(function(docRef) {
-			// 		alert("Sucesso!")
-			// 	})
-			// 	.catch(function(error) {
-			// 		alert(error)//console.error("Error adding document: ", error);
-			// 	});
-					
 			}
 		})
 	}
