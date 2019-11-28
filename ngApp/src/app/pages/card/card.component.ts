@@ -10,4 +10,8 @@ import { Component, Input } from "@angular/core";
 export class CardComponent { 
 	@Input("card") card: any;
 
+	delete()
+	{
+		console.log(this.card.key)
+	}
 }
