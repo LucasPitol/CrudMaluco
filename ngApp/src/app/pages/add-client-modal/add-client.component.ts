@@ -22,7 +22,7 @@ export class AddClientComponent implements OnInit {
     
     constructor(
         public addClientDialogRef: MatDialogRef<AddClientComponent>,
-        @Inject (MAT_DIALOG_DATA) public client: Client,
+        @Inject (MAT_DIALOG_DATA) public client: any,
         private values: Values
         ) {
             
@@ -40,6 +40,21 @@ export class AddClientComponent implements OnInit {
 		const filterValue = value.toLowerCase();
 	
 		return this.options.filter(option => option.toLowerCase().includes(filterValue));
+	}
+
+	validate()
+	{
+		return (Boolean(this.client.client.name))
+				&&
+				(Boolean(this.client.client.email))
+				&&
+				(Boolean(this.client.client.cpf))
+				&&
+				(Boolean(this.client.client.birthDate))
+				&&
+				(Boolean(this.client.client.cidade))
+				&&
+				(Boolean(this.client.client.largadouro))
 	}
 
     onNoClick()

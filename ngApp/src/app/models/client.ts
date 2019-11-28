@@ -7,8 +7,6 @@ export class Client {
     
     public birthDate: any
     
-    public cep: string
-    
     public cidade: string
     
     public complement: string
@@ -20,8 +18,6 @@ export class Client {
     public largadouro: string
     
     public name: string
-    
-    public phone1: string
 
     constructor( ) { }
 }

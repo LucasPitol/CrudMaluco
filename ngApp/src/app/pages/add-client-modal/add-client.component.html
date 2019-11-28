@@ -69,7 +69,10 @@
     <div mat-dialog-actions>
         <div class="content">
             <button mat-button (click)="onNoClick()">Cancelar</button>
-            <button mat-button color="primary" [mat-dialog-close]="client.client">Cadastrar</button>
+			<button mat-button 
+					color="primary" 
+					[disabled]="!validate()"
+					[mat-dialog-close]="client.client">Cadastrar</button>
         </div>
     </div>
 
