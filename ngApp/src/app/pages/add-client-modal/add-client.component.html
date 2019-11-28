@@ -6,17 +6,14 @@
 
         <div class="content">
 
-            <div class="input-line">
+            <div class="input-line largadouro">
     
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
                     <input matInput cdkFocusInitial [(ngModel)]="client.client.name">
                 </mat-form-field>
     
-                <mat-form-field appearance="outline">
-                    <mat-label>CPF</mat-label>
-                    <input matInput [(ngModel)]="client.client.cpf">
-                </mat-form-field>
+                
                 
             </div>
 
@@ -28,8 +25,8 @@
                 </mat-form-field>
     
                 <mat-form-field appearance="outline">
-                    <mat-label>Tel</mat-label>
-                    <input matInput [(ngModel)]="client.client.phone1">
+                    <mat-label>CPF</mat-label>
+                    <input matInput [(ngModel)]="client.client.cpf">
                 </mat-form-field>
                 
             </div>
@@ -44,15 +41,6 @@
                 </mat-form-field>
     
                 <mat-form-field appearance="outline">
-                    <mat-label>Telefone</mat-label>
-                    <input matInput [(ngModel)]="client.client.phone1">
-                </mat-form-field>
-                
-            </div>
-
-            <div class="input-line">
-    
-                <mat-form-field appearance="outline">
                     <mat-label>City</mat-label>
                     <input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="client.client.cidade">
                     <mat-autocomplete #auto="matAutocomplete">
@@ -60,11 +48,6 @@
                             {{option}}
                         </mat-option>
                     </mat-autocomplete>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline">
-                    <mat-label>Cep</mat-label>
-                    <input matInput [(ngModel)]="client.client.cep">
                 </mat-form-field>
                 
             </div>
@@ -74,20 +57,6 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Address</mat-label>
                     <input matInput [(ngModel)]="client.client.largadouro">
-                </mat-form-field>
-                
-            </div>
-
-            <div class="input-line">
-    
-                <mat-form-field appearance="outline">
-                    <mat-label>Bairro</mat-label>
-                    <input matInput [(ngModel)]="client.client.bairro">
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline">
-                    <mat-label>Complement</mat-label>
-                    <input matInput [(ngModel)]="client.client.complement">
                 </mat-form-field>
                 
             </div>

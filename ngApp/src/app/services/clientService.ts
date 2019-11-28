@@ -37,14 +37,10 @@ export class ClientService {
 			  cards.push({
 				key: doc.id,
 				name: data.name,
-				bairro: data.bairro,
 				birthDate: data.birthDate,
-				cep: data.cep,
-				complement: data.complement,
 				cpf: data.cpf,
 				email: data.email,
 				largadouro: data.largadouro,
-				phone1: data.phone1,
 				cidade: data.cidade
 			  });
 			});
@@ -56,15 +52,11 @@ export class ClientService {
 	public addNewClient(client) {
 		console.log(client)
 		this.db.collection("client").add({
-			bairro: client.bairro,
 			cidade: client.cidade,
-			cep: client.cep,
-			complement: client.complement,
 			cpf: client.cpf,
 			email: client.email,
 			largadouro: client.largadouro,
 			name: client.name,
-			phone1: client.phone1,
 			birthDate: client.birthDate,
 		})
 		.then(function(docRef) {
