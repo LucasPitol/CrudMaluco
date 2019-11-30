@@ -11,9 +11,23 @@ export class ClientService {
 
 	constructor(private http: HttpClient) {}
 
-	getClients(): Observable<any> {
+	getClients(filter): Observable<any> {
+
+		console.log(filter)
+
+		var collectionRef = this.db.collection('client')
+
+		var query = collectionRef.where("cidade", ">", "")
+
+		var city = filter.local.city
+
+		if (city != "")
+		{
+			query = collectionRef.where("cidade", "==", city)
+		}
+
 		return new Observable((observer) => {
-		  this.db.collection('client').onSnapshot((querySnapshot) => {
+			query.onSnapshot((querySnapshot) => {
 			let cards = []
 			querySnapshot.forEach((doc) => {
 			  let data = doc.data()

@@ -13,7 +13,7 @@
 					</div>
 					<div class="filter-input">
 						<mat-form-field appearance="outline">
-							<mat-label>Cidade</mat-label>
+							<mat-label>City</mat-label>
 							<input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="filterForm.local.city">
 							<mat-autocomplete #auto="matAutocomplete">
 								<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -24,8 +24,8 @@
 					</div>
 					<div class="filter-input">
 						<mat-form-field appearance="outline">
-							<mat-label>UF</mat-label>
-							<input matInput [(ngModel)]="filterForm.local.uf">
+							<mat-label>Address</mat-label>
+							<input matInput [(ngModel)]="filterForm.local.address">
 						</mat-form-field>
 					</div>
 				</div>

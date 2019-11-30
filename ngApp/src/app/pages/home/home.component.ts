@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 	filterForm = {
 		local: {
 			city: '',
-			uf: ''
+			address: ''
 		},
 		age: {
 			minAge: '',
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
 	clearFilter()
 	{
 		this.filterForm.local.city = ""
-		this.filterForm.local.uf = ""
+		this.filterForm.local.address = ""
 	}
 	
 	applyFilter()
@@ -85,35 +85,34 @@ export class HomeComponent implements OnInit {
 		
 		let cardsx: any = []
 
-		let cidade = this.filterForm.local.city
+		this.getUsers()
 
-		if (cidade == undefined || cidade == ""){
-			this.getUsers()
-		} 
-		else 
-		{
-			// this.db.collection("client").where("cidade", "==", cidade)
-			// 	.get()
-			// 	.then((querySnapshot) => {
-			// 		querySnapshot.forEach((doc) => {
-			// 			cardsx = cardsx.concat(doc.data())
-			// 		});
-			// 		this.cards = cardsx
-			// 		this.cardsLoading = false
-			// 	})
-			// 	.catch(function(error) {
-			// 		console.log("Error getting documents: ", error)
-			// 	})
-		}
+		// if (cidade == undefined || cidade == ""){
+		// 	this.getUsers()
+		// } 
+		// else 
+		// {
+		// 	// this.db.collection("client").where("cidade", "==", cidade)
+		// 	// 	.get()
+		// 	// 	.then((querySnapshot) => {
+		// 	// 		querySnapshot.forEach((doc) => {
+		// 	// 			cardsx = cardsx.concat(doc.data())
+		// 	// 		});
+		// 	// 		this.cards = cardsx
+		// 	// 		this.cardsLoading = false
+		// 	// 	})
+		// 	// 	.catch(function(error) {
+		// 	// 		console.log("Error getting documents: ", error)
+		// 	// 	})
+		// }
 
 	}
 
 	getUsers()
 	{
-		this.clientService.getClients()
+		this.clientService.getClients(this.filterForm)
 			.subscribe(
 				res => {
-					console.log(res)
 					this.cards = res
 					this.cardsLoading = false
 				}
