@@ -9,13 +9,14 @@
 .group {
 	display: inline-block;
 	/* border-right: solid 1px #ebecec; */
-    padding: 0 20px;
+	padding: 0 20px;
+	align-content: center;
 }
 
 .card-group-row {
 	display: flex;
     justify-content: space-between;
-    position: relative;
+    /* position: relative; */
 }
 
 .group .card-group-row
@@ -28,5 +29,10 @@
 
 .bloco {
 	margin: 10px;
-	margin-right: 50px;
+	width: 180px;
+}
+
+.bloco-short {
+	margin: 10px;
+	width: 120px;
 }
