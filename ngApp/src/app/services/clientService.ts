@@ -20,10 +20,16 @@ export class ClientService {
 		var query = collectionRef.where("cidade", ">", "")
 
 		var city = filter.local.city
+		var address = filter.local.address
 
 		if (city != "")
 		{
 			query = collectionRef.where("cidade", "==", city)
+		}
+
+		if (address != "")
+		{
+			query = collectionRef.orderBy("largadouro").startAt(address).endAt(address+'\uf8ff')
 		}
 
 		return new Observable((observer) => {
