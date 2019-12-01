@@ -6,6 +6,14 @@
 			<mat-accordion>
 
 				<div>
+
+					<div class="filter-input">
+						<mat-form-field appearance="outline">
+							<mat-label>Name</mat-label>
+							<input matInput [(ngModel)]="filterForm.name">
+						</mat-form-field>
+					</div>
+
 					<div class="filter-header">
 						<label>
 							<strong>Location</strong>

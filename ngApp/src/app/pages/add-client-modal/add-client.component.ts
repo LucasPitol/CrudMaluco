@@ -54,7 +54,7 @@ export class AddClientComponent implements OnInit {
 				&&
 				(Boolean(this.client.client.cidade))
 				&&
-				(Boolean(this.client.client.largadouro))
+				(Boolean(this.client.client.address))
 	}
 
     onNoClick()

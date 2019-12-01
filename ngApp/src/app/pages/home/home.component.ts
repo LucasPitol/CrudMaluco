@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
 			minAge: '',
 			maxAge: '',
 		},
-		categoria: '',
+		name: '',
 	}
 
 	constructor(private homeService: HomeService,
@@ -73,6 +73,7 @@ export class HomeComponent implements OnInit {
 
 	clearFilter()
 	{
+		this.filterForm.name = ""
 		this.filterForm.local.city = ""
 		this.filterForm.local.address = ""
 	}

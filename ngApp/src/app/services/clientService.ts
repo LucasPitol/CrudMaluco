@@ -17,21 +17,22 @@ export class ClientService {
 
 		var collectionRef = this.db.collection('client')
 
-		var query = collectionRef.where("cidade", ">", "")
+		var query = collectionRef.orderBy("name")
 
+		var name = filter.name
 		var city = filter.local.city
 		var address = filter.local.address
 
+		if (name != "")
+		{
+			query = query.startAt(name).endAt(name + "\uf8ff")
+		}
+
 		if (city != "")
 		{
-			query = collectionRef.where("cidade", "==", city)
+			query = query.where("cidade", "==", city)
 		}
-
-		if (address != "")
-		{
-			query = collectionRef.orderBy("largadouro").startAt(address).endAt(address+'\uf8ff')
-		}
-
+		
 		return new Observable((observer) => {
 			query.onSnapshot((querySnapshot) => {
 			let cards = []
@@ -43,7 +44,7 @@ export class ClientService {
 				birthDate: data.birthDate,
 				cpf: data.cpf,
 				email: data.email,
-				largadouro: data.largadouro,
+				address: data.address,
 				cidade: data.cidade
 			  });
 			});
@@ -58,7 +59,7 @@ export class ClientService {
 			cidade: client.cidade,
 			cpf: client.cpf,
 			email: client.email,
-			largadouro: client.largadouro,
+			address: client.address,
 			name: client.name,
 			birthDate: client.birthDate,
 		})
