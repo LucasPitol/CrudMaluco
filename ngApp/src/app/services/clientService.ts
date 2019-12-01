@@ -13,8 +13,6 @@ export class ClientService {
 
 	getClients(filter): Observable<any> {
 
-		console.log(filter)
-
 		var collectionRef = this.db.collection('client')
 
 		var query = collectionRef.orderBy("name")
@@ -36,7 +34,22 @@ export class ClientService {
 		return new Observable((observer) => {
 			query.onSnapshot((querySnapshot) => {
 			let cards = []
-			querySnapshot.forEach((doc) => {
+			
+			var docs = querySnapshot.docs
+
+			if (address != "")
+			{
+				docs = docs.filter(function (doc) {
+					var element = doc.data()
+					var indexFound = (element.address.search(address))
+					if (indexFound >= 0)
+					{
+						return element
+					}
+				})
+			}
+
+			docs.forEach((doc) => {
 			  let data = doc.data()
 			  cards.push({
 				key: doc.id,
