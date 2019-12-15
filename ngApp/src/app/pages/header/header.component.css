@@ -11,7 +11,21 @@
 .title {
 	font-family: roboto;
 	font-size: 30px;
-	position: relative;
+	position: absolute;
 	margin-top: 30px;
 	margin-left: 20px;
+}
+
+.user {
+	float: right;
+	margin-top: 10px;
+}
+
+.userPic{
+	width: 100%;
+}
+
+.userPic img{
+	width: 50px;
+	border-radius: 50%;
 }

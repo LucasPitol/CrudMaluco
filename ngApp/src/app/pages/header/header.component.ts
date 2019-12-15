@@ -41,7 +41,10 @@ export class HeaderComponent implements OnInit {
 	signOut()
 	{
 		this.authService.signOut()
+	}
 
-		console.log(this.authService.user)
+	googleSignIn()
+	{
+		this.authService.googleSignIn()
 	}
 }

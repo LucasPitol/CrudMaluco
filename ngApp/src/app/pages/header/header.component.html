@@ -1,16 +1,21 @@
 <div class="header-container">
 	<h2 class="title">{{tytle}}</h2>
 
-	<div class="">
+	<div class="user">
 		<div *ngIf="authService.user | async as user; else login">
-			{{ user | json }}
-			<hr>
-			<button class="button" (click)="signOut()">Sign Out</button>
+
+			<div class="userPic">
+				<img [src]="authService.currentUser.photoURL">
+			</div>
+			<span>{{authService.currentUser.displayName}}</span>
+			<div>
+				<button class="button" (click)="signOut()">Sign Out</button>
+			</div>
 
 		</div>
 
 		<ng-template #login>
-			<button class="button" (click)="authService.googleSignIn()">Login with Google</button>
+			<button class="button" (click)="googleSignIn()">Login with Google</button>
 		</ng-template>
 	</div>
 </div>

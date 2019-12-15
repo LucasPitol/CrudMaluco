@@ -10,6 +10,8 @@ import { User } from '../models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+    currentUser: any
+
     user: Observable<any>
 
     constructor(
@@ -21,6 +23,7 @@ export class AuthService {
             switchMap( user => {
                 if (user)
                 {
+                    this.currentUser = user
                     return this.db.doc<User>(`users/${user.uid}`).valueChanges()
                 }
                 else
@@ -49,6 +52,8 @@ export class AuthService {
     updateUserData(user)
     {
         const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.uid}`)
+
+        this.currentUser = user
 
         const data = {
             uid: user.uid,
