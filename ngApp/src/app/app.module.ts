@@ -16,6 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddClientComponent } from './pages/add-client-modal/add-client.component';
 import { Client } from './models/client';
 import { Values } from './utils/values';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -28,6 +32,9 @@ import { Values } from './utils/values';
 		
 	],
 	imports: [
+		AngularFireModule.initializeApp(environment.firebaseConfig),
+		AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+		AngularFireAuthModule,
 		BrowserModule,
 		routing,
 		ReactiveFormsModule,

@@ -2,7 +2,16 @@
 	<h2 class="title">{{tytle}}</h2>
 
 	<div class="">
+		<div *ngIf="authService.user | async as user; else login">
+			{{ user | json }}
+			<hr>
+			<button class="button" (click)="signOut()">Sign Out</button>
 
+		</div>
+
+		<ng-template #login>
+			<button class="button" (click)="authService.googleSignIn()">Login with Google</button>
+		</ng-template>
 	</div>
 </div>
 

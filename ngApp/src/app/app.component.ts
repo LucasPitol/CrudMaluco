@@ -22,8 +22,8 @@ const firebaseConfig = {
 export class AppComponent implements OnInit {
 
   ngOnInit(): void {
-    firebase.initializeApp(firebaseConfig);
-    firebase.firestore().settings(settings);
+    // firebase.initializeApp(firebaseConfig);
+    // firebase.firestore().settings(settings);
   }
   title = 'app';
 }

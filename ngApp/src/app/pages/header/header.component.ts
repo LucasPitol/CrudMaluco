@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth-service";
 
 export enum TabsEnum {
 	HOME = 1,
@@ -33,8 +34,14 @@ export class HeaderComponent implements OnInit {
 		this.currentTab = this.HOME_TAB;
 	}
 
-	constructor() {
+	constructor(public authService: AuthService) {
 		
 	}
-	
+
+	signOut()
+	{
+		this.authService.signOut()
+
+		console.log(this.authService.user)
+	}
 }
