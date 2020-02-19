@@ -7,39 +7,35 @@
         <div class="content">
 
             <div class="input-line largadouro">
-    
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
                     <input matInput cdkFocusInitial [(ngModel)]="client.client.name">
                 </mat-form-field>
-    
-                
-                
             </div>
 
             <div class="input-line">
-    
+
                 <mat-form-field appearance="outline">
                     <mat-label>email</mat-label>
                     <input matInput [(ngModel)]="client.client.email">
                 </mat-form-field>
-    
+
                 <mat-form-field appearance="outline">
                     <mat-label>CPF</mat-label>
                     <input matInput [(ngModel)]="client.client.cpf">
                 </mat-form-field>
-                
+
             </div>
 
             <div class="input-line">
-    
+
                 <mat-form-field appearance="outline">
                     <mat-label>Birth</mat-label>
                     <input matInput [matDatepicker]="picker" [(ngModel)]="client.client.birthDate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-    
+
                 <mat-form-field appearance="outline">
                     <mat-label>City</mat-label>
                     <input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="client.client.cidade">
@@ -49,7 +45,7 @@
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-                
+
             </div>
 
             <div class="input-line largadouro">
@@ -62,8 +58,7 @@
             </div>
 
         </div>
-        
-    
+
     </div>
 
     <div mat-dialog-actions>

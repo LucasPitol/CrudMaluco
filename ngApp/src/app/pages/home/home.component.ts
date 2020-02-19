@@ -83,30 +83,8 @@ export class HomeComponent implements OnInit {
 		this.cardsLoading = true;
 
 		this.cards = []
-		
-		let cardsx: any = []
 
 		this.getUsers()
-
-		// if (cidade == undefined || cidade == ""){
-		// 	this.getUsers()
-		// } 
-		// else 
-		// {
-		// 	// this.db.collection("client").where("cidade", "==", cidade)
-		// 	// 	.get()
-		// 	// 	.then((querySnapshot) => {
-		// 	// 		querySnapshot.forEach((doc) => {
-		// 	// 			cardsx = cardsx.concat(doc.data())
-		// 	// 		});
-		// 	// 		this.cards = cardsx
-		// 	// 		this.cardsLoading = false
-		// 	// 	})
-		// 	// 	.catch(function(error) {
-		// 	// 		console.log("Error getting documents: ", error)
-		// 	// 	})
-		// }
-
 	}
 
 	getUsers()
