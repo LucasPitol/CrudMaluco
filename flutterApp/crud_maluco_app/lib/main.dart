@@ -11,6 +11,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _CDState extends State<MyApp> {
+  FloatingActionButtonLocation _addFabLocation =
+      FloatingActionButtonLocation.endDocked;
+
+  void openFilter() {
+    var x = 1;
+
+    var y = x + 1;
+
+    x = y + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +33,7 @@ class _CDState extends State<MyApp> {
             style: TextStyle(color: Colors.black),
           ),
           leading: GestureDetector(
-            onTap: () {},
+            onTap: openFilter,
             child: Icon(
               Icons.filter_list,
               color: Colors.black,
@@ -43,11 +54,22 @@ class _CDState extends State<MyApp> {
             ),
           ],
         ),
+        // AppBar }
         body: Column(
           children: [
             ListagemComponent(),
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.deepPurple,
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          onPressed: openFilter,
+        ),
+        // floatingActionButtonLocation: this._addFabLocation,
+        // bottomNavigationBar: this._buildBottomAppBar(context),
       ),
     );
   }
