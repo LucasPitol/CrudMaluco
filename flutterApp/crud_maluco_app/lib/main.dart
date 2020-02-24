@@ -55,10 +55,8 @@ class _CDState extends State<MyApp> {
           ],
         ),
         // AppBar }
-        body: Column(
-          children: [
-            ListagemComponent(),
-          ],
+        body: Center(
+          child: ListagemComponent(),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.deepPurple,
