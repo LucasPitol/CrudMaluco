@@ -1,13 +1,17 @@
 import 'package:crud_maluco_app/listagem_component.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+// void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(home: MyApp()));
+}
 
 class MyApp extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _CDState();
-  }
+  _CDState createState() => _CDState();
+  // State<StatefulWidget> createState() {
+  //   return _CDState();
+  // }
 }
 
 class _CDState extends State<MyApp> {
@@ -20,6 +24,20 @@ class _CDState extends State<MyApp> {
     var y = x + 1;
 
     x = y + 1;
+  }
+
+  void _showFilterModal() {
+    showModalBottomSheet(
+        context: context,
+        builder: (builder) {
+          return Container(
+            color: Colors.white,
+            child: Text('Filtro'),
+            alignment: Alignment.center,
+            height: 200,
+            // padding: EdgeInsets.all(40.0),
+          );
+        });
   }
 
   @override
@@ -64,7 +82,7 @@ class _CDState extends State<MyApp> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: openFilter,
+          onPressed: _showFilterModal,
         ),
         floatingActionButtonLocation: this._addFabLocation,
         bottomNavigationBar: this._buildBottomAppBar(context),
@@ -83,17 +101,18 @@ class _CDState extends State<MyApp> {
               Icons.filter_list,
               color: Colors.white,
             ),
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              builder: (context) => Container(
-                color: Colors.white,
-                alignment: Alignment.center,
-                height: 200,
-                child: Text(
-                  'filtro',
-                ),
-              ),
-            ),
+            onPressed: this._showFilterModal,
+            // onPressed: () => showModalBottomSheet(
+            //   context: context,
+            //   builder: (context) => Container(
+            //     color: Colors.white,
+            //     alignment: Alignment.center,
+            //     height: 200,
+            //     child: Text(
+            //       'filtro',
+            //     ),
+            //   ),
+            // ),
           ),
           IconButton(
             icon: Icon(
