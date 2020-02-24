@@ -1,3 +1,4 @@
+import 'package:crud_maluco_app/filter_component.dart';
 import 'package:crud_maluco_app/listagem_component.dart';
 import 'package:flutter/material.dart';
 
@@ -30,13 +31,7 @@ class _CDState extends State<MyApp> {
     showModalBottomSheet(
         context: context,
         builder: (builder) {
-          return Container(
-            color: Colors.white,
-            child: Text('Filtro'),
-            alignment: Alignment.center,
-            height: 200,
-            // padding: EdgeInsets.all(40.0),
-          );
+          return FilterComponent();
         });
   }
 
@@ -102,17 +97,6 @@ class _CDState extends State<MyApp> {
               color: Colors.white,
             ),
             onPressed: this._showFilterModal,
-            // onPressed: () => showModalBottomSheet(
-            //   context: context,
-            //   builder: (context) => Container(
-            //     color: Colors.white,
-            //     alignment: Alignment.center,
-            //     height: 200,
-            //     child: Text(
-            //       'filtro',
-            //     ),
-            //   ),
-            // ),
           ),
           IconButton(
             icon: Icon(
