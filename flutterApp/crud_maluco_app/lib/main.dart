@@ -72,7 +72,7 @@ class _CDState extends State<MyApp> {
     );
   }
 
-  BottomAppBar _buildBottomAppBar(BuildContext ctx) {
+  BottomAppBar _buildBottomAppBar(BuildContext context) {
     return BottomAppBar(
       shape: CircularNotchedRectangle(),
       color: Colors.deepPurple,
@@ -84,8 +84,9 @@ class _CDState extends State<MyApp> {
               color: Colors.white,
             ),
             onPressed: () => showModalBottomSheet(
-              context: ctx,
-              builder: (BuildContext ctx) => Container(
+              context: context,
+              builder: (context) => Container(
+                color: Colors.white,
                 alignment: Alignment.center,
                 height: 200,
                 child: Text(
@@ -108,6 +109,13 @@ class _CDState extends State<MyApp> {
             ),
             onPressed: () {},
           ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.delete,
+          //     color: Colors.white,
+          //   ),
+          //   onPressed: () {},
+          // ),
         ],
       ),
     );

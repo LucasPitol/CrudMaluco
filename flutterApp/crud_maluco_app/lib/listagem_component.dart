@@ -13,7 +13,7 @@ class ListagemComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: ListView.builder(
+      child: ListView.separated(
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
@@ -25,10 +25,11 @@ class ListagemComponent extends StatelessWidget {
                 title: Text(item.name),
                 subtitle: Text(item.email),
               ),
-              Divider(),
             ],
           );
         },
+        separatorBuilder: (_, context) => Divider(),
+        addAutomaticKeepAlives: false,
       ),
       // child: ListView(
       //   children: <Widget>[
