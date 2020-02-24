@@ -68,8 +68,49 @@ class _CDState extends State<MyApp> {
           ),
           onPressed: openFilter,
         ),
-        // floatingActionButtonLocation: this._addFabLocation,
-        // bottomNavigationBar: this._buildBottomAppBar(context),
+        floatingActionButtonLocation: this._addFabLocation,
+        bottomNavigationBar: this._buildBottomAppBar(context),
+      ),
+    );
+  }
+
+  BottomAppBar _buildBottomAppBar(BuildContext ctx) {
+    return BottomAppBar(
+      shape: CircularNotchedRectangle(),
+      color: Colors.deepPurple,
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.filter_list,
+              color: Colors.white,
+            ),
+            onPressed: () => showModalBottomSheet(
+              context: ctx,
+              builder: (BuildContext ctx) => Container(
+                alignment: Alignment.center,
+                height: 200,
+                child: Text(
+                  'filtro',
+                ),
+              ),
+            ),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.info,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }
