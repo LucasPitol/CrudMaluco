@@ -24,7 +24,7 @@ class _CDState extends State<MyApp> {
   FloatingActionButtonLocation _addFabLocation =
       FloatingActionButtonLocation.endDocked;
 
-  List<ClientItem> clientItemList = new  List<ClientItem>();
+  List<ClientItem> clientItemList = new List<ClientItem>();
 
   var loading = true;
 
@@ -56,7 +56,6 @@ class _CDState extends State<MyApp> {
       });
     });
   }
- 
 
   void _showFilterModal() {
     showModalBottomSheet(
@@ -76,27 +75,6 @@ class _CDState extends State<MyApp> {
             'Crud Maluco',
             style: TextStyle(color: Colors.black),
           ),
-          leading: GestureDetector(
-            onTap: () {},
-            child: Icon(
-              Icons.filter_list,
-              color: Colors.black,
-            ),
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                right: 20,
-              ),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                  Icons.info,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ],
         ),
         // AppBar }
         body: Center(
@@ -108,7 +86,7 @@ class _CDState extends State<MyApp> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: this.getClients,
+          onPressed: () {},
         ),
         floatingActionButtonLocation: this._addFabLocation,
         bottomNavigationBar: this._buildBottomAppBar(context),
@@ -134,7 +112,7 @@ class _CDState extends State<MyApp> {
               Icons.refresh,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: this.getClients,
           ),
           IconButton(
             icon: Icon(
