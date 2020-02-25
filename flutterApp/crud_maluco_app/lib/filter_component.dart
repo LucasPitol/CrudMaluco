@@ -4,16 +4,34 @@ class FilterComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      // color: Colors.transparent,
       alignment: Alignment.center,
-      height: 300,
+      constraints: BoxConstraints(
+        minHeight: 100
+      ),
+      // margin: EdgeInsets.only(top: 20),
+      // decoration: new BoxDecoration(
+      //   color: Colors.red,
+      //   // shape: BoxShape.rectangle,
+      //   borderRadius: new BorderRadius.only(
+      //     topLeft: Radius.circular(40.0),
+      //     topRight: Radius.circular(40.0),
+      //   ),
+      // ),
       child: Column(
         children: <Widget>[
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Password',
+          Container(
+            height: 30,
+            color: Colors.white,
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Password',
+              ),
             ),
           ),
           Container(
