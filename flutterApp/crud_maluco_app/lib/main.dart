@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_maluco_app/filter_component.dart';
 import 'package:crud_maluco_app/listagem_component.dart';
 import 'package:flutter/material.dart';
+
+import 'models/client_item.dart';
 
 // void main() => runApp(MyApp());
 void main() {
@@ -16,16 +19,44 @@ class MyApp extends StatefulWidget {
 }
 
 class _CDState extends State<MyApp> {
+  final dbReference = Firestore.instance;
+
   FloatingActionButtonLocation _addFabLocation =
       FloatingActionButtonLocation.endDocked;
 
-  void openFilter() {
-    var x = 1;
+  List<ClientItem> clientItemList = new  List<ClientItem>();
 
-    var y = x + 1;
+  var loading = true;
 
-    x = y + 1;
+  void getClients() {
+    print('obj');
+    setState(() {
+      this.loading = true;
+      this.clientItemList = [];
+    });
+
+    dbReference
+        .collection('client')
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((item) {
+        var obj = item.data;
+        print(obj);
+        var client = ClientItem.build(name: obj['name'], email: obj['email']);
+
+        clientItemList.add(client);
+      });
+      setState(() {
+        this.loading = false;
+      });
+    }).catchError((onError) {
+      print(onError);
+      setState(() {
+        this.loading = false;
+      });
+    });
   }
+ 
 
   void _showFilterModal() {
     showModalBottomSheet(
@@ -46,7 +77,7 @@ class _CDState extends State<MyApp> {
             style: TextStyle(color: Colors.black),
           ),
           leading: GestureDetector(
-            onTap: openFilter,
+            onTap: () {},
             child: Icon(
               Icons.filter_list,
               color: Colors.black,
@@ -69,7 +100,7 @@ class _CDState extends State<MyApp> {
         ),
         // AppBar }
         body: Center(
-          child: ListagemComponent(),
+          child: ListagemComponent(this.loading, this.clientItemList),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.deepPurple,
@@ -77,7 +108,7 @@ class _CDState extends State<MyApp> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: _showFilterModal,
+          onPressed: this.getClients,
         ),
         floatingActionButtonLocation: this._addFabLocation,
         bottomNavigationBar: this._buildBottomAppBar(context),
