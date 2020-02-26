@@ -29,7 +29,6 @@ class _CDState extends State<MyApp> {
   var loading = true;
 
   void getClients() {
-    print('obj');
     setState(() {
       this.loading = true;
       this.clientItemList = [];
@@ -41,7 +40,7 @@ class _CDState extends State<MyApp> {
         .then((QuerySnapshot snapshot) {
       snapshot.documents.forEach((item) {
         var obj = item.data;
-        print(obj);
+
         var client = ClientItem.build(name: obj['name'], email: obj['email']);
 
         clientItemList.add(client);

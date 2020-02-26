@@ -23,23 +23,26 @@ class ListagemComponent extends StatelessWidget {
     } else {
       return Container(
         width: double.infinity,
-        child: ListView.separated(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final item = items[index];
+        child: Theme(
+          data: Theme.of(context).copyWith(accentColor: Colors.deepPurple[900]),
+          child: ListView.separated(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
 
-            return Column(
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(Icons.account_circle),
-                  title: Text(item.name),
-                  subtitle: Text(item.email),
-                ),
-              ],
-            );
-          },
-          separatorBuilder: (_, context) => Divider(),
-          addAutomaticKeepAlives: false,
+              return Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.account_circle),
+                    title: Text(item.name),
+                    subtitle: Text(item.email),
+                  ),
+                ],
+              );
+            },
+            separatorBuilder: (_, context) => Divider(),
+            addAutomaticKeepAlives: false,
+          ),
         ),
       );
     }
