@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'add_client_component.dart';
+import 'info_dialog_component.dart';
 import 'models/client_item.dart';
 
 // void main() => runApp(MyApp());
@@ -72,6 +73,15 @@ class _CDState extends State<MyApp> {
         });
   }
 
+  void _openInfoDialog() {
+    showDialog<String>(
+      context: context,
+      builder: (builder) {
+        return InfoDialogComponent('Info', 'Massa');
+      }
+    );
+  }
+
   void _goToAddClientComponent() {
     Navigator.push(context, AddClientComponent());
   }
@@ -130,7 +140,7 @@ class _CDState extends State<MyApp> {
               Icons.info,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: _openInfoDialog,
           ),
           // IconButton(
           //   icon: Icon(

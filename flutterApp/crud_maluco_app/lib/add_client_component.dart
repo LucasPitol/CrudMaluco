@@ -1,5 +1,6 @@
-import 'package:crud_maluco_app/main.dart';
 import 'package:flutter/material.dart';
+
+import 'info_dialog_component.dart';
 
 class AddClientComponent extends MaterialPageRoute<String> {
   AddClientComponent()
@@ -20,6 +21,25 @@ class AddClientComponent extends MaterialPageRoute<String> {
                   color: Colors.black,
                 ),
               ),
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog<String>(
+                        context: context,
+                        builder: (builder) {
+                          return InfoDialogComponent('Info', 'Massa');
+                        },
+                      );
+                    },
+                    child: Icon(
+                      Icons.info,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ],
             ),
             body: Column(
               children: <Widget>[
