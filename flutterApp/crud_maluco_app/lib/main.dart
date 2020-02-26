@@ -28,6 +28,12 @@ class _CDState extends State<MyApp> {
 
   var loading = true;
 
+  @override
+  void initState() {
+    super.initState();
+    this.getClients();
+  }
+
   void getClients() {
     setState(() {
       this.loading = true;
