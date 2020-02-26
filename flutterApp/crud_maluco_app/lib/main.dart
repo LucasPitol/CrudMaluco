@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_maluco_app/filter_component.dart';
 import 'package:crud_maluco_app/listagem_component.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'add_client_modal.dart';
 import 'models/client_item.dart';
 
 // void main() => runApp(MyApp());
@@ -70,6 +72,15 @@ class _CDState extends State<MyApp> {
         });
   }
 
+  void _openAddClientModal() {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (builder) {
+        return AddClientModal();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -91,7 +102,7 @@ class _CDState extends State<MyApp> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: _openAddClientModal,
         ),
         floatingActionButtonLocation: this._addFabLocation,
         bottomNavigationBar: this._buildBottomAppBar(context),
