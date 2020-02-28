@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { RegionalComponent } from './pages/regional/regional.component';
+import { RegionalService } from './services/regional-service';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { RegionalComponent } from './pages/regional/regional.component';
 	  HomeService,
 	  ClientService,
 	  Client,
-	  Values
+	  Values,
+	  RegionalService,
 	],
 	bootstrap: [AppComponent]
 })

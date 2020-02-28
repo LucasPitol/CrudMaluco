@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { RegionalService } from "src/app/services/regional-service";
 
 @Component({
 	selector: 'regional-component',
@@ -7,7 +8,10 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class RegionalComponent implements OnInit {
+	
+	constructor(private regionalService: RegionalService) {}
+
 	ngOnInit(): void {
-		throw new Error("Method not implemented.");
+		
 	}
 }
