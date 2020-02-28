@@ -8,16 +8,28 @@ class AddClientComponent extends MaterialPageRoute<String> {
       : super(builder: (BuildContext context) {
           ClientForm _clientForm = new ClientForm();
 
-          void _openInfoDialog() {
+          void _openInfoDialog(String title, String content) {
             showDialog<String>(
                 context: context,
                 builder: (builder) {
-                  return InfoDialogComponent('Info', 'Massa');
+                  return InfoDialogComponent(title, content);
                 });
+          }
+
+          void _openInfoDialogAux() {
+            _openInfoDialog('Info', 'Massa!');
           }
 
           void _clearForm() {
             _clientForm.name.clear();
+          }
+
+          void _validateForm() {
+            bool valid = false;
+
+            if (!valid) {
+              _openInfoDialog('Fail', 'Must complete the form');
+            }
           }
 
           return Scaffold(
@@ -41,7 +53,7 @@ class AddClientComponent extends MaterialPageRoute<String> {
                 Padding(
                   padding: EdgeInsets.only(right: 20),
                   child: GestureDetector(
-                    onTap: _openInfoDialog,
+                    onTap: _openInfoDialogAux,
                     child: Icon(
                       Icons.info,
                       color: Colors.grey,
@@ -73,6 +85,7 @@ class AddClientComponent extends MaterialPageRoute<String> {
                       Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
+                          controller: _clientForm.email,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Email',
@@ -82,18 +95,21 @@ class AddClientComponent extends MaterialPageRoute<String> {
                       Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
+                          controller: _clientForm.cpf,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'CPF',
                           ),
                         ),
                       ),
+                      //TODO: Date pick
                       Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
+                          controller: _clientForm.address,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'CPF',
+                            labelText: 'Address',
                           ),
                         ),
                       ),
@@ -103,18 +119,24 @@ class AddClientComponent extends MaterialPageRoute<String> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            FlatButton(
-                              textColor: Colors.deepPurple,
-                              child: Text('Clear'),
-                              onPressed: _clearForm,
-                              padding: EdgeInsets.only(left: 10, right: 10),
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              child: OutlineButton(
+                                textColor: Colors.deepPurple,
+                                child: Text('Clear'),
+                                onPressed: _clearForm,
+                                // padding: EdgeInsets.only(left: 10, right: 10),
+                              ),
                             ),
-                            RaisedButton(
-                              color: Colors.deepPurple,
-                              onPressed: _openInfoDialog,
-                              child: Text(
-                                'Add',
-                                style: TextStyle(color: Colors.white),
+                            Container(
+                              margin: EdgeInsets.only(left: 10),
+                              child: RaisedButton(
+                                color: Colors.deepPurple,
+                                onPressed: _validateForm,
+                                child: Text(
+                                  'Add',
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
                             ),
                           ],
