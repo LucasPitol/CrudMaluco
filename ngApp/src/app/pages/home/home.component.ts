@@ -89,6 +89,8 @@ export class HomeComponent implements OnInit {
 
 	getUsers()
 	{
+		this.cardsLoading = true
+
 		this.clientService.getClients(this.filterForm)
 			.subscribe(
 				res => {
