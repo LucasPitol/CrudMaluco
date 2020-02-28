@@ -12,7 +12,7 @@
 	font-family: roboto;
 	font-size: 30px;
 	position: absolute;
-	margin-top: 30px;
+	margin-top: 20px;
 	margin-left: 20px;
 }
 
@@ -28,4 +28,9 @@
 .userPic img{
 	width: 50px;
 	border-radius: 50%;
+}
+
+.aba-selector-div {
+    margin-top: 51px;
+    margin-left: 20px;
 }

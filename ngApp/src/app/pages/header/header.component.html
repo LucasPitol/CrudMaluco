@@ -18,6 +18,14 @@
 			<button class="button" (click)="googleSignIn()">Login with Google</button>
 		</ng-template>
 	</div>
+
+	<div class="aba-selector-div">
+		<mat-tab-group (selectedTabChange)="tabClick($event)">
+			<mat-tab *ngFor="let tab of tabs">
+				<ng-template mat-tab-label>{{tab.label}}</ng-template>
+			</mat-tab>
+		</mat-tab-group>
+	</div>
 </div>
 
 <div *ngIf="currentTab === HOME_TAB">

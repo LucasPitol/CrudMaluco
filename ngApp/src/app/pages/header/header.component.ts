@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth-service";
 
 export enum TabsEnum {
-	HOME = 1,
-	BEST_SALLERS = 2,
-	PROFIT = 3,
+	HOME = 0,
+	REGIONAL = 1,
 }
 
 
@@ -21,13 +20,11 @@ export class HeaderComponent implements OnInit {
 	currentTab: number
 
 	readonly HOME_TAB = TabsEnum.HOME
-	readonly BEST_SALLERS_TAB = TabsEnum.BEST_SALLERS
-	readonly PROFIT_TAB = TabsEnum.PROFIT
+	readonly REGIONAL_TAB = TabsEnum.REGIONAL
 
 	tabs = [
         { label: 'Home', id: this.HOME_TAB },
-        { label: 'bestSallers', id: this.BEST_SALLERS_TAB },
-        { label: 'profit', id: this.PROFIT_TAB },
+        { label: 'Regional', id: this.REGIONAL_TAB },
     ];
 	
 	ngOnInit(): void {
@@ -46,5 +43,11 @@ export class HeaderComponent implements OnInit {
 	googleSignIn()
 	{
 		this.authService.googleSignIn()
+	}
+
+	tabClick(tab)
+	{
+		console.log(tab)
+		this.currentTab = tab.index
 	}
 }
