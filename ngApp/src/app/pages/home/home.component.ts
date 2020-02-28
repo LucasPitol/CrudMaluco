@@ -87,11 +87,11 @@ export class HomeComponent implements OnInit {
 		this.getUsers()
 	}
 
-	getUsers()
+	async getUsers()
 	{
-		this.cardsLoading = true
+		this.cardsLoading = true;
 
-		this.clientService.getClients(this.filterForm)
+		(await this.clientService.getClients(this.filterForm))
 			.subscribe(
 				res => {
 					this.cards = res
