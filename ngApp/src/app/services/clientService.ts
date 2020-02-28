@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 
@@ -9,7 +7,7 @@ export class ClientService {
 
 	private db = firebase.firestore();
 
-	constructor(private http: HttpClient) {}
+	constructor() {}
 
 	getClients(filter): Observable<any> {
 
