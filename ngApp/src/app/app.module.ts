@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { RegionalComponent } from './pages/regional/regional.component';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { environment } from '../environments/environment';
 		HomeComponent,
 		CardComponent,
 		AddClientComponent,
-		
+		RegionalComponent,
 	],
 	imports: [
 		AngularFireModule.initializeApp(environment.firebaseConfig),
