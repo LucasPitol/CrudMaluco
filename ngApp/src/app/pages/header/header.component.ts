@@ -17,14 +17,17 @@ export enum TabsEnum {
 export class HeaderComponent implements OnInit {
 	tytle = 'Crud Maluco'
 
+	listIcon = 'assets/list.png'
+	localIcon = 'assets/pin.png'
+
 	currentTab: number
 
 	readonly HOME_TAB = TabsEnum.HOME
 	readonly REGIONAL_TAB = TabsEnum.REGIONAL
 
 	tabs = [
-        { label: 'Home', id: this.HOME_TAB },
-        { label: 'Regional', id: this.REGIONAL_TAB },
+        { label: this.listIcon, id: this.HOME_TAB },
+        { label: this.localIcon, id: this.REGIONAL_TAB },
     ];
 	
 	ngOnInit(): void {
