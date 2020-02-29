@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'add_client_component.dart';
 import 'info_dialog_component.dart';
+import 'models/client.dart';
 import 'models/client_item.dart';
 
 // void main() => runApp(MyApp());
@@ -29,13 +30,90 @@ class _CDState extends State<MyApp> {
       FloatingActionButtonLocation.endDocked;
 
   List<ClientItem> clientItemList = new List<ClientItem>();
+  Map<String, double> regionalMap = new Map<String, double>();
 
   var loading = true;
+  var pieChartLoading = true;
 
   @override
   void initState() {
     super.initState();
+    this.updateData();
+  }
+
+  void getPieChartData() {
+    setState(() {
+      this.pieChartLoading = true;
+    });
+
+    this.regionalMap.clear();
+
+    var belemDoParaCount = 0.0;
+    var pernambucoCount = 0.0;
+    var rioCount = 0.0;
+    var saoPauloCount = 0.0;
+
+    dbReference
+        .collection('client')
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((item) {
+        var obj = item.data;
+
+        var client = Client.build(
+          address: obj['address'],
+          birthDate: obj['birthDate'],
+          city: obj['cidade'],
+          cpf: obj['cpf'],
+          email: obj['email'],
+          name: obj['name'],
+        );
+
+        var city = client.city;
+
+        switch (city) {
+          case 'Belem do Pará':
+            belemDoParaCount = belemDoParaCount + 1;
+            break;
+
+          case 'Pernambuco':
+            pernambucoCount = pernambucoCount + 1;
+            break;
+
+          case 'Rio de Janeiro':
+            rioCount = rioCount + 1;
+            break;
+
+          case 'São Paulo':
+            saoPauloCount = saoPauloCount + 1;
+            break;
+
+          default:
+            break;
+        }
+      });
+      Map<String, double> regionalMapLocal = {
+        'Belem do Pará': belemDoParaCount,
+        'Pernambuco': pernambucoCount,
+        'Rio de Janeiro': rioCount,
+        'São Paulo': saoPauloCount,
+      };
+
+      setState(() {
+        this.pieChartLoading = false;
+        this.regionalMap = regionalMapLocal;
+      });
+    }).catchError((onError) {
+      print(onError);
+      setState(() {
+        this.pieChartLoading = false;
+      });
+    });
+  }
+
+  void updateData() {
     this.getClients();
+    this.getPieChartData();
   }
 
   void getClients() {
@@ -101,7 +179,11 @@ class _CDState extends State<MyApp> {
             bottom: TabBar(
               indicatorColor: Colors.deepPurple,
               tabs: [
-                Tab(icon: Icon(Icons.list, color: Colors.grey,)),
+                Tab(
+                    icon: Icon(
+                  Icons.list,
+                  color: Colors.grey,
+                )),
                 Tab(icon: Icon(Icons.place, color: Colors.grey)),
               ],
             ),
@@ -113,7 +195,7 @@ class _CDState extends State<MyApp> {
                 child: ListagemComponent(this.loading, this.clientItemList),
               ),
               Center(
-                child: RegionalComponent(),
+                child: RegionalComponent(this.pieChartLoading, this.regionalMap),
               ),
             ],
           ),
@@ -150,7 +232,7 @@ class _CDState extends State<MyApp> {
               Icons.refresh,
               color: Colors.white,
             ),
-            onPressed: this.getClients,
+            onPressed: this.updateData,
           ),
           IconButton(
             icon: Icon(
