@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_maluco_app/filter_component.dart';
 import 'package:crud_maluco_app/listagem_component.dart';
+import 'package:crud_maluco_app/regional_component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -75,11 +76,10 @@ class _CDState extends State<MyApp> {
 
   void _openInfoDialog() {
     showDialog<String>(
-      context: context,
-      builder: (builder) {
-        return InfoDialogComponent('Info', 'Massa');
-      }
-    );
+        context: context,
+        builder: (builder) {
+          return InfoDialogComponent('Info', 'Massa');
+        });
   }
 
   void _goToAddClientComponent() {
@@ -89,28 +89,45 @@ class _CDState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            'Crud Maluco',
-            style: TextStyle(color: Colors.black),
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: Text(
+              'Crud Maluco',
+              style: TextStyle(color: Colors.black),
+            ),
+            bottom: TabBar(
+              indicatorColor: Colors.deepPurple,
+              tabs: [
+                Tab(icon: Icon(Icons.list, color: Colors.grey,)),
+                Tab(icon: Icon(Icons.place, color: Colors.grey)),
+              ],
+            ),
           ),
-        ),
-        // AppBar }
-        body: Center(
-          child: ListagemComponent(this.loading, this.clientItemList),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.deepPurple,
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
+          // AppBar }
+          body: TabBarView(
+            children: [
+              Center(
+                child: ListagemComponent(this.loading, this.clientItemList),
+              ),
+              Center(
+                child: RegionalComponent(),
+              ),
+            ],
           ),
-          onPressed: _goToAddClientComponent,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.deepPurple,
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: _goToAddClientComponent,
+          ),
+          floatingActionButtonLocation: this._addFabLocation,
+          bottomNavigationBar: this._buildBottomAppBar(context),
         ),
-        floatingActionButtonLocation: this._addFabLocation,
-        bottomNavigationBar: this._buildBottomAppBar(context),
       ),
     );
   }
