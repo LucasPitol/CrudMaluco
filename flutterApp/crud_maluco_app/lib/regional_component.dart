@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
-class _RegionalData {
-  final String city;
-  final int totalClients;
-
-  _RegionalData(this.city, this.totalClients);
-}
-
 class RegionalComponent extends StatelessWidget {
   Map<String, double> regionalMap = {
     'São Paulo': 80,
