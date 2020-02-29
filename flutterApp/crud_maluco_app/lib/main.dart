@@ -32,6 +32,8 @@ class _CDState extends State<MyApp> {
   List<ClientItem> clientItemList = new List<ClientItem>();
   Map<String, double> regionalMap = new Map<String, double>();
 
+
+
   var loading = true;
   var pieChartLoading = true;
 
@@ -48,10 +50,10 @@ class _CDState extends State<MyApp> {
 
     this.regionalMap.clear();
 
-    var belemDoParaCount = 0.0;
-    var pernambucoCount = 0.0;
-    var rioCount = 0.0;
-    var saoPauloCount = 0.0;
+    CityAndCount belemDoParaTemp = CityAndCount.build(city: 'Belem do Pará', countTemp: 0.0);
+    CityAndCount pernambucoTemp = CityAndCount.build(city: 'Pernambuco', countTemp: 0.0);
+    CityAndCount rioTemp = CityAndCount.build(city: 'Rio de Janeiro', countTemp: 0.0);
+    CityAndCount saoPauloTemp = CityAndCount.build(city: 'São Paulo', countTemp: 0.0);
 
     dbReference
         .collection('client')
@@ -73,31 +75,40 @@ class _CDState extends State<MyApp> {
 
         switch (city) {
           case 'Belem do Pará':
-            belemDoParaCount = belemDoParaCount + 1;
+            belemDoParaTemp.countTemp = belemDoParaTemp.countTemp + 1;
             break;
 
           case 'Pernambuco':
-            pernambucoCount = pernambucoCount + 1;
+            pernambucoTemp.countTemp = pernambucoTemp.countTemp + 1;
             break;
 
           case 'Rio de Janeiro':
-            rioCount = rioCount + 1;
+            rioTemp.countTemp = rioTemp.countTemp + 1;
             break;
 
           case 'São Paulo':
-            saoPauloCount = saoPauloCount + 1;
+            saoPauloTemp.countTemp = saoPauloTemp.countTemp + 1;
             break;
 
           default:
             break;
         }
       });
-      Map<String, double> regionalMapLocal = {
-        'Belem do Pará': belemDoParaCount,
-        'Pernambuco': pernambucoCount,
-        'Rio de Janeiro': rioCount,
-        'São Paulo': saoPauloCount,
-      };
+
+      List<CityAndCount> regionalList = [
+        belemDoParaTemp,
+        pernambucoTemp,
+        rioTemp,
+        saoPauloTemp,
+      ];
+
+      regionalList.sort((b, a) => a.countTemp.compareTo(b.countTemp));
+
+      Map<String, double> regionalMapLocal = new Map<String, double>();
+
+      regionalList.forEach((element) {
+        regionalMapLocal.putIfAbsent(element.city, () => element.countTemp);
+      });
 
       setState(() {
         this.pieChartLoading = false;
@@ -252,4 +263,11 @@ class _CDState extends State<MyApp> {
       ),
     );
   }
+}
+
+class CityAndCount {
+  String city;
+  double countTemp;
+
+  CityAndCount.build({this.city, this.countTemp});
 }
