@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:pie_chart/pie_chart.dart';
 
 class _RegionalData {
   final String city;
@@ -9,50 +9,43 @@ class _RegionalData {
 }
 
 class RegionalComponent extends StatelessWidget {
-  List<_RegionalData> _pieData = [
-    _RegionalData('Rio de Janeiro', 20),
-    _RegionalData('São Paulo', 50),
-    _RegionalData('Minas Gerais', 10),
-    _RegionalData('Acre', 2),
+  Map<String, double> regionalMap = {
+    'São Paulo': 80,
+    'Rio de Janeiro': 30,
+    'Minas Gerais': 10,
+    'Pernambuco': 10,
+  };
+
+  List<Color> colorList = [
+    Colors.deepPurple[900],
+    Colors.deepPurple,
+    Colors.deepPurple[300],
+    Colors.deepPurple[100],
   ];
 
-  final _colorPalettes = charts.MaterialPalette.getOrderedPalettes(4);
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 300,
       width: double.infinity,
-      padding: EdgeInsets.only(left: 5, right: 5),
-      child: charts.PieChart(
-        [
-          charts.Series<_RegionalData, String>(
-            id: 'id do bagulho',
-            colorFn: (_, idx) => _colorPalettes[idx].shadeDefault,
-            domainFn: (_RegionalData regional, _) => regional.city,
-            measureFn: (_RegionalData regional, _) => regional.totalClients,
-            data: this._pieData,
-            labelAccessorFn: (_RegionalData row, _) =>
-                '${row.city}: ${row.totalClients}',
-          ),
-        ],
-        animate: true,
-        defaultRenderer: new charts.ArcRendererConfig(
-          arcRatio: 0.4,
-          arcRendererDecorators: [
-            charts.ArcLabelDecorator(
-              labelPosition: charts.ArcLabelPosition.auto,
-            ),
-          ],
+      child: PieChart(
+        dataMap: regionalMap,
+        animationDuration: Duration(milliseconds: 800),
+        chartLegendSpacing: 32.0,
+        chartRadius: MediaQuery.of(context).size.width / 2.6,
+        showChartValuesInPercentage: true,
+        showChartValues: true,
+        showChartValuesOutside: false,
+        chartValueBackgroundColor: Colors.deepPurple[50],
+        colorList: colorList,
+        showLegends: true,
+        legendPosition: LegendPosition.right,
+        decimalPlaces: 1,
+        showChartValueLabel: true,
+        initialAngle: 0,
+        chartValueStyle: defaultChartValueStyle.copyWith(
+          color: Colors.blueGrey[900].withOpacity(0.9),
         ),
-        behaviors: [
-          charts.ChartTitle(
-            'Titulo',
-            behaviorPosition: charts.BehaviorPosition.top,
-          ),
-          charts.DatumLegend(
-            position: charts.BehaviorPosition.end,
-          ),
-        ],
+        chartType: ChartType.disc,
       ),
     );
   }
