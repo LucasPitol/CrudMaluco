@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'default_app_bar.dart';
 import 'info_dialog_component.dart';
 import 'models/clinet_form.dart';
 
@@ -34,34 +35,7 @@ class AddClientComponent extends MaterialPageRoute<String> {
 
           return Scaffold(
             resizeToAvoidBottomPadding: false,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              title: Text(
-                'Crud Maluco',
-                style: TextStyle(color: Colors.black),
-              ),
-              leading: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ),
-              ),
-              actions: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: GestureDetector(
-                    onTap: _openInfoDialogAux,
-                    child: Icon(
-                      Icons.info,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            appBar: DefaultAppBar(context),
             // body: SingleChildScrollView(child: YourBody()),
             body: Column(
               children: <Widget>[
