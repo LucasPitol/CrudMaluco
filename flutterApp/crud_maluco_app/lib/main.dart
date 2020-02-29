@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_maluco_app/filter_component.dart';
 import 'package:crud_maluco_app/listagem_component.dart';
 import 'package:crud_maluco_app/regional_component.dart';
+import 'package:crud_maluco_app/services/client_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,13 +27,13 @@ class MyApp extends StatefulWidget {
 class _CDState extends State<MyApp> {
   final dbReference = Firestore.instance;
 
+  final ClientService clientService = new ClientService();
+
   FloatingActionButtonLocation _addFabLocation =
       FloatingActionButtonLocation.endDocked;
 
   List<ClientItem> clientItemList = new List<ClientItem>();
   Map<String, double> regionalMap = new Map<String, double>();
-
-
 
   var loading = true;
   var pieChartLoading = true;
@@ -43,82 +44,17 @@ class _CDState extends State<MyApp> {
     this.updateData();
   }
 
-  void getPieChartData() {
+  Future<void> getPieChartData() async {
     setState(() {
       this.pieChartLoading = true;
     });
 
     this.regionalMap.clear();
 
-    CityAndCount belemDoParaTemp = CityAndCount.build(city: 'Belem do Pará', countTemp: 0.0);
-    CityAndCount pernambucoTemp = CityAndCount.build(city: 'Pernambuco', countTemp: 0.0);
-    CityAndCount rioTemp = CityAndCount.build(city: 'Rio de Janeiro', countTemp: 0.0);
-    CityAndCount saoPauloTemp = CityAndCount.build(city: 'São Paulo', countTemp: 0.0);
+    this.regionalMap = await this.clientService.getGraphData();
 
-    dbReference
-        .collection('client')
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((item) {
-        var obj = item.data;
-
-        var client = Client.build(
-          address: obj['address'],
-          birthDate: obj['birthDate'],
-          city: obj['cidade'],
-          cpf: obj['cpf'],
-          email: obj['email'],
-          name: obj['name'],
-        );
-
-        var city = client.city;
-
-        switch (city) {
-          case 'Belem do Pará':
-            belemDoParaTemp.countTemp = belemDoParaTemp.countTemp + 1;
-            break;
-
-          case 'Pernambuco':
-            pernambucoTemp.countTemp = pernambucoTemp.countTemp + 1;
-            break;
-
-          case 'Rio de Janeiro':
-            rioTemp.countTemp = rioTemp.countTemp + 1;
-            break;
-
-          case 'São Paulo':
-            saoPauloTemp.countTemp = saoPauloTemp.countTemp + 1;
-            break;
-
-          default:
-            break;
-        }
-      });
-
-      List<CityAndCount> regionalList = [
-        belemDoParaTemp,
-        pernambucoTemp,
-        rioTemp,
-        saoPauloTemp,
-      ];
-
-      regionalList.sort((b, a) => a.countTemp.compareTo(b.countTemp));
-
-      Map<String, double> regionalMapLocal = new Map<String, double>();
-
-      regionalList.forEach((element) {
-        regionalMapLocal.putIfAbsent(element.city, () => element.countTemp);
-      });
-
-      setState(() {
-        this.pieChartLoading = false;
-        this.regionalMap = regionalMapLocal;
-      });
-    }).catchError((onError) {
-      print(onError);
-      setState(() {
-        this.pieChartLoading = false;
-      });
+    setState(() {
+      this.pieChartLoading = false;
     });
   }
 
@@ -127,31 +63,16 @@ class _CDState extends State<MyApp> {
     this.getPieChartData();
   }
 
-  void getClients() {
+  Future<void> getClients() async {
     setState(() {
       this.loading = true;
       this.clientItemList = [];
     });
 
-    dbReference
-        .collection('client')
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((item) {
-        var obj = item.data;
+    this.clientItemList = await this.clientService.getClientList();
 
-        var client = ClientItem.build(name: obj['name'], email: obj['email']);
-
-        clientItemList.add(client);
-      });
-      setState(() {
-        this.loading = false;
-      });
-    }).catchError((onError) {
-      print(onError);
-      setState(() {
-        this.loading = false;
-      });
+    setState(() {
+      this.loading = false;
     });
   }
 
@@ -206,7 +127,8 @@ class _CDState extends State<MyApp> {
                 child: ListagemComponent(this.loading, this.clientItemList),
               ),
               Center(
-                child: RegionalComponent(this.pieChartLoading, this.regionalMap),
+                child:
+                    RegionalComponent(this.pieChartLoading, this.regionalMap),
               ),
             ],
           ),
@@ -263,11 +185,4 @@ class _CDState extends State<MyApp> {
       ),
     );
   }
-}
-
-class CityAndCount {
-  String city;
-  double countTemp;
-
-  CityAndCount.build({this.city, this.countTemp});
 }
