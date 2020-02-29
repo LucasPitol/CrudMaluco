@@ -20,6 +20,9 @@ class RegionalComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // height: 300,
+      width: double.infinity,
+      padding: EdgeInsets.only(left: 5, right: 5),
       child: charts.PieChart(
         [
           charts.Series<_RegionalData, String>(
@@ -33,6 +36,23 @@ class RegionalComponent extends StatelessWidget {
           ),
         ],
         animate: true,
+        defaultRenderer: new charts.ArcRendererConfig(
+          arcRatio: 0.4,
+          arcRendererDecorators: [
+            charts.ArcLabelDecorator(
+              labelPosition: charts.ArcLabelPosition.auto,
+            ),
+          ],
+        ),
+        behaviors: [
+          charts.ChartTitle(
+            'Titulo',
+            behaviorPosition: charts.BehaviorPosition.top,
+          ),
+          charts.DatumLegend(
+            position: charts.BehaviorPosition.end,
+          ),
+        ],
       ),
     );
   }
