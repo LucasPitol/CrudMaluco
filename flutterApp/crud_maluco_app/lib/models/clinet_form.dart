@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ClientForm {
   TextEditingController address;
-  DateTime birthDate;
+  Timestamp birthDate;
   TextEditingController cidade;
   TextEditingController cpf;
   TextEditingController email;

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_maluco_app/models/client.dart';
 import 'package:crud_maluco_app/models/client_item.dart';
+import 'package:crud_maluco_app/models/clinet_form.dart';
 
 class ClientService {
   final dbReference = Firestore.instance;
@@ -100,6 +101,18 @@ class ClientService {
       return regionalMapLocal;
     });
     return regionalMapLocal;
+  }
+
+  Future<void> save(ClientForm clientForm) async {
+
+    await dbReference.collection('client').add({
+      'address': clientForm.address.text,
+      'birthDate': clientForm.birthDate,
+      'cidade': clientForm.cidade.text,
+      'cpf': clientForm.cpf.text,
+      'email': clientForm.email.text,
+      'name': clientForm.name.text,
+    });
   }
 }
 

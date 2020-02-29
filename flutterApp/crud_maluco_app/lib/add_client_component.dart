@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crud_maluco_app/services/client_service.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'default_app_bar.dart';
 import 'info_dialog_component.dart';
 import 'models/clinet_form.dart';
@@ -8,6 +10,8 @@ class AddClientComponent extends MaterialPageRoute<String> {
   AddClientComponent()
       : super(builder: (BuildContext context) {
           ClientForm _clientForm = new ClientForm();
+
+          final ClientService clientService = new ClientService();
 
           String selectedCity;
 
@@ -34,12 +38,18 @@ class AddClientComponent extends MaterialPageRoute<String> {
             _clientForm.email.clear();
           }
 
-          void _validateForm() {
-            bool valid = false;
+          Future<void> _validateForm() async {
+            bool valid = true;
 
-            if (!valid) {
-              _openInfoDialog('Fail', 'Must complete the form');
+            await clientService.save(_clientForm);
+
+            if (valid) {
+              _openInfoDialog('Success', 'New client added');
             }
+
+            // if (!valid) {
+            //   _openInfoDialog('Fail', 'Must complete the form');
+            // }
           }
 
           return Scaffold(
@@ -85,7 +95,6 @@ class AddClientComponent extends MaterialPageRoute<String> {
                           ),
                         ),
                       ),
-                      //TODO: Date pick
                       Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
@@ -96,7 +105,7 @@ class AddClientComponent extends MaterialPageRoute<String> {
                           ),
                         ),
                       ),
-                      //TODO: select
+                      //select
                       Container(
                         margin: EdgeInsets.all(10),
                         child: DropdownButton<String>(
@@ -112,6 +121,34 @@ class AddClientComponent extends MaterialPageRoute<String> {
                             selectedCity = newValue;
                             _clientForm.cidade.text = newValue;
                           },
+                        ),
+                      ),
+                      //Date pick
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        child: FlatButton(
+                          onPressed: () {
+                            DatePicker.showDatePicker(
+                              context,
+                              theme: DatePickerTheme(
+                                doneStyle: TextStyle(color: Colors.deepPurple),
+                              ),
+                              showTitleActions: true,
+                              minTime: DateTime(1810, 1, 1),
+                              maxTime: DateTime.now(),
+                              locale: LocaleType.en,
+                              onChanged: (date) {
+                                _clientForm.birthDate = date as Timestamp;
+                              },
+                              onConfirm: (date) {
+                                _clientForm.birthDate = date as Timestamp;
+                              }
+                            );
+                          },
+                          child: Text(
+                            'Birth Date',
+                            style: TextStyle(color: Colors.deepPurple),
+                          ),
                         ),
                       ),
                       Container(
