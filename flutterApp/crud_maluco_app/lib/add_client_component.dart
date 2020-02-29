@@ -9,6 +9,15 @@ class AddClientComponent extends MaterialPageRoute<String> {
       : super(builder: (BuildContext context) {
           ClientForm _clientForm = new ClientForm();
 
+          String selectedCity;
+
+          List<String> citiesList = [
+            'Belem do Pará',
+            'Pernambuco',
+            'Rio de Janeiro',
+            'São Paulo'
+          ];
+
           void _openInfoDialog(String title, String content) {
             showDialog<String>(
                 context: context,
@@ -17,12 +26,12 @@ class AddClientComponent extends MaterialPageRoute<String> {
                 });
           }
 
-          void _openInfoDialogAux() {
-            _openInfoDialog('Info', 'Massa!');
-          }
-
           void _clearForm() {
             _clientForm.name.clear();
+            _clientForm.address.clear();
+            _clientForm.cidade.clear();
+            _clientForm.cpf.clear();
+            _clientForm.email.clear();
           }
 
           void _validateForm() {
@@ -85,6 +94,24 @@ class AddClientComponent extends MaterialPageRoute<String> {
                             border: OutlineInputBorder(),
                             labelText: 'Address',
                           ),
+                        ),
+                      ),
+                      //TODO: select
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        child: DropdownButton<String>(
+                          hint: Text('City'),
+                          value: selectedCity,
+                          items: citiesList.map((String value) {
+                            return new DropdownMenuItem<String>(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (newValue) {
+                            selectedCity = newValue;
+                            _clientForm.cidade.text = newValue;
+                          },
                         ),
                       ),
                       Container(
