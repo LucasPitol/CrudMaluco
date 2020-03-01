@@ -45,6 +45,7 @@ class AddClientComponent extends MaterialPageRoute<String> {
 
             if (valid) {
               _openInfoDialog('Success', 'New client added');
+              Navigator.pop(context);
             }
 
             // if (!valid) {

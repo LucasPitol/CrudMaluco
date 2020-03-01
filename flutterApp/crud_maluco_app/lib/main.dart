@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 import 'add_client_component.dart';
 import 'info_dialog_component.dart';
-import 'models/client.dart';
 import 'models/client_item.dart';
 
 // void main() => runApp(MyApp());
