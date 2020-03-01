@@ -6,7 +6,7 @@ import 'default_app_bar.dart';
 import 'info_dialog_component.dart';
 import 'models/clinet_form.dart';
 
-class AddClientComponent extends MaterialPageRoute<String> {
+class AddClientComponent extends MaterialPageRoute<bool> {
   AddClientComponent()
       : super(builder: (BuildContext context) {
           ClientForm _clientForm = new ClientForm();
@@ -22,8 +22,8 @@ class AddClientComponent extends MaterialPageRoute<String> {
             'São Paulo'
           ];
 
-          void _openInfoDialog(String title, String content) {
-            showDialog<String>(
+          Future<void> _openInfoDialog(String title, String content) async {
+            await showDialog<String>(
                 context: context,
                 builder: (builder) {
                   return InfoDialogComponent(title, content);
@@ -41,16 +41,39 @@ class AddClientComponent extends MaterialPageRoute<String> {
           Future<void> _validateForm() async {
             bool valid = true;
 
-            await clientService.save(_clientForm);
-
-            if (valid) {
-              _openInfoDialog('Success', 'New client added');
-              Navigator.pop(context);
+            if (_clientForm.address.text == null || _clientForm.address.text.isEmpty) {
+              valid = false;
             }
 
-            // if (!valid) {
-            //   _openInfoDialog('Fail', 'Must complete the form');
+            // if (_clientForm.birthDate == null) {
+            //   valid = false;
             // }
+
+            if (_clientForm.cidade.text == null || _clientForm.cidade.text.isEmpty) {
+              valid = false;
+            }
+
+            if (_clientForm.cpf.text == null || _clientForm.cpf.text.isEmpty) {
+              valid = false;
+            }
+
+            if (_clientForm.email.text == null || _clientForm.email.text.isEmpty) {
+              valid = false;
+            }
+
+            if (_clientForm.name.text == null || _clientForm.name.text.isEmpty) {
+              valid = false;
+            }
+
+            if (valid) {
+              await clientService.save(_clientForm);
+              await _openInfoDialog('Success', 'New client added')
+              .then((onValue) {
+                Navigator.pop(context, true);
+              });
+            } else {
+              _openInfoDialog('Fail', 'Must complete the form');
+            }
           }
 
           return Scaffold(

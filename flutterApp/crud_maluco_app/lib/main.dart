@@ -91,8 +91,12 @@ class _CDState extends State<MyApp> {
         });
   }
 
-  void _goToAddClientComponent() {
-    Navigator.push(context, AddClientComponent());
+  void _goToAddClientComponent()async  {
+    var refresh = await Navigator.push(context, AddClientComponent());
+
+    if (refresh) {
+      this.updateData();
+    }
   }
 
   @override
