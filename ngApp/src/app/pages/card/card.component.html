@@ -29,8 +29,11 @@
 									<div>
 										<label>Birth</label>
 									</div>
-									<div>
+									<div *ngIf="card.birthDate != null">
 										<span>{{card.birthDate.toDate() | date : 'MMM d, y'}}</span>
+									</div>
+									<div *ngIf="card.birthDate == null">
+										<span>---</span>
 									</div>
 								</div>
 						</div>
