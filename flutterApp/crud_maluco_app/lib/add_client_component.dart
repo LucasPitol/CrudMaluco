@@ -45,9 +45,9 @@ class AddClientComponent extends MaterialPageRoute<bool> {
               valid = false;
             }
 
-            // if (_clientForm.birthDate == null) {
-            //   valid = false;
-            // }
+            if (_clientForm.birthDate == null) {
+              valid = false;
+            }
 
             if (_clientForm.cidade.text == null || _clientForm.cidade.text.isEmpty) {
               valid = false;
@@ -162,10 +162,10 @@ class AddClientComponent extends MaterialPageRoute<bool> {
                               maxTime: DateTime.now(),
                               locale: LocaleType.en,
                               onChanged: (date) {
-                                _clientForm.birthDate = date as Timestamp;
+                                _clientForm.birthDate = Timestamp.fromDate(date);
                               },
                               onConfirm: (date) {
-                                _clientForm.birthDate = date as Timestamp;
+                                _clientForm.birthDate = Timestamp.fromDate(date);
                               }
                             );
                           },
