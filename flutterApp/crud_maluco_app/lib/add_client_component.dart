@@ -41,7 +41,8 @@ class AddClientComponent extends MaterialPageRoute<bool> {
           Future<void> _validateForm() async {
             bool valid = true;
 
-            if (_clientForm.address.text == null || _clientForm.address.text.isEmpty) {
+            if (_clientForm.address.text == null ||
+                _clientForm.address.text.isEmpty) {
               valid = false;
             }
 
@@ -49,7 +50,8 @@ class AddClientComponent extends MaterialPageRoute<bool> {
               valid = false;
             }
 
-            if (_clientForm.cidade.text == null || _clientForm.cidade.text.isEmpty) {
+            if (_clientForm.cidade.text == null ||
+                _clientForm.cidade.text.isEmpty) {
               valid = false;
             }
 
@@ -57,18 +59,20 @@ class AddClientComponent extends MaterialPageRoute<bool> {
               valid = false;
             }
 
-            if (_clientForm.email.text == null || _clientForm.email.text.isEmpty) {
+            if (_clientForm.email.text == null ||
+                _clientForm.email.text.isEmpty) {
               valid = false;
             }
 
-            if (_clientForm.name.text == null || _clientForm.name.text.isEmpty) {
+            if (_clientForm.name.text == null ||
+                _clientForm.name.text.isEmpty) {
               valid = false;
             }
 
             if (valid) {
               await clientService.save(_clientForm);
               await _openInfoDialog('Success', 'New client added')
-              .then((onValue) {
+                  .then((onValue) {
                 Navigator.pop(context, true);
               });
             } else {
@@ -76,139 +80,146 @@ class AddClientComponent extends MaterialPageRoute<bool> {
             }
           }
 
-          return Scaffold(
-            resizeToAvoidBottomPadding: false,
-            appBar: DefaultAppBar(context),
-            // body: SingleChildScrollView(child: YourBody()),
-            body: Column(
-              children: <Widget>[
-                Theme(
-                  data: Theme.of(context).copyWith(
-                    primaryColor: Colors.deepPurple,
-                    cursorColor: Colors.black,
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _clientForm.name,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Name',
-                          ),
-                        ),
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Scaffold(
+                resizeToAvoidBottomPadding: false,
+                appBar: DefaultAppBar(context),
+                // body: SingleChildScrollView(child: YourBody()),
+                body: Column(
+                  children: <Widget>[
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        primaryColor: Colors.deepPurple,
+                        cursorColor: Colors.black,
                       ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _clientForm.email,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _clientForm.cpf,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'CPF',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _clientForm.address,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Address',
-                          ),
-                        ),
-                      ),
-                      //select
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: DropdownButton<String>(
-                          hint: Text('City'),
-                          value: selectedCity,
-                          items: citiesList.map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            selectedCity = newValue;
-                            _clientForm.cidade.text = newValue;
-                          },
-                        ),
-                      ),
-                      //Date pick
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: FlatButton(
-                          onPressed: () {
-                            DatePicker.showDatePicker(
-                              context,
-                              theme: DatePickerTheme(
-                                doneStyle: TextStyle(color: Colors.deepPurple),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: TextField(
+                              controller: _clientForm.name,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Name',
                               ),
-                              showTitleActions: true,
-                              minTime: DateTime(1810, 1, 1),
-                              maxTime: DateTime.now(),
-                              locale: LocaleType.en,
-                              onChanged: (date) {
-                                _clientForm.birthDate = Timestamp.fromDate(date);
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: TextField(
+                              controller: _clientForm.email,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Email',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: TextField(
+                              controller: _clientForm.cpf,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'CPF',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: TextField(
+                              controller: _clientForm.address,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Address',
+                              ),
+                            ),
+                          ),
+                          //select
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: DropdownButton<String>(
+                              hint: Text('City'),
+                              value: selectedCity,
+                              items: citiesList.map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: new Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (newValue) {
+                                selectedCity = newValue;
+                                setState(() {
+                                  _clientForm.cidade.text = newValue;
+                                });
                               },
-                              onConfirm: (date) {
-                                _clientForm.birthDate = Timestamp.fromDate(date);
-                              }
-                            );
-                          },
-                          child: Text(
-                            'Birth Date',
-                            style: TextStyle(color: Colors.deepPurple),
+                            ),
                           ),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(right: 10),
-                              child: OutlineButton(
-                                textColor: Colors.deepPurple,
-                                child: Text('Clear'),
-                                onPressed: _clearForm,
-                                // padding: EdgeInsets.only(left: 10, right: 10),
+                          //Date pick
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: FlatButton(
+                              onPressed: () {
+                                DatePicker.showDatePicker(context,
+                                    theme: DatePickerTheme(
+                                      doneStyle:
+                                          TextStyle(color: Colors.deepPurple),
+                                    ),
+                                    showTitleActions: true,
+                                    minTime: DateTime(1810, 1, 1),
+                                    maxTime: DateTime.now(),
+                                    locale: LocaleType.en, onChanged: (date) {
+                                  _clientForm.birthDate =
+                                      Timestamp.fromDate(date);
+                                }, onConfirm: (date) {
+                                  setState(() {
+                                    _clientForm.birthDate =
+                                        Timestamp.fromDate(date);
+                                  });
+                                });
+                              },
+                              child: Text(
+                                'Birth Date',
+                                style: TextStyle(color: Colors.deepPurple),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 10),
-                              child: RaisedButton(
-                                color: Colors.deepPurple,
-                                onPressed: _validateForm,
-                                child: Text(
-                                  'Add',
-                                  style: TextStyle(color: Colors.white),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: OutlineButton(
+                                    textColor: Colors.deepPurple,
+                                    child: Text('Clear'),
+                                    onPressed: _clearForm,
+                                    // padding: EdgeInsets.only(left: 10, right: 10),
+                                  ),
                                 ),
-                              ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 10),
+                                  child: RaisedButton(
+                                    color: Colors.deepPurple,
+                                    onPressed: _validateForm,
+                                    child: Text(
+                                      'Add',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           );
         });
 }
