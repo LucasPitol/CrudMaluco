@@ -5,6 +5,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'default_app_bar.dart';
 import 'info_dialog_component.dart';
 import 'models/clinet_form.dart';
+import 'package:intl/intl.dart';
 
 class AddClientComponent extends MaterialPageRoute<bool> {
   AddClientComponent()
@@ -12,6 +13,8 @@ class AddClientComponent extends MaterialPageRoute<bool> {
           ClientForm _clientForm = new ClientForm();
 
           final ClientService clientService = new ClientService();
+
+          _clientForm.birthDate = new DateTime.now();
 
           String selectedCity;
 
@@ -156,34 +159,44 @@ class AddClientComponent extends MaterialPageRoute<bool> {
                             ),
                           ),
                           //Date pick
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: FlatButton(
-                              onPressed: () {
-                                DatePicker.showDatePicker(context,
-                                    theme: DatePickerTheme(
-                                      doneStyle:
-                                          TextStyle(color: Colors.deepPurple),
-                                    ),
-                                    showTitleActions: true,
-                                    minTime: DateTime(1810, 1, 1),
-                                    maxTime: DateTime.now(),
-                                    locale: LocaleType.en, onChanged: (date) {
-                                  _clientForm.birthDate =
-                                      Timestamp.fromDate(date);
-                                }, onConfirm: (date) {
-                                  setState(() {
-                                    _clientForm.birthDate =
-                                        Timestamp.fromDate(date);
-                                  });
-                                });
-                              },
-                              child: Text(
-                                'Birth Date',
-                                style: TextStyle(color: Colors.deepPurple),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: FlatButton(
+                                  onPressed: () {
+                                    DatePicker.showDatePicker(context,
+                                        theme: DatePickerTheme(
+                                          doneStyle: TextStyle(
+                                              color: Colors.deepPurple),
+                                        ),
+                                        showTitleActions: true,
+                                        minTime: DateTime(1810, 1, 1),
+                                        maxTime: DateTime.now(),
+                                        locale: LocaleType.en,
+                                        onChanged: (date) {
+                                      _clientForm.birthDate = date;
+                                    }, onConfirm: (date) {
+                                      setState(() {
+                                        _clientForm.birthDate = date;
+                                      });
+                                    });
+                                  },
+                                  child: Text(
+                                    'Birth Date',
+                                    style: TextStyle(color: Colors.deepPurple),
+                                  ),
+                                ),
                               ),
-                            ),
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: Text(DateFormat("yyyy/MM/dd")
+                                    .format(_clientForm.birthDate)),
+                              ),
+                            ],
                           ),
+
                           Container(
                             alignment: Alignment.center,
                             margin: EdgeInsets.only(top: 10),

@@ -107,7 +107,7 @@ class ClientService {
 
     await dbReference.collection('client').add({
       'address': clientForm.address.text,
-      'birthDate': clientForm.birthDate,
+      'birthDate': Timestamp.fromDate(clientForm.birthDate),
       'cidade': clientForm.cidade.text,
       'cpf': clientForm.cpf.text,
       'email': clientForm.email.text,
