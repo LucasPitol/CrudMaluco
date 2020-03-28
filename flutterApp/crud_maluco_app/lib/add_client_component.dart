@@ -88,139 +88,146 @@ class AddClientComponent extends MaterialPageRoute<bool> {
               return Scaffold(
                 resizeToAvoidBottomPadding: false,
                 appBar: DefaultAppBar(context),
-                // body: SingleChildScrollView(child: YourBody()),
-                body: Column(
+                body: Stack(
                   children: <Widget>[
-                    Theme(
-                      data: Theme.of(context).copyWith(
-                        primaryColor: Colors.deepPurple,
-                        cursorColor: Colors.black,
-                      ),
+                    SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: TextField(
-                              controller: _clientForm.name,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Name',
-                              ),
+                          Theme(
+                            data: Theme.of(context).copyWith(
+                              primaryColor: Colors.deepPurple,
+                              cursorColor: Colors.black,
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: TextField(
-                              controller: _clientForm.email,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Email',
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: TextField(
-                              controller: _clientForm.cpf,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'CPF',
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: TextField(
-                              controller: _clientForm.address,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Address',
-                              ),
-                            ),
-                          ),
-                          //select
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: DropdownButton<String>(
-                              hint: Text('City'),
-                              value: selectedCity,
-                              items: citiesList.map((String value) {
-                                return new DropdownMenuItem<String>(
-                                  value: value,
-                                  child: new Text(value),
-                                );
-                              }).toList(),
-                              onChanged: (newValue) {
-                                selectedCity = newValue;
-                                setState(() {
-                                  _clientForm.cidade.text = newValue;
-                                });
-                              },
-                            ),
-                          ),
-                          //Date pick
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.all(10),
-                                child: FlatButton(
-                                  onPressed: () {
-                                    DatePicker.showDatePicker(context,
-                                        theme: DatePickerTheme(
-                                          doneStyle: TextStyle(
-                                              color: Colors.deepPurple),
-                                        ),
-                                        showTitleActions: true,
-                                        minTime: DateTime(1810, 1, 1),
-                                        maxTime: DateTime.now(),
-                                        locale: LocaleType.en,
-                                        onChanged: (date) {
-                                      _clientForm.birthDate = date;
-                                    }, onConfirm: (date) {
-                                      setState(() {
-                                        _clientForm.birthDate = date;
-                                      });
-                                    });
-                                  },
-                                  child: Text(
-                                    'Birth Date',
-                                    style: TextStyle(color: Colors.deepPurple),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(10),
-                                child: Text(DateFormat("yyyy/MM/dd")
-                                    .format(_clientForm.birthDate)),
-                              ),
-                            ],
-                          ),
-
-                          Container(
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.only(top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            child: Column(
                               children: <Widget>[
                                 Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: OutlineButton(
-                                    textColor: Colors.deepPurple,
-                                    child: Text('Clear'),
-                                    onPressed: _clearForm,
-                                    // padding: EdgeInsets.only(left: 10, right: 10),
+                                  margin: EdgeInsets.all(10),
+                                  child: TextField(
+                                    controller: _clientForm.name,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Name',
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(left: 10),
-                                  child: RaisedButton(
-                                    color: Colors.deepPurple,
-                                    onPressed: _validateForm,
-                                    child: Text(
-                                      'Add',
-                                      style: TextStyle(color: Colors.white),
+                                  margin: EdgeInsets.all(10),
+                                  child: TextField(
+                                    controller: _clientForm.email,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Email',
                                     ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: TextField(
+                                    controller: _clientForm.cpf,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'CPF',
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: TextField(
+                                    controller: _clientForm.address,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Address',
+                                    ),
+                                  ),
+                                ),
+                                //select
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: DropdownButton<String>(
+                                    hint: Text('City'),
+                                    value: selectedCity,
+                                    items: citiesList.map((String value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value,
+                                        child: new Text(value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (newValue) {
+                                      selectedCity = newValue;
+                                      setState(() {
+                                        _clientForm.cidade.text = newValue;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                //Date pick
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      margin: EdgeInsets.all(10),
+                                      child: FlatButton(
+                                        onPressed: () {
+                                          DatePicker.showDatePicker(context,
+                                              theme: DatePickerTheme(
+                                                doneStyle: TextStyle(
+                                                    color: Colors.deepPurple),
+                                              ),
+                                              showTitleActions: true,
+                                              minTime: DateTime(1810, 1, 1),
+                                              maxTime: DateTime.now(),
+                                              locale: LocaleType.en,
+                                              onChanged: (date) {
+                                            _clientForm.birthDate = date;
+                                          }, onConfirm: (date) {
+                                            setState(() {
+                                              _clientForm.birthDate = date;
+                                            });
+                                          });
+                                        },
+                                        child: Text(
+                                          'Birth Date',
+                                          style: TextStyle(
+                                              color: Colors.deepPurple),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.all(10),
+                                      child: Text(DateFormat("yyyy/MM/dd")
+                                          .format(_clientForm.birthDate)),
+                                    ),
+                                  ],
+                                ),
+
+                                Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Container(
+                                        margin: EdgeInsets.only(right: 10),
+                                        child: OutlineButton(
+                                          textColor: Colors.deepPurple,
+                                          child: Text('Clear'),
+                                          onPressed: _clearForm,
+                                          // padding: EdgeInsets.only(left: 10, right: 10),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10),
+                                        child: RaisedButton(
+                                          color: Colors.deepPurple,
+                                          onPressed: _validateForm,
+                                          child: Text(
+                                            'Add',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
