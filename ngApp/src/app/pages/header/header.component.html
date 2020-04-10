@@ -1,7 +1,7 @@
 <div class="header-container">
 	<h2 class="title">{{tytle}}</h2>
 
-	<div class="user">
+	<!-- <div class="user">
 		<div *ngIf="authService.user | async as user; else login">
 
 			<div class="userPic">
@@ -17,7 +17,7 @@
 		<ng-template #login>
 			<button class="button" (click)="googleSignIn()">Login with Google</button>
 		</ng-template>
-	</div>
+	</div> -->
 
 	<div class="aba-selector-div">
 		<mat-tab-group (selectedTabChange)="tabClick($event)">

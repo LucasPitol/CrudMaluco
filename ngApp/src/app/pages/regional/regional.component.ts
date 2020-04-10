@@ -9,7 +9,7 @@ import { RegionalService } from "src/app/services/regional-service";
 
 export class RegionalComponent implements OnInit {
 
-	public pieChartLabels:string[] = ['Chrome', 'Safari', 'Firefox','Internet Explorer'];
+	public pieChartLabels = []
   	public pieChartData = []
 	public pieChartType:string = 'pie';
 	public pieChartDataMap: Map<string, number>
@@ -37,8 +37,10 @@ export class RegionalComponent implements OnInit {
 				this.pieChartDataMap = res
 				let mapSize = this.pieChartDataMap.size
 				let valuesIterator = this.pieChartDataMap.values()
+				let keysIterator = this.pieChartDataMap.keys()
 
 				for (var _i = 0; _i < mapSize; _i++) {
+					this.pieChartLabels.push(keysIterator.next().value)
 					this.pieChartData.push(valuesIterator.next().value)
 				}
 
