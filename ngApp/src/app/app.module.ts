@@ -22,6 +22,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { RegionalComponent } from './pages/regional/regional.component';
 import { RegionalService } from './services/regional-service';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { RegionalService } from './services/regional-service';
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatTabsModule,
+		ChartsModule,
   ],
   entryComponents: [AddClientComponent],
   providers: [

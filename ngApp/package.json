@@ -23,8 +23,10 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "chart.js": "^2.9.3",
     "core-js": "^2.5.4",
     "firebase": "^6.5.0",
+    "ng2-charts": "2.2.3",
     "rxjs": "6.2.2",
     "zone.js": "^0.8.26"
   },

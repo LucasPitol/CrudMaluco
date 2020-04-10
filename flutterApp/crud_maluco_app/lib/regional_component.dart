@@ -27,7 +27,6 @@ class RegionalComponent extends StatelessWidget {
         ),
       );
     } else {
-      print(regionalMap);
       return Container(
         width: double.infinity,
         child: PieChart(
