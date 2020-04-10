@@ -9,12 +9,14 @@ import { RegionalService } from "src/app/services/regional-service";
 
 export class RegionalComponent implements OnInit {
 
-	public pieChartLabels:string[] = ['Chrome', 'Safari', 'Firefox','Internet Explorer','Other'];
-  	public pieChartData:number[] = [40, 20, 20 , 10];
+	public pieChartLabels:string[] = ['Chrome', 'Safari', 'Firefox','Internet Explorer'];
+  	public pieChartData = []
 	public pieChartType:string = 'pie';
+	public pieChartDataMap: Map<string, number>
+	public loading = true
 	  
 	 public chartColors: Array<any> = [
-		{ // all colors in order
+		{
 		  backgroundColor: ['#311B92', '#673AB7', '#9575CD', '#D1C4E9']
 		}
 	]
@@ -22,14 +24,40 @@ export class RegionalComponent implements OnInit {
 	constructor(private regionalService: RegionalService) {}
 
 	ngOnInit(): void {
-		
+		this.getPieChartData()
+	}
+
+	async getPieChartData()
+	{
+		this.loading = true;
+
+		(await this.regionalService.getRegionalDataMap()).subscribe( 
+			res => 
+			{
+				this.pieChartDataMap = res
+				let mapSize = this.pieChartDataMap.size
+				let valuesIterator = this.pieChartDataMap.values()
+
+				for (var _i = 0; _i < mapSize; _i++) {
+					this.pieChartData.push(valuesIterator.next().value)
+				}
+
+				console.log(this.pieChartData)
+				this.loading = false
+			},
+			error => {
+				console.error(error)
+				this.loading = false
+			}
+		)
+
 	}
 
 	public chartClicked(e:any):void {
-		console.log(e);
+		// console.log(e);
 	}
 	 
 	 public chartHovered(e:any):void {
-		console.log(e);
+		// console.log(e);
 	}
 }
