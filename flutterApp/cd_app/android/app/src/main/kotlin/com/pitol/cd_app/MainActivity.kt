@@ -1,4 +1,4 @@
-package com.example.cd_app
+package com.pitol.cd_app
 
 import io.flutter.embedding.android.FlutterActivity
 
