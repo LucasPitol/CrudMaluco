@@ -1,6 +1,8 @@
+import 'package:cd_app/pages/person_list_component.dart';
 import 'package:cd_app/utils/constants.dart';
 import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainComponent extends StatefulWidget {
@@ -10,7 +12,7 @@ class MainComponent extends StatefulWidget {
 
 class _MainComponentState extends State<MainComponent> {
   final List<Widget> _widgetOptions = <Widget>[
-    Container(),
+    PersonListComponent(),
     Container(),
   ];
 
@@ -29,6 +31,19 @@ class _MainComponentState extends State<MainComponent> {
   FloatingActionButtonLocation _fabLocation =
       FloatingActionButtonLocation.centerDocked;
 
+  @override
+  void initState() {
+    super.initState();
+    this.updateAppBar();
+  }
+
+  updateAppBar() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Styles.mainBackgroundColor,
+      statusBarIconBrightness: Brightness.dark,
+    ));
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -41,7 +56,9 @@ class _MainComponentState extends State<MainComponent> {
       resizeToAvoidBottomInset: true,
       backgroundColor: Styles.mainBackgroundColor,
       body: Container(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: SafeArea(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
       floatingActionButton: _fab,
       floatingActionButtonLocation: this._fabLocation,
@@ -62,7 +79,7 @@ class _MainComponentState extends State<MainComponent> {
               size: 22,
               color: _selectedIndex == Constants.listBottomBarOptionIndex
                   ? Styles.primaryColor
-                  : Colors.grey,
+                  : Colors.grey.shade300,
             ),
             onPressed: () {
               this._onItemTapped(Constants.listBottomBarOptionIndex);
@@ -78,7 +95,7 @@ class _MainComponentState extends State<MainComponent> {
               size: 22,
               color: _selectedIndex == Constants.graphBottomBarOptionIndex
                   ? Styles.primaryColor
-                  : Colors.grey,
+                  : Colors.grey.shade300,
             ),
             onPressed: () {
               this._onItemTapped(Constants.graphBottomBarOptionIndex);

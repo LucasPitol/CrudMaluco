@@ -23,4 +23,23 @@ class Styles {
   static Color darkColor = Color(0xff5655cb);
   static Color mainBackgroundColor = Colors.white;
 
+  static Color mainTextColor = Colors.grey.shade800;
+
+  static TextStyle montText = TextStyle(color: mainTextColor, fontSize: 16);
+  static TextStyle montTextLight = TextStyle(color: Colors.grey.shade400, fontSize: 14);
+
+  static BorderRadius defaultBorderRadius =
+      BorderRadius.all(Radius.circular(12));
+
+  static BoxDecoration cardDecoration = BoxDecoration(
+    color: mainBackgroundColor,
+    borderRadius: defaultBorderRadius,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.shade400,
+        offset: Offset(0, 2),
+        blurRadius: 2,
+      ),
+    ],
+  );
 }
