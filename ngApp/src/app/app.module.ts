@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { RegionalComponent } from './pages/regional/regional.component';
 import { RegionalService } from './services/regional-service';
 import { ChartsModule } from 'ng2-charts';
+import { DashboardComponent } from './pages/test/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ChartsModule } from 'ng2-charts';
 		CardComponent,
 		AddClientComponent,
 		RegionalComponent,
+		DashboardComponent,
 	],
 	imports: [
 		AngularFireModule.initializeApp(environment.firebaseConfig),

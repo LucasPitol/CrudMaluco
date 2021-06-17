@@ -3,12 +3,14 @@ import { HomeService } from '../../services/homeService';
 import { ClientService } from '../../services/clientService';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
 import {map, startWith} from 'rxjs/operators';
 import { constants } from '../../utils/constants';
 import { MatDialog, MatDialogRef } from "@angular/material";
 import { AddClientComponent } from "../add-client-modal/add-client.component";
 import { Client } from "src/app/models/client";
 import { Values } from "src/app/utils/values";
+import { Utils } from "src/app/utils/utils";
 
 
 @Component({
@@ -50,7 +52,8 @@ export class HomeComponent implements OnInit {
 	constructor(private homeService: HomeService,
 				private clientService: ClientService,
 				public addClientDialog: MatDialog,
-				private values: Values
+				private values: Values,
+				private router: Router
 		) {}
 	
 	ngOnInit(): void {
@@ -102,6 +105,7 @@ export class HomeComponent implements OnInit {
 
 	openAddClientDialog()
 	{
+
 		let client: Client = new Client()
 
 		this.addClientDialogRef = this.addClientDialog.open(AddClientComponent, {

@@ -4,6 +4,7 @@ import { AuthService } from "src/app/services/auth-service";
 export enum TabsEnum {
 	HOME = 0,
 	REGIONAL = 1,
+	DASHBOARD = 2,
 }
 
 
@@ -19,15 +20,18 @@ export class HeaderComponent implements OnInit {
 
 	listIcon = 'assets/list.png'
 	localIcon = 'assets/pin.png'
+	profitIcon = 'assets/profit.png'
 
 	currentTab: number
 
 	readonly HOME_TAB = TabsEnum.HOME
 	readonly REGIONAL_TAB = TabsEnum.REGIONAL
+	readonly DASHBOARD_TAB = TabsEnum.DASHBOARD
 
 	tabs = [
         { label: this.listIcon, id: this.HOME_TAB },
         { label: this.localIcon, id: this.REGIONAL_TAB },
+        { label: this.profitIcon, id: this.DASHBOARD_TAB },
     ];
 	
 	ngOnInit(): void {
