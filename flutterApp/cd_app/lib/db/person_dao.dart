@@ -41,4 +41,21 @@ class PersonDao {
     });
     return success;
   }
+
+  Future<bool> deletePerson(String personId) async {
+    bool success = false;
+
+    await dbReference
+        .collection(personsCollectionName)
+        .doc(personId)
+        .delete()
+        .then((value) {
+      success = true;
+      return success;
+    }).catchError((onError) {
+      print(onError);
+      return success;
+    });
+    return success;
+  }
 }

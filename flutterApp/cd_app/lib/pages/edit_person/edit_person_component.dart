@@ -118,6 +118,28 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
         this._goBack();
       } else {
         // error modal
+        setState(() {
+          this.loading = false;
+        });
+      }
+    });
+  }
+
+  _deletePerson() {
+    setState(() {
+      this.loading = true;
+    });
+
+    this.switchRefresh();
+
+    _personService.deletePerson(person.id).then((success) {
+      if (success) {
+        this._goBack();
+      } else {
+        // error modal
+        setState(() {
+          this.loading = false;
+        });
       }
     });
   }
@@ -189,8 +211,24 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
                           child: Divider(color: Colors.grey.shade700),
                         ),
                         Container(
-                          alignment: Alignment.topLeft,
                           margin: EdgeInsets.only(left: 20, right: 20, top: 80),
+                          alignment: Alignment.center,
+                          child: TextButton(
+                            onPressed: () {
+                              this._deletePerson();
+                            },
+                            child: Text(
+                              'Delete person',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.topLeft,
+                          margin: EdgeInsets.only(left: 20, right: 20, top: 80, bottom: 60),
                           child: Text(
                             'Created: ' +
                                 DateFormat.yMd()

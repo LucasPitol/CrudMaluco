@@ -23,4 +23,10 @@ class PersonService {
 
     return success;
   }
+
+  Future<bool> deletePerson(String personId) async {
+    var success = await this._personDao.deletePerson(personId);
+
+    return success;
+  }
 }

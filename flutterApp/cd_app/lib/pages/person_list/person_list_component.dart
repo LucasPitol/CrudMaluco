@@ -122,17 +122,29 @@ class _PersonListComponentState extends State<PersonListComponent> {
                     ),
                   ),
                 ),
-                Flexible(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:
-                          personList.map((item) => createTile(item)).toList(),
-                    ),
-                  ),
-                ),
+                personList.isNotEmpty
+                    ? Flexible(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: personList
+                                .map((item) => createTile(item))
+                                .toList(),
+                          ),
+                        ),
+                      )
+                    : Container(
+                        alignment: Alignment.center,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 80),
+                        child: Text(
+                          'no person to show, tap the add button to create one.',
+                          style: Styles.montTextLight,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
               ],
             ),
           );
