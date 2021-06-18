@@ -1,42 +1,46 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cd_app/services/person_service.dart';
 import 'package:animations/animations.dart';
 import 'package:cd_app/models/person.dart';
 import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PersonListComponent extends StatefulWidget {
+  final List<Person> personList;
+
+  PersonListComponent({this.personList});
+
   @override
   _PersonListComponentState createState() => _PersonListComponentState();
 }
 
 class _PersonListComponentState extends State<PersonListComponent> {
   List<Person> personList;
+  PersonService _personService;
+
+  bool loading = true;
 
   _PersonListComponentState() {
     this.personList = [];
+    this._personService = PersonService();
   }
 
   @override
   void initState() {
     super.initState();
-    this.getPersonList();
+    this.updatePageContent();
   }
 
-  getPersonList() {
-    this.personList = [];
+  updatePageContent() async {
+    setState(() {
+      this.loading = true;
+    });
 
-    var p1 = Person();
-    p1.id = 'ABC124';
-    p1.name = 'Judas Neto';
-    p1.country = 'Brazil';
+    this.personList = await _personService.getPersons();
 
-    var p2 = Person();
-    p2.id = 'ABC1245';
-    p2.name = 'Cleiton Douglas';
-    p2.country = 'Netherlands';
-
-    personList.add(p1);
-    personList.add(p2);
+    setState(() {
+      this.loading = false;
+    });
   }
 
   Widget createTile(Person item) {
@@ -71,45 +75,54 @@ class _PersonListComponentState extends State<PersonListComponent> {
     );
   }
 
-  _refresh() {
-    print('Refresh');
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.topRight,
-            margin: EdgeInsets.all(10),
-            child: InkWell(
-              borderRadius: Styles.circularBorderRadius,
-              onTap: () {
-                this._refresh();
-              },
-              child: Container(
-                margin: EdgeInsets.all(10),
-                child: FaIcon(
-                  FontAwesomeIcons.redo,
-                  size: 20,
-                  color: Styles.mainTextColor,
+    return loading
+        ? Container(
+            margin: EdgeInsets.symmetric(vertical: 60),
+            width: double.infinity,
+            alignment: Alignment.center,
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                accentColor: Styles.primaryColor,
+              ),
+              child: new CircularProgressIndicator(),
+            ),
+          )
+        : Container(
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.topRight,
+                  margin: EdgeInsets.all(10),
+                  child: InkWell(
+                    borderRadius: Styles.circularBorderRadius,
+                    onTap: () {
+                      this.updatePageContent();
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: FaIcon(
+                        FontAwesomeIcons.redo,
+                        size: 20,
+                        color: Styles.mainTextColor,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                Flexible(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:
+                          personList.map((item) => createTile(item)).toList(),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-          Flexible(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: personList.map((item) => createTile(item)).toList(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }
