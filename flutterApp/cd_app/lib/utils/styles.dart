@@ -37,6 +37,12 @@ class Styles {
   static TextStyle montTextLittle =
       TextStyle(color: mainTextColor, fontSize: 14);
 
+  static TextStyle montTextTitle = TextStyle(
+    color: mainTextColor,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
   static BorderRadius defaultBorderRadius =
       BorderRadius.all(Radius.circular(12));
 
@@ -54,4 +60,15 @@ class Styles {
       ),
     ],
   );
+
+  static getTextFieldDecorationUnderline(String value) {
+    return InputDecoration(
+      border: UnderlineInputBorder(),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey.shade400),
+      ),
+      labelText: value,
+      labelStyle: TextStyle(color: Colors.grey),
+    );
+  }
 }

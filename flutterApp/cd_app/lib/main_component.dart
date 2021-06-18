@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'pages/person_locale_graph/person_locale_component.dart';
 import 'pages/person_list/person_list_component.dart';
+import 'pages/new_person/new_person_component.dart';
 
 class MainComponent extends StatefulWidget {
   @override
@@ -20,16 +21,6 @@ class _MainComponentState extends State<MainComponent> {
 
   int _selectedIndex = 0;
 
-  FloatingActionButton _fab = FloatingActionButton(
-    onPressed: () {
-      print('Add');
-    },
-    child: FaIcon(
-      FontAwesomeIcons.plus,
-      size: 22,
-    ),
-  );
-
   FloatingActionButtonLocation _fabLocation =
       FloatingActionButtonLocation.centerDocked;
 
@@ -37,6 +28,17 @@ class _MainComponentState extends State<MainComponent> {
   void initState() {
     super.initState();
     this.updateAppBar();
+  }
+
+  _goToNewPersonPage() async {
+    var refresh = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => NewPersonComponent()),
+    );
+
+    if (refresh != null && refresh) {
+      print('need to Refresh');
+    }
   }
 
   updateAppBar() {
@@ -62,7 +64,15 @@ class _MainComponentState extends State<MainComponent> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
-      floatingActionButton: _fab,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _goToNewPersonPage();
+        },
+        child: FaIcon(
+          FontAwesomeIcons.plus,
+          size: 22,
+        ),
+      ),
       floatingActionButtonLocation: this._fabLocation,
       bottomNavigationBar: this._buildBottomNavAppBar(),
     );
