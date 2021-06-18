@@ -58,4 +58,31 @@ class PersonDao {
     });
     return success;
   }
+
+  Future<bool> createNewPerson(String personName, String country) async {
+    bool success = false;
+    Timestamp creationDate = Timestamp.fromDate(DateTime.now());
+
+    var batch = dbReference.batch();
+
+    var docRef = dbReference.collection(personsCollectionName).doc();
+
+    String id = docRef.id;
+
+    batch.set(docRef, {
+      'id': id,
+      'name': personName,
+      'country': country,
+      'creationDate': creationDate,
+    });
+
+    await batch.commit().then((value) {
+      success = true;
+      return success;
+    }).catchError((onError) {
+      print(onError);
+      return success;
+    });
+    return success;
+  }
 }

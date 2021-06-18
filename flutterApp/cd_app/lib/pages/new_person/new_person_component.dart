@@ -1,3 +1,4 @@
+import 'package:cd_app/services/person_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cd_app/models/forms/new_person_form.dart';
 import 'package:cd_app/pages/shared/loading_block.dart';
@@ -14,6 +15,7 @@ class NewPersonComponent extends StatefulWidget {
 
 class _NewPersonComponentState extends State<NewPersonComponent> {
   final _formKey = GlobalKey<FormState>();
+  PersonService _personService;
   NewPersonForm newPersonForm;
   List<String> countries;
   String countrySelected;
@@ -21,6 +23,7 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
   bool loading;
 
   _NewPersonComponentState() {
+    this._personService = PersonService();
     this.newPersonForm = NewPersonForm();
     this.countries = Constants.countries;
     this.refresh = false;
@@ -69,9 +72,23 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
       this.loading = true;
     });
 
-    this.refresh = true;
+    if (countrySelected == null) {
+    } else {
+      this.refresh = true;
 
-    this._goBack();
+      this.newPersonForm.country = countrySelected;
+
+      _personService.createNewPerson(newPersonForm).then((success) {
+        if (success) {
+          this._goBack();
+        } else {
+          // error modal
+          setState(() {
+            this.loading = false;
+          });
+        }
+      });
+    }
   }
 
   _openCountryBottomSheet() {

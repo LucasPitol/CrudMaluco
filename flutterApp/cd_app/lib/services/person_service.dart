@@ -19,13 +19,23 @@ class PersonService {
     String personName = form.name.text;
     String country = form.country;
 
-    var success = await this._personDao.updatePerson(personId, personName, country);
+    var success =
+        await this._personDao.updatePerson(personId, personName, country);
 
     return success;
   }
 
   Future<bool> deletePerson(String personId) async {
     var success = await this._personDao.deletePerson(personId);
+
+    return success;
+  }
+
+  Future<bool> createNewPerson(NewPersonForm form) async {
+    String personName = form.name.text;
+    String country = form.country;
+
+    var success = await this._personDao.createNewPerson(personName, country);
 
     return success;
   }
