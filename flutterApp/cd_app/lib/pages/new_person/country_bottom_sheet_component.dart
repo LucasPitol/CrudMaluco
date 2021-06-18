@@ -44,21 +44,17 @@ class _CountryBottomSheetComponentState
                 ? Styles.lightColor
                 : Styles.mainBackgroundColor,
           ),
-          child: Stack(
-            children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  item,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: isCountrySelected
-                        ? Styles.mainBackgroundColor
-                        : Styles.mainTextColor,
-                  ),
-                ),
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              item,
+              style: TextStyle(
+                fontSize: 16,
+                color: isCountrySelected
+                    ? Styles.mainBackgroundColor
+                    : Styles.mainTextColor,
               ),
-            ],
+            ),
           ),
         ),
       ),
