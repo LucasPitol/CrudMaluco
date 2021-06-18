@@ -22,4 +22,23 @@ class PersonDao {
 
     return personList;
   }
+
+  Future<bool> updatePerson(
+      String personId, String personName, String country) async {
+    bool success = false;
+    Timestamp lastUpdate = Timestamp.fromDate(DateTime.now());
+
+    await dbReference.collection(personsCollectionName).doc(personId).set({
+      'name': personName,
+      'country': country,
+      'lastUpdate': lastUpdate,
+    }, SetOptions(merge: true)).then((value) {
+      success = true;
+      return success;
+    }).catchError((onError) {
+      print(onError);
+      return success;
+    });
+    return success;
+  }
 }

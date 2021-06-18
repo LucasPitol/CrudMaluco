@@ -1,3 +1,4 @@
+import 'package:cd_app/pages/edit_person/edit_person_component.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cd_app/services/person_service.dart';
 import 'package:animations/animations.dart';
@@ -19,6 +20,7 @@ class _PersonListComponentState extends State<PersonListComponent> {
   PersonService _personService;
 
   bool loading = true;
+  bool refresh = false;
 
   _PersonListComponentState() {
     this.personList = [];
@@ -52,7 +54,10 @@ class _PersonListComponentState extends State<PersonListComponent> {
         closedShape:
             RoundedRectangleBorder(borderRadius: Styles.defaultBorderRadius),
         onClosed: (val) {
-          print('closed');
+          if (refresh) {
+            this.updatePageContent();
+            this.refresh = false;
+          }
         },
         closedBuilder: (context, action) {
           return Container(
@@ -69,10 +74,17 @@ class _PersonListComponentState extends State<PersonListComponent> {
           );
         },
         openBuilder: (contex, action) {
-          return Container();
+          return EditPersonComponent(
+            person: item,
+            switchRefresh: switchRefresh,
+          );
         },
       ),
     );
+  }
+
+  switchRefresh() {
+    this.refresh = true;
   }
 
   @override
