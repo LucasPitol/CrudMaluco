@@ -1,9 +1,11 @@
-import 'package:cd_app/pages/person_list_component.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cd_app/utils/constants.dart';
 import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'pages/person_locale_graph/person_locale_component.dart';
+import 'pages/person_list/person_list_component.dart';
 
 class MainComponent extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class MainComponent extends StatefulWidget {
 class _MainComponentState extends State<MainComponent> {
   final List<Widget> _widgetOptions = <Widget>[
     PersonListComponent(),
-    Container(),
+    PersonLocaleComponent(),
   ];
 
   int _selectedIndex = 0;

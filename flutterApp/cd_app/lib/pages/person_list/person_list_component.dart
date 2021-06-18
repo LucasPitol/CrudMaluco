@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:cd_app/models/person.dart';
 import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PersonListComponent extends StatefulWidget {
   @override
@@ -70,11 +71,33 @@ class _PersonListComponentState extends State<PersonListComponent> {
     );
   }
 
+  _refresh() {
+    print('Refresh');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
+          Container(
+            alignment: Alignment.topRight,
+            margin: EdgeInsets.all(10),
+            child: InkWell(
+              borderRadius: Styles.circularBorderRadius,
+              onTap: () {
+                this._refresh();
+              },
+              child: Container(
+                margin: EdgeInsets.all(10),
+                child: FaIcon(
+                  FontAwesomeIcons.redo,
+                  size: 20,
+                  color: Styles.mainTextColor,
+                ),
+              ),
+            ),
+          ),
           Flexible(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
