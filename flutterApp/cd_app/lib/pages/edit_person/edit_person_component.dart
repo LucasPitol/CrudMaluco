@@ -105,6 +105,8 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
   }
 
   _saveChanges() {
+    FocusScope.of(context).unfocus();
+
     setState(() {
       this.loading = true;
     });
@@ -166,7 +168,7 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
                             style: TextStyle(color: Styles.mainTextColor),
                             maxLength: 50,
                             controller: newPersonForm.name,
-                            textCapitalization: TextCapitalization.sentences,
+                            textCapitalization: TextCapitalization.words,
                             validator: (value) {
                               if (value.isEmpty) {
                                 return Constants.getDefaultEmptyFieldMsg();
@@ -195,6 +197,7 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
                                   _openCountryBottomSheet();
                                 },
                                 child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
                                   alignment: Alignment.center,
                                   child: Text(
                                     countrySelected,
@@ -228,7 +231,8 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
                         ),
                         Container(
                           alignment: Alignment.topLeft,
-                          margin: EdgeInsets.only(left: 20, right: 20, top: 80, bottom: 60),
+                          margin: EdgeInsets.only(
+                              left: 20, right: 20, top: 80, bottom: 60),
                           child: Text(
                             'Created: ' +
                                 DateFormat.yMd()

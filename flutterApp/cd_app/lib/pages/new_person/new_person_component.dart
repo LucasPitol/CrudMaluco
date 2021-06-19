@@ -1,3 +1,4 @@
+import 'package:cd_app/pages/shared/info_dialog.dart';
 import 'package:cd_app/services/person_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cd_app/models/forms/new_person_form.dart';
@@ -68,12 +69,18 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
   }
 
   _saveNewPerson() {
+    FocusScope.of(context).unfocus();
+
     setState(() {
       this.loading = true;
     });
 
     if (countrySelected == null) {
-      // modal
+      _openInfoDialog('Opss...', 'Choose a country');
+
+      setState(() {
+        this.loading = false;
+      });
     } else {
       this.refresh = true;
 
@@ -83,7 +90,8 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
         if (success) {
           this._goBack();
         } else {
-          // error modal
+          _openInfoDialog(
+              'Opss...', 'Unable to save this person :( \n Try again later.');
           setState(() {
             this.loading = false;
           });
@@ -109,6 +117,14 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
     }
   }
 
+  Future<void> _openInfoDialog(String title, String content) async {
+    await showDialog<String>(
+        context: context,
+        builder: (builder) {
+          return AlertDialogComponent(title, content);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +148,7 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
                               style: TextStyle(color: Styles.mainTextColor),
                               maxLength: 50,
                               controller: newPersonForm.name,
-                              textCapitalization: TextCapitalization.sentences,
+                              textCapitalization: TextCapitalization.words,
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return Constants.getDefaultEmptyFieldMsg();
@@ -162,6 +178,8 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
                                     _openCountryBottomSheet();
                                   },
                                   child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
                                     alignment: Alignment.center,
                                     child: Text(
                                       countrySelected != null &&
