@@ -1,3 +1,4 @@
+import 'package:cd_app/services/person_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,13 @@ class PersonLocaleComponent extends StatefulWidget {
 
 class _PersonLocaleComponentState extends State<PersonLocaleComponent> {
   Map<String, double> personLocaleMap;
+  PersonService _personService;
 
+  bool loading = true;
 
   _PersonLocaleComponentState() {
     this.personLocaleMap = Map<String, double>();
+    this._personService = PersonService();
   }
 
   @override
@@ -23,15 +27,16 @@ class _PersonLocaleComponentState extends State<PersonLocaleComponent> {
     this.getGraphData();
   }
 
-  getGraphData() {
-    Map<String, double> dataMap = {
-      "Brazil": 5,
-      "Netherlands": 3,
-      "Portugal": 2,
-      "France": 2,
-    };
+  getGraphData() async {
+    setState(() {
+      this.loading = true;
+    });
 
-    this.personLocaleMap = dataMap;
+    this.personLocaleMap = await this._personService.getPersonLocaleGraphData();
+
+    setState(() {
+      this.loading = false;
+    });
   }
 
   _refresh() {
@@ -40,32 +45,44 @@ class _PersonLocaleComponentState extends State<PersonLocaleComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-          Container(
-            child: PieChartComponent(this.personLocaleMap),
-          ),
-          Container(
-            alignment: Alignment.topRight,
-            margin: EdgeInsets.all(10),
-            child: InkWell(
-              borderRadius: Styles.circularBorderRadius,
-              onTap: () {
-                this._refresh();
-              },
-              child: Container(
-                margin: EdgeInsets.all(10),
-                child: FaIcon(
-                  FontAwesomeIcons.redo,
-                  size: 20,
-                  color: Styles.mainTextColor,
-                ),
+    return loading
+        ? Container(
+            margin: EdgeInsets.symmetric(vertical: 60),
+            width: double.infinity,
+            alignment: Alignment.center,
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                accentColor: Styles.primaryColor,
               ),
+              child: new CircularProgressIndicator(),
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        : Container(
+            child: Stack(
+              children: [
+                Container(
+                  child: PieChartComponent(this.personLocaleMap),
+                ),
+                Container(
+                  alignment: Alignment.topRight,
+                  margin: EdgeInsets.all(10),
+                  child: InkWell(
+                    borderRadius: Styles.circularBorderRadius,
+                    onTap: () {
+                      this._refresh();
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: FaIcon(
+                        FontAwesomeIcons.redo,
+                        size: 20,
+                        color: Styles.mainTextColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }
