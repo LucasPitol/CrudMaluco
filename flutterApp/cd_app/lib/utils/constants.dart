@@ -1,6 +1,6 @@
 class Constants {
-  static int listBottomBarOptionIndex = 0;
-  static int graphBottomBarOptionIndex = 1;
+  static const int listBottomBarOptionIndex = 0;
+  static const int graphBottomBarOptionIndex = 1;
 
   static List<String> countries = [
     'Brazil',

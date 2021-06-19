@@ -13,9 +13,11 @@ class MainComponent extends StatefulWidget {
   _MainComponentState createState() => _MainComponentState();
 }
 
+GlobalKey<PersonListComponentState> personListComponentGlobalKey = GlobalKey();
+
 class _MainComponentState extends State<MainComponent> {
   final List<Widget> _widgetOptions = <Widget>[
-    PersonListComponent(),
+    PersonListComponent(key: personListComponentGlobalKey),
     PersonLocaleComponent(),
   ];
 
@@ -37,8 +39,23 @@ class _MainComponentState extends State<MainComponent> {
     );
 
     if (refresh != null && refresh) {
-      print('need to Refresh');
+      this._refreshData();
     }
+  }
+
+  void _refreshData() {
+    switch (_selectedIndex) {
+      case Constants.listBottomBarOptionIndex:
+        _updateListPage();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  _updateListPage() {
+    personListComponentGlobalKey.currentState.updatePageContent();
   }
 
   updateAppBar() {

@@ -73,6 +73,7 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
     });
 
     if (countrySelected == null) {
+      // modal
     } else {
       this.refresh = true;
 
