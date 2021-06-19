@@ -14,11 +14,12 @@ class MainComponent extends StatefulWidget {
 }
 
 GlobalKey<PersonListComponentState> personListComponentGlobalKey = GlobalKey();
+GlobalKey<PersonLocaleComponentState> personLocaleGraphComponentGlobalKey = GlobalKey();
 
 class _MainComponentState extends State<MainComponent> {
   final List<Widget> _widgetOptions = <Widget>[
     PersonListComponent(key: personListComponentGlobalKey),
-    PersonLocaleComponent(),
+    PersonLocaleComponent(key: personLocaleGraphComponentGlobalKey),
   ];
 
   int _selectedIndex = 0;
@@ -49,6 +50,10 @@ class _MainComponentState extends State<MainComponent> {
         _updateListPage();
         break;
 
+      case Constants.graphBottomBarOptionIndex:
+        _updateGraphPage();
+        break;
+
       default:
         break;
     }
@@ -56,6 +61,10 @@ class _MainComponentState extends State<MainComponent> {
 
   _updateListPage() {
     personListComponentGlobalKey.currentState.updatePageContent();
+  }
+
+  _updateGraphPage() {
+    personLocaleGraphComponentGlobalKey.currentState.getGraphData();
   }
 
   updateAppBar() {

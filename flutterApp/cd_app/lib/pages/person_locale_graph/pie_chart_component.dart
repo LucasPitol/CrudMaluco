@@ -50,6 +50,14 @@ class _PieChartComponentState extends State<PieChartComponent> {
               chartType: ChartType.disc,
             ),
           )
-        : Container();
+        : Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 40),
+            child: Text(
+              'no person to show, tap the add button to create one.',
+              style: Styles.montTextLight,
+              textAlign: TextAlign.center,
+            ),
+          );
   }
 }

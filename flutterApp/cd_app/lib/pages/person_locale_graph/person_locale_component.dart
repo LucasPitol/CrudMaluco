@@ -6,17 +6,19 @@ import 'package:flutter/material.dart';
 import 'pie_chart_component.dart';
 
 class PersonLocaleComponent extends StatefulWidget {
+  PersonLocaleComponent({Key key}) : super(key: key);
+
   @override
-  _PersonLocaleComponentState createState() => _PersonLocaleComponentState();
+  PersonLocaleComponentState createState() => PersonLocaleComponentState();
 }
 
-class _PersonLocaleComponentState extends State<PersonLocaleComponent> {
+class PersonLocaleComponentState extends State<PersonLocaleComponent> {
   Map<String, double> personLocaleMap;
   PersonService _personService;
 
   bool loading = true;
 
-  _PersonLocaleComponentState() {
+  PersonLocaleComponentState() {
     this.personLocaleMap = Map<String, double>();
     this._personService = PersonService();
   }
@@ -37,10 +39,6 @@ class _PersonLocaleComponentState extends State<PersonLocaleComponent> {
     setState(() {
       this.loading = false;
     });
-  }
-
-  _refresh() {
-    print('Refresh');
   }
 
   @override
@@ -69,7 +67,7 @@ class _PersonLocaleComponentState extends State<PersonLocaleComponent> {
                   child: InkWell(
                     borderRadius: Styles.circularBorderRadius,
                     onTap: () {
-                      this._refresh();
+                      this.getGraphData();
                     },
                     child: Container(
                       margin: EdgeInsets.all(10),
