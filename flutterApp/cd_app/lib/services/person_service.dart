@@ -60,7 +60,24 @@ class PersonService {
           personLocaleMap.putIfAbsent(country, () => value);
         }
       }
+
+      personLocaleMap = _sortLocaleMap(personLocaleMap);
     }
+
+    return personLocaleMap;
+  }
+
+  Map<String, double> _sortLocaleMap(Map<String, double> personLocaleMapLocal) {
+    Map<String, double> personLocaleMap = Map<String, double>();
+
+    var sortedKeys = personLocaleMapLocal.keys.toList(growable: false)
+      ..sort(
+        (k1, k2) =>
+            personLocaleMapLocal[k2].compareTo(personLocaleMapLocal[k1]),
+      );
+
+    personLocaleMap = Map<String, double>.fromIterable(sortedKeys,
+        key: (k) => k, value: (k) => personLocaleMapLocal[k]);
 
     return personLocaleMap;
   }
