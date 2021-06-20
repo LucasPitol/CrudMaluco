@@ -1,0 +1,39 @@
+@import "../../utils/variables.scss";
+
+.back-g {
+    height: 100%;
+
+    .drawer-container {
+        width: 100%;
+        height: 100%;
+
+        .side-nav {
+            border: white;
+            display: flex;
+            width: 70px;
+            background-color: white;
+            box-shadow: 0 3px 8px 0 rgba(66, 66, 66, 0.2);
+
+            .options-holder {
+                margin-top: 80px;
+
+                .option-unselected {
+                    background-color: white;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    text-align: center;
+                    cursor: pointer;
+
+                    .image-holder {
+                        margin: auto;
+                    }
+                }
+            }
+        }
+
+        .side-nav-content {
+            background-color: white;
+            height: 100%;
+        }
+    }
+}

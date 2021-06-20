@@ -1,0 +1,40 @@
+$primary:#8B82FF;
+$light50: #E3E1FF;
+$light: #c0b2ff;
+$dark: #5655cb;
+
+$main-text-color: #424242;
+$light-text-color: #BDBDBD;
+
+$primary-pallete: (
+    50: #ebe9ff,
+    100: #E3E1FF,
+    200: #d5d2ff,
+    300: #c0b2ff,
+    400: #aa97ff,
+    500: #8B82FF, // original primary color you built this map around
+    600: #746bfa,
+    700: #6156ff,
+    800: #6765d4,
+    900: #5655cb,
+    A100: #ffddc1,
+    A200: #ffc698,
+    A400: #ffac67,
+    A700: #FA9746,
+    contrast: (
+      50: #000000,
+      100: #000000,
+      200: #000000,
+      300: #000000,
+      400: #ffffff,
+      500: #ffffff,
+      600: #ffffff,
+      700: #ffffff,
+      800: #ffffff,
+      900: #ffffff,
+      A100: #000000,
+      A200: #000000,
+      A400: #ffffff,
+      A700: #ffffff
+    )
+);

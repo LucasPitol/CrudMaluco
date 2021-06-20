@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../src/app/utils/variables.scss';
+@import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+@include mat-core();
+
+$cd-web-primary: mat-palette($primary-pallete);
+$cd-web-accent: mat-palette($mat-amber, A200, A100, A400);
+
+$cd-web-warn: mat-palette($mat-red);
+
+$cd-web-theme: mat-light-theme($cd-web-primary, $cd-web-accent, $cd-web-warn);
+
+@include angular-material-theme($cd-web-theme);
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Montserrat', Roboto, sans-serif; }
+
+span {
+    color: $main-text-color;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+p {
+    color: $light-text-color;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $light50;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $light;
+}
