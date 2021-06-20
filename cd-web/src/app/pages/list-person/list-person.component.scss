@@ -1,14 +1,23 @@
-.background {
-    margin-top: 150px;
-    margin-bottom: 50px;
+.drawer-container {
+    height: 100%;
+    background-color: white;
 
-    .cards-holder {
-        /* width: 100%; */
-        text-align: center;
-        margin: auto;
+    .side-nav {
+        height: 100%;
+    }
 
-        .card-holder {
-            display: inline-block;
+    .background {
+        margin-top: 100px;
+        margin-bottom: 50px;
+
+        .cards-holder {
+            /* width: 100%; */
+            text-align: center;
+            margin: auto;
+
+            .card-holder {
+                display: inline-block;
+            }
         }
     }
 }

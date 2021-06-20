@@ -1,10 +1,22 @@
-<div class="background">
-    <div class="cards-holder">
-        <div *ngFor="let person of personList" class="card-holder">
-            <card-component (click)="selectPerson(person.id)"
-                [person]="person"
-                [personSelectedId]="personSelectedId">
-            </card-component>
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #sidenav class="sidenav" mode="side" position="end">
+        <p>Auto-resizing sidenav</p>
+        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            Toggle extra text
+        </button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <div class="background">
+            <div class="cards-holder">
+                <div *ngFor="let person of personList" class="card-holder">
+                    <card-component (click)="selectPerson(person.id)" [person]="person"
+                        [personSelectedId]="personSelectedId">
+                    </card-component>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+</mat-drawer-container>

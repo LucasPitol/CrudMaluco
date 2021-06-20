@@ -12,6 +12,7 @@ import { PersonService } from './services/person-service';
 import { CardComponent } from './pages/card/card.component';
 import { PersonLocaleComponent } from './pages/person-locale/person-locale.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { SidenavService } from './services/side-nav-service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   ],
   providers: [
     PersonService,
+    SidenavService,
   ],
   bootstrap: [AppComponent]
 })
