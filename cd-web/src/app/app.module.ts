@@ -10,6 +10,7 @@ import { routing } from './app.router';
 import { ListPersonComponent } from './pages/list-person/list-person.component';
 import { PersonService } from './services/person-service';
 import { CardComponent } from './pages/card/card.component';
+import { PersonLocaleComponent } from './pages/person-locale/person-locale.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CardComponent } from './pages/card/card.component';
     HomeComponent,
     ListPersonComponent,
     CardComponent,
+    PersonLocaleComponent,
   ],
   imports: [
     routing,
