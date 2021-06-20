@@ -1,0 +1,49 @@
+@import "../../utils/variables.scss";
+
+.card {
+    width: 180px;
+    height: 80px;
+    background-color: white;
+    box-shadow: 0 3px 8px 0 rgba(66, 66, 66, 0.2);
+    margin: 20px;
+    border-radius: 12px;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.3s;
+
+    .text-holder {
+        text-align: start;
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.card:hover {
+    transition: 0.3s;
+    box-shadow: 0 10px 20px 0 rgba(66, 66, 66, 0.2);
+}
+
+.card-selected {
+    width: 180px;
+    height: 80px;
+    background-color: $primary;
+    box-shadow: 0 3px 8px 0 rgba(66, 66, 66, 0.2);
+    margin: 20px;
+    border-radius: 12px;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.3s;
+
+    .text-holder {
+        span {
+            transition: 0.3s;
+            color: white;
+        }
+
+        p {
+            transition: 0.3s;
+            color: white;
+        }
+    }
+}

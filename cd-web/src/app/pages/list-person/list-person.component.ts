@@ -11,8 +11,10 @@ import { PersonService } from "src/app/services/person-service";
 export class ListPersonComponent implements OnInit {
 
     personList: Person[]
+    personSelectedId: string
 
     ngOnInit(): void {
+        this.personSelectedId = ''
         this.getPersonList()
     }
 
@@ -23,5 +25,10 @@ export class ListPersonComponent implements OnInit {
 
     getPersonList() {
         this.personList = this.personService.getPersonList()
+    }
+
+    selectPerson(personId: string) {
+        console.log(personId)
+        this.personSelectedId = personId
     }
 }

@@ -1,10 +1,10 @@
 <div class="background">
     <div class="cards-holder">
         <div *ngFor="let person of personList" class="card-holder">
-            <!-- <card-component
-                [person]="person">
-            </card-component> -->
-            <span>{{person.name}}</span>
+            <card-component (click)="selectPerson(person.id)"
+                [person]="person"
+                [personSelectedId]="personSelectedId">
+            </card-component>
         </div>
     </div>
 </div>

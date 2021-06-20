@@ -9,12 +9,14 @@ import { MatSidenavModule } from '@angular/material';
 import { routing } from './app.router';
 import { ListPersonComponent } from './pages/list-person/list-person.component';
 import { PersonService } from './services/person-service';
+import { CardComponent } from './pages/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListPersonComponent,
+    CardComponent,
   ],
   imports: [
     routing,
