@@ -22,6 +22,9 @@ export class ListPersonComponent implements OnInit {
     countryList: string[]
     countrySelected: string
 
+    refreshIconPath = '../../../assets/redo-alt.png'
+    closeIconPath = '../../../assets/times.png'
+
 
     constructor(
         private personService: PersonService,
@@ -29,7 +32,7 @@ export class ListPersonComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.personSelectedId = ''
+        this.resetPersonSelectedId()
         this.buildFormValidators()
         this.getCountryList()
         this.getPersonList()
@@ -52,6 +55,15 @@ export class ListPersonComponent implements OnInit {
 
     getPersonList() {
         this.personList = this.personService.getPersonList()
+    }
+
+    resetPersonSelectedId() {
+        this.personSelectedId = ''
+    }
+
+    closeDrawer() {
+        this.sidenavService.close()
+        this.resetPersonSelectedId()
     }
 
     selectPerson(person: Person) {

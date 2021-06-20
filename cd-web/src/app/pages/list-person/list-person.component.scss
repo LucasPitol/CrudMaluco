@@ -38,6 +38,18 @@
             }
         }
 
+        .refresh-holder {
+            position: absolute;
+            text-align: center;
+            width: 22px;
+            right: 0;
+            top: 0;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 200px;
+        }
+
         .background {
             margin-top: 100px;
             margin-bottom: 50px;

@@ -1,11 +1,10 @@
 <div class="background">
-    <div id="chart">
-        <apx-chart
-          [series]="chartOptions.series"
-          [chart]="chartOptions.chart"
-          [labels]="chartOptions.labels"
-          [responsive]="chartOptions.responsive"
-          [colors]="chartOptions.colors"
-        ></apx-chart>
-      </div>
+  <div matRipple class="refresh-holder">
+    <img [src]="refreshIconPath">
+  </div>
+  
+  <div id="chart">
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+      [responsive]="chartOptions.responsive" [colors]="chartOptions.colors"></apx-chart>
+  </div>
 </div>

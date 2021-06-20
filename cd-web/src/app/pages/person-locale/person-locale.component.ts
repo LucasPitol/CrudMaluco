@@ -25,6 +25,8 @@ export class PersonLocaleComponent implements OnInit {
     @ViewChild("chart") chart: ChartComponent
     public chartOptions: Partial<ChartOptions>
 
+    refreshIconPath = '../../../assets/redo-alt.png'
+
     ngOnInit(): void {
         this.buildChart()
     }

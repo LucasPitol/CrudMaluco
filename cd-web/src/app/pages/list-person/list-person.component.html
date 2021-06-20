@@ -2,6 +2,10 @@
     <mat-drawer-container class="drawer-container" autosize>
         <mat-drawer #sidenav class="side-nav" mode="side" position="end">
 
+            <div matRipple class="refresh-holder" (click)="closeDrawer()">
+                <img [src]="closeIconPath">
+            </div>
+
             <div class="form-container">
                 <form>
                     <mat-form-field appearance="legacy">
@@ -31,8 +35,12 @@
 
         </mat-drawer>
 
-        <div class="example-sidenav-content">
+        <div class="sidenav-content">
+            <div matRipple class="refresh-holder">
+                <img [src]="refreshIconPath">
+            </div>
             <div class="background">
+
                 <div class="cards-holder">
                     <div *ngFor="let person of personList" class="card-holder">
                         <card-component (click)="selectPerson(person)" [person]="person"
