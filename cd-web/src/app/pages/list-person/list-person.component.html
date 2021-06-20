@@ -11,6 +11,21 @@
                             Required field
                         </mat-error>
                     </mat-form-field>
+
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Country</mat-label>
+                        <mat-select [(ngModel)]="countrySelected" name="country">
+                            <mat-option *ngFor="let country of countryList" [value]="country">
+                                {{country}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="btn-area">
+                        <button class="primary-button" mat-raised-button color="primary">
+                            <div class="btn-text">Save</div>
+                        </button>
+                    </div>
                 </form>
             </div>
 

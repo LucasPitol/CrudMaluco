@@ -21,6 +21,20 @@
                     width: 90%;
                     color: #424242;
                 }
+
+                .btn-area {
+                    margin-top: 80px;
+
+                    .primary-button {
+                        width: 90%;
+                        height: 40px;
+                        border-radius: 200px;
+
+                        .btn-text {
+                            color: white;
+                        }
+                    }
+                }
             }
         }
 
