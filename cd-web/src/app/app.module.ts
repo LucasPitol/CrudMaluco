@@ -11,6 +11,7 @@ import { ListPersonComponent } from './pages/list-person/list-person.component';
 import { PersonService } from './services/person-service';
 import { CardComponent } from './pages/card/card.component';
 import { PersonLocaleComponent } from './pages/person-locale/person-locale.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PersonLocaleComponent } from './pages/person-locale/person-locale.compo
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgApexchartsModule,
     MatSidenavModule,
   ],
   providers: [
