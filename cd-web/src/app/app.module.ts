@@ -7,11 +7,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material';
 import { routing } from './app.router';
+import { ListPersonComponent } from './pages/list-person/list-person.component';
+import { PersonService } from './services/person-service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ListPersonComponent,
   ],
   imports: [
     routing,
@@ -20,7 +23,9 @@ import { routing } from './app.router';
     BrowserAnimationsModule,
     MatSidenavModule,
   ],
-  providers: [],
+  providers: [
+    PersonService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

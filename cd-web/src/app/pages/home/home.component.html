@@ -10,7 +10,6 @@
                     </div>
                 </div>
                 <div class="option-unselected" (click)="switchPage(graphPageIndex)">
-                    <!-- <div class="selected-marker"></div> -->
                     <div class="image-holder">
                         <img *ngIf="currentPageIndex == graphPageIndex" [src]="pieChartDarkPath">
                         <img *ngIf="currentPageIndex != graphPageIndex" [src]="pieChartLightPath">
@@ -22,7 +21,7 @@
         <mat-drawer-content class="side-nav-content">
             
             <div *ngIf="currentPageIndex == listPageIndex">
-                <span>List</span>
+                <list-person-component></list-person-component>
             </div>
 
             <div *ngIf="currentPageIndex == graphPageIndex">

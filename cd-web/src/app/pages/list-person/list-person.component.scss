@@ -1,0 +1,14 @@
+.background {
+    margin-top: 150px;
+    margin-bottom: 50px;
+
+    .cards-holder {
+        /* width: 100%; */
+        text-align: center;
+        margin: auto;
+
+        .card-holder {
+            display: inline-block;
+        }
+    }
+}
