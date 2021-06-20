@@ -1,22 +1,41 @@
-.drawer-container {
+.back {
     height: 100%;
-    background-color: white;
 
-    .side-nav {
+    .drawer-container {
         height: 100%;
-    }
+        background-color: white;
 
-    .background {
-        margin-top: 100px;
-        margin-bottom: 50px;
-
-        .cards-holder {
-            /* width: 100%; */
+        .side-nav {
+            width: 350px;
+            height: 100%;
             text-align: center;
-            margin: auto;
+            border: 2px solid #f5f5f5;
+            border-style: hidden hidden hidden solid;
 
-            .card-holder {
-                display: inline-block;
+            .form-container {
+                margin-top: 80px;
+                margin-right: 20px;
+                margin-left: 20px;
+
+                mat-form-field {
+                    width: 90%;
+                    color: #424242;
+                }
+            }
+        }
+
+        .background {
+            margin-top: 100px;
+            margin-bottom: 50px;
+
+            .cards-holder {
+                /* width: 100%; */
+                text-align: center;
+                margin: auto;
+
+                .card-holder {
+                    display: inline-block;
+                }
             }
         }
     }

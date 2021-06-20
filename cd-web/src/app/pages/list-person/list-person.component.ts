@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 import { MatSidenav } from "@angular/material/sidenav";
 import { Person } from "src/app/models/person";
 import { PersonService } from "src/app/services/person-service";
@@ -16,6 +17,8 @@ export class ListPersonComponent implements OnInit {
 
     personList: Person[]
     personSelectedId: string
+    nameFormControl: FormControl
+
 
     constructor(
         private personService: PersonService,
@@ -24,6 +27,7 @@ export class ListPersonComponent implements OnInit {
 
     ngOnInit(): void {
         this.personSelectedId = ''
+        this.buildFormValidators()
         this.getPersonList()
     }
 
@@ -31,13 +35,21 @@ export class ListPersonComponent implements OnInit {
         this.sidenavService.setSidenav(this.sidenav);
     }
 
+    buildFormValidators() {
+        this.nameFormControl = new FormControl('', [
+            Validators.required,
+            Validators.maxLength(20),
+        ]);
+    }
+
     getPersonList() {
         this.personList = this.personService.getPersonList()
     }
 
-    selectPerson(personId: string) {
-        console.log(personId)
-        this.personSelectedId = personId
+    selectPerson(person: Person) {
+        this.personSelectedId = person.id
+
+        this.nameFormControl.setValue(person.name)
 
         this.sidenavService.open()
     }

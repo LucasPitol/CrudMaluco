@@ -8,7 +8,8 @@
         height: 100%;
 
         .side-nav {
-            border: white;
+            border: 0px solid white;
+            border-style: hidden hidden hidden hidden;
             display: flex;
             width: 70px;
             background-color: white;
@@ -41,7 +42,6 @@
                         border-radius: 20px;
                         right: 0;
                     }
-
                 }
             }
         }
@@ -49,6 +49,10 @@
         .side-nav-content {
             background-color: white;
             height: 100%;
+
+            .content-page {
+                height: 100%;
+            }
         }
     }
 }
