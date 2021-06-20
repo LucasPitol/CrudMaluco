@@ -24,9 +24,24 @@
                     text-align: center;
                     cursor: pointer;
 
+                    .image-holder,
+                    .selected-marker {
+                        display: inline-flex;
+                    }
+
                     .image-holder {
                         margin: auto;
                     }
+
+                    .selected-marker {
+                        position: absolute;
+                        width: 5px;
+                        height: 20px;
+                        background-color: $primary;
+                        border-radius: 20px;
+                        right: 0;
+                    }
+
                 }
             }
         }

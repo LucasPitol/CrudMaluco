@@ -2,18 +2,33 @@
     <mat-drawer-container class="drawer-container">
         <mat-drawer mode="side" opened class="side-nav">
             <div class="options-holder">
-                <div class="option-unselected">
+                <div class="option-unselected" (click)="switchPage(listPageIndex)">
                     <div class="image-holder">
-                        <img [src]="listDarkPath">
+                        <img *ngIf="currentPageIndex == listPageIndex" [src]="listDarkPath">
+                        <img *ngIf="currentPageIndex != listPageIndex" [src]="listLightPath">
+                        <div *ngIf="currentPageIndex == listPageIndex" class="selected-marker"></div>
                     </div>
                 </div>
-                <div class="option-unselected">
-                    <span>Graph</span>
+                <div class="option-unselected" (click)="switchPage(graphPageIndex)">
+                    <!-- <div class="selected-marker"></div> -->
+                    <div class="image-holder">
+                        <img *ngIf="currentPageIndex == graphPageIndex" [src]="pieChartDarkPath">
+                        <img *ngIf="currentPageIndex != graphPageIndex" [src]="pieChartLightPath">
+                    </div>
+                    <div *ngIf="currentPageIndex == graphPageIndex" class="selected-marker"></div>
                 </div>
             </div>
         </mat-drawer>
         <mat-drawer-content class="side-nav-content">
-            Main content
+            
+            <div *ngIf="currentPageIndex == listPageIndex">
+                <span>List</span>
+            </div>
+
+            <div *ngIf="currentPageIndex == graphPageIndex">
+                <span>Graph</span>
+            </div>
+
         </mat-drawer-content>
     </mat-drawer-container>
 </div>
