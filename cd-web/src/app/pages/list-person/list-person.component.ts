@@ -86,20 +86,29 @@ export class ListPersonComponent implements OnInit {
         this.sidenavService.open()
     }
 
+    validateForm() {
+        return (this.nameFormControl.valid && this.countrySelected.length > 0)
+    }
+
     async editPerson() {
 
-        this.loading = true
+        var valid = this.validateForm()
 
-        var personToEdit = new Person()
+        if (valid) {
+            this.loading = true
+    
+            var personToEdit = new Person()
+    
+            personToEdit.id = this.selectedPerson.id
+            personToEdit.name = this.nameFormControl.value
+            personToEdit.country = this.countrySelected
+    
+            this.closeDrawer()
+    
+            await this.personService.editPerson(personToEdit)
+    
+            this.getPersonList()
+        }
 
-        personToEdit.id = this.selectedPerson.id
-        personToEdit.name = this.nameFormControl.value
-        personToEdit.country = this.countrySelected
-
-        this.closeDrawer()
-
-        await this.personService.editPerson(personToEdit)
-
-        this.getPersonList()
     }
 }

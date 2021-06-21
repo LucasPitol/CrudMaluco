@@ -14,6 +14,9 @@
                         <mat-error *ngIf="nameFormControl.hasError('required')">
                             Required field
                         </mat-error>
+                        <mat-error *ngIf="nameFormControl.hasError('maxlength')">
+                            must be under 20 characters
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="legacy">
@@ -44,7 +47,7 @@
                 <mat-spinner class="loader-spiner"></mat-spinner>
             </div>
 
-            <div  *ngIf="!loading" class="background">
+            <div *ngIf="!loading" class="background">
 
                 <div class="cards-holder">
                     <div *ngFor="let person of personList" class="card-holder">
