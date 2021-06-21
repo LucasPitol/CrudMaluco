@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { PersonService } from 'src/app/services/person-service';
 import { Constants } from 'src/app/utils/constants';
 import { NewPersonDialogComponent } from '../new-person-dialog/new-person-dialog.component';
 
@@ -21,7 +22,10 @@ export class HomeComponent implements OnInit {
     listPageIndex = Constants.listPageIndex
     graphPageIndex = Constants.graphPageIndex
 
-    constructor(public newPersonDialog: MatDialog) { }
+    constructor(
+        public newPersonDialog: MatDialog,
+        private personService: PersonService,
+    ) { }
 
     ngOnInit(): void {
         this.currentPageIndex = this.listPageIndex
@@ -34,11 +38,22 @@ export class HomeComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.newPersonDialog.open(NewPersonDialogComponent, {
             width: '350px',
-            data: {name: '', country: 'Brazil'}
+            data: { name: '', country: 'Brazil' }
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(result)
+        dialogRef.afterClosed().subscribe(async result => {
+
+            if (result != undefined) {
+
+                // loading = true
+
+                var personName = result.name
+                var country = result.country
+
+                await this.personService.saveNewPerson(personName, country)
+
+                // update childs 
+            }
         });
     }
 }

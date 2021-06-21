@@ -66,4 +66,24 @@ export class PersonService {
 
         await batch.commit()
     }
+
+    async saveNewPerson(personName: string, country: string) {
+
+        var person = new Person()
+
+        person.name = personName
+        person.country = country
+
+        const batch = this.db.batch()
+
+        const docRef = this.db.collection(this.personsCollectionName).doc()
+
+        batch.set(docRef, {
+            name: person.name,
+            country: person.country,
+            creationDate: new Date(),
+        })
+
+        await batch.commit()
+    }
 }
