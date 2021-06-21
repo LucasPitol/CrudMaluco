@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="!loading" class="background">
-  <div matRipple class="refresh-holder">
+  <div matRipple class="refresh-holder" (click)="buildChart()">
     <img [src]="refreshIconPath">
   </div>
   
