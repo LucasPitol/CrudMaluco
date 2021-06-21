@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 
     listPageIndex = Constants.listPageIndex
     graphPageIndex = Constants.graphPageIndex
+    loading: boolean
 
     constructor(
         public newPersonDialog: MatDialog,
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.loading = false
         this.currentPageIndex = this.listPageIndex
     }
 
@@ -45,14 +47,16 @@ export class HomeComponent implements OnInit {
 
             if (result != undefined) {
 
-                // loading = true
+                this.loading = true
 
                 var personName = result.name
                 var country = result.country
 
                 await this.personService.saveNewPerson(personName, country)
 
-                // update childs 
+                // update childs
+
+                this.loading = false
             }
         });
     }
