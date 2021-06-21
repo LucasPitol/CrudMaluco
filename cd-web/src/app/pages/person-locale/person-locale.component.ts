@@ -5,6 +5,7 @@ import {
     ApexChart,
     ChartComponent
 } from "ng-apexcharts";
+import { PersonService } from "src/app/services/person-service";
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries
@@ -23,36 +24,53 @@ export type ChartOptions = {
 export class PersonLocaleComponent implements OnInit {
 
     @ViewChild("chart") chart: ChartComponent
-    public chartOptions: Partial<ChartOptions>
+    chartOptions: Partial<ChartOptions>
+    loading: boolean
 
     refreshIconPath = '../../../assets/redo-alt.png'
+
+    constructor(private personService: PersonService) { }
 
     ngOnInit(): void {
         this.buildChart()
     }
 
     buildChart() {
-        this.chartOptions = {
-            series: [44, 55, 13, 43],
-            chart: {
-                width: 380,
-                type: "pie"
-            },
-            colors: ['#5655cb', '#8B82FF', '#c0b2ff', '#E3E1FF'],
-            labels: ["Brazil", "Netherlands", "France", "United States"],
-            responsive: [
-                {
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: "bottom"
+
+        this.loading = true
+
+        this.personService.getChartData().then((res) => {
+
+            var series = res.serie
+            var labels = res.labels
+
+            this.chartOptions = {
+                series: series,
+                chart: {
+                    width: 380,
+                    type: "pie"
+                },
+                colors: ['#5655cb', '#8B82FF', '#c0b2ff', '#E3E1FF'],
+                labels: labels,
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 200
+                            },
+                            legend: {
+                                position: "bottom"
+                            }
                         }
                     }
-                }
-            ]
-        }
+                ]
+            }
+
+            this.loading = false
+        })
+
+
+
     }
 }

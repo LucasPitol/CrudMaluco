@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Person } from "../models/person";
 import firebase from "firebase";
+import { Constants } from "../utils/constants";
+import { CountryAndPersonsDto } from "../models/country-and-persons-dto";
 
 @Injectable()
 export class PersonService {
@@ -85,5 +87,48 @@ export class PersonService {
         })
 
         await batch.commit()
+    }
+
+    async getChartData() {
+
+        var graphData = {
+            serie: [],
+            labels: [],
+        }
+
+        var personList = await this.getPersonList()
+
+        if (personList != null && personList.length > 0) {
+
+            var countryList = Constants.countryList
+
+            var countryAndPersonsDtoList: CountryAndPersonsDto[] = []
+
+            for (var country of countryList) {
+
+                var personsFromCurrentCountry = personList.filter((e) => e.country == country)
+
+                if (personsFromCurrentCountry != null &&
+                    personsFromCurrentCountry.length > 0) {
+
+                    var countryAndPersonsDto = new CountryAndPersonsDto()
+
+                    countryAndPersonsDto.personCount = (personsFromCurrentCountry.length)
+
+                    countryAndPersonsDto.country = country
+
+                    countryAndPersonsDtoList.push(countryAndPersonsDto)
+                }
+            }
+
+            countryAndPersonsDtoList.sort((e) => e.personCount)
+
+
+
+            graphData.serie = countryAndPersonsDtoList.map(e => e.personCount)
+            graphData.labels = countryAndPersonsDtoList.map(e => e.country)
+
+            return graphData
+        }
     }
 }

@@ -1,4 +1,8 @@
-<div class="background">
+<div *ngIf="loading" class="loader">
+  <mat-spinner class="loader-spiner"></mat-spinner>
+</div>
+
+<div *ngIf="!loading" class="background">
   <div matRipple class="refresh-holder">
     <img [src]="refreshIconPath">
   </div>
