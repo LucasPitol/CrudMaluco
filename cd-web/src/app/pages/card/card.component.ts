@@ -12,7 +12,4 @@ export class CardComponent {
     @Input("person") person: Person
     @Input("personSelectedId") personSelectedId: string
 
-    editPerson(person: Person) {
-        console.log(person)
-    }
 }

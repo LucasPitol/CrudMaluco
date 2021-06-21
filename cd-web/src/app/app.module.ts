@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatRippleModule, MatSelectModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatRippleModule, MatSelectModule, MatSidenavModule } from '@angular/material';
 import { routing } from './app.router';
 import { ListPersonComponent } from './pages/list-person/list-person.component';
 import { PersonService } from './services/person-service';
@@ -14,6 +14,7 @@ import { PersonLocaleComponent } from './pages/person-locale/person-locale.compo
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SidenavService } from './services/side-nav-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewPersonDialogComponent } from './pages/new-person-dialog/new-person-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListPersonComponent,
     CardComponent,
     PersonLocaleComponent,
+    NewPersonDialogComponent,
   ],
   imports: [
     routing,
@@ -39,10 +41,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRippleModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
   ],
   providers: [
     PersonService,
     SidenavService,
+  ],
+  entryComponents: [
+    NewPersonDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

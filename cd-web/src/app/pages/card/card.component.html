@@ -1,4 +1,4 @@
-<div [ngClass]="{'card-selected': personSelectedId == person.id, 'card' : personSelectedId != 'person.id' }" (click)="editPerson(person)">
+<div [ngClass]="{'card-selected': personSelectedId == person.id, 'card' : personSelectedId != 'person.id' }">
     <div class="text-holder">
         <span>{{person.name}}</span>
         <p>{{person.country}}</p>

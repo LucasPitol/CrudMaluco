@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>New person</h1>
+<div mat-dialog-content>
+    <form class="form">
+        <mat-form-field appearance="legacy">
+            <mat-label>Name</mat-label>
+            <input matInput [formControl]="nameFormControl" placeholder="Enter the person's name">
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+                Required field
+            </mat-error>
+            <mat-error *ngIf="nameFormControl.hasError('maxlength')">
+                must be under 20 characters
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Country</mat-label>
+            <mat-select [(ngModel)]="countrySelected" name="country">
+                <mat-option *ngFor="let country of countryList" [value]="country">
+                    {{country}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="btn-area">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="save()" cdkFocusInitial>Save</button>
+</div>
