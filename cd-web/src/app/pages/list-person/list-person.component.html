@@ -36,10 +36,15 @@
         </mat-drawer>
 
         <div class="sidenav-content">
-            <div matRipple class="refresh-holder">
+            <div matRipple class="refresh-holder" (click)="getPersonList()">
                 <img [src]="refreshIconPath">
             </div>
-            <div class="background">
+
+            <div *ngIf="loading" class="loader">
+                <mat-spinner class="loader-spiner"></mat-spinner>
+            </div>
+
+            <div  *ngIf="!loading" class="background">
 
                 <div class="cards-holder">
                     <div *ngFor="let person of personList" class="card-holder">

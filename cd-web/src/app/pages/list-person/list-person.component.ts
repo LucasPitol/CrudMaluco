@@ -21,6 +21,7 @@ export class ListPersonComponent implements OnInit {
     nameFormControl: FormControl
     countryList: string[]
     countrySelected: string
+    loading: boolean
 
     refreshIconPath = '../../../assets/redo-alt.png'
     closeIconPath = '../../../assets/times.png'
@@ -32,6 +33,7 @@ export class ListPersonComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.loading = true
         this.resetPersonSelectedId()
         this.buildFormValidators()
         this.getCountryList()
@@ -54,7 +56,13 @@ export class ListPersonComponent implements OnInit {
     }
 
     getPersonList() {
-        this.personList = this.personService.getPersonList()
+        this.loading = true
+
+        this.personService.getPersonList().then((res) => {
+            this.personList = res
+            
+            this.loading = false
+        })
     }
 
     resetPersonSelectedId() {
