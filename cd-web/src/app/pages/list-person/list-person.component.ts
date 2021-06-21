@@ -26,6 +26,7 @@ export class ListPersonComponent implements OnInit {
 
     refreshIconPath = '../../../assets/redo-alt.png'
     closeIconPath = '../../../assets/times.png'
+    trashIconPath = '../../../assets/trash-alt.png'
 
 
     constructor(
@@ -61,7 +62,7 @@ export class ListPersonComponent implements OnInit {
 
         this.personService.getPersonList().then((res) => {
             this.personList = res
-            
+
             this.loading = false
         })
     }
@@ -96,19 +97,31 @@ export class ListPersonComponent implements OnInit {
 
         if (valid) {
             this.loading = true
-    
+
             var personToEdit = new Person()
-    
+
             personToEdit.id = this.selectedPerson.id
             personToEdit.name = this.nameFormControl.value
             personToEdit.country = this.countrySelected
-    
+
             this.closeDrawer()
-    
+
             await this.personService.editPerson(personToEdit)
-    
+
             this.getPersonList()
         }
+    }
 
+    async deletePerson() {
+
+        this.loading = true
+
+        var personIdId = this.personSelectedId
+
+        this.closeDrawer()
+
+        await this.personService.deletePerson(personIdId)
+
+        this.getPersonList()
     }
 }

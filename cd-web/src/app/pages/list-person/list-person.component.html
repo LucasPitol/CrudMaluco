@@ -7,7 +7,7 @@
             </div>
 
             <div class="form-container">
-                <form>
+                <form class="form">
                     <mat-form-field appearance="legacy">
                         <mat-label>Name</mat-label>
                         <input matInput [formControl]="nameFormControl" placeholder="Enter the person's name">
@@ -27,6 +27,10 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+
+                    <div matRipple class="trash-holder" (click)="deletePerson()">
+                        <img [src]="trashIconPath">
+                    </div>
 
                     <div class="btn-area">
                         <button class="primary-button" mat-raised-button color="primary" (click)="editPerson()">
