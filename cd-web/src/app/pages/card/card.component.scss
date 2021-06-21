@@ -1,7 +1,7 @@
 @import "../../utils/variables.scss";
 
 .card {
-    width: 200px;
+    width: 250px;
     height: 80px;
     background-color: white;
     box-shadow: 0 3px 8px 0 rgba(66, 66, 66, 0.2);
@@ -25,7 +25,7 @@
 }
 
 .card-selected {
-    width: 200px;
+    width: 250px;
     height: 80px;
     background-color: $primary;
     box-shadow: 0 3px 8px 0 rgba(66, 66, 66, 0.2);

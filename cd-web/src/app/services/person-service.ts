@@ -22,9 +22,9 @@ export class PersonService {
             for (const doc of snapshot.docs) {
 
                 var person = new Person()
-                
+
                 person.id = doc.id
-                
+
                 var docMap = doc.data()
 
                 person.name = docMap.name
@@ -36,7 +36,24 @@ export class PersonService {
             return personList
         }
 
-
         return personList
+    }
+
+    async editPerson(person: Person) {
+
+        const batch = this.db.batch()
+
+        var personId = person.id
+
+        const docRef = this.db.collection(this.personsCollectionName).doc(personId)
+
+
+        batch.set(docRef, {
+            name: person.name,
+            country: person.country,
+            lastUpdate: new Date(),
+        }, { merge: true })
+
+        await batch.commit()
     }
 }

@@ -22,6 +22,7 @@ export class ListPersonComponent implements OnInit {
     countryList: string[]
     countrySelected: string
     loading: boolean
+    selectedPerson: Person
 
     refreshIconPath = '../../../assets/redo-alt.png'
     closeIconPath = '../../../assets/times.png'
@@ -67,6 +68,7 @@ export class ListPersonComponent implements OnInit {
 
     resetPersonSelectedId() {
         this.personSelectedId = ''
+        this.selectedPerson = null
     }
 
     closeDrawer() {
@@ -76,10 +78,28 @@ export class ListPersonComponent implements OnInit {
 
     selectPerson(person: Person) {
         this.personSelectedId = person.id
+        this.selectedPerson = person
 
         this.nameFormControl.setValue(person.name)
         this.countrySelected = person.country
 
         this.sidenavService.open()
+    }
+
+    async editPerson() {
+
+        this.loading = true
+
+        var personToEdit = new Person()
+
+        personToEdit.id = this.selectedPerson.id
+        personToEdit.name = this.nameFormControl.value
+        personToEdit.country = this.countrySelected
+
+        this.closeDrawer()
+
+        await this.personService.editPerson(personToEdit)
+
+        this.getPersonList()
     }
 }
