@@ -14,6 +14,7 @@ export class PersonService {
 
         var snapshot = await this.db
             .collection(this.personsCollectionName)
+            .orderBy("name", "asc")
             .get()
 
         if (!snapshot.empty) {
