@@ -2,4 +2,8 @@
 
 Just a simple CRUD in the cloud
 
-Project in development...
+Android app:
+
+Web app: https://crud-maluco.web.app/home
+
+By Lucas Pitol
