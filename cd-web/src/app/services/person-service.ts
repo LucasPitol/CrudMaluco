@@ -123,8 +123,6 @@ export class PersonService {
 
             countryAndPersonsDtoList.sort((e) => e.personCount)
 
-
-
             graphData.serie = countryAndPersonsDtoList.map(e => e.personCount)
             graphData.labels = countryAndPersonsDtoList.map(e => e.country)
 
