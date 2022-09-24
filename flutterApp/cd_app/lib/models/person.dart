@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Person {
-  String id;
-  String name;
-  String country;
-  DateTime creationDate;
+  late String id;
+  late String name;
+  late String country;
+  late DateTime creationDate;
 
   Person(DocumentSnapshot doc) {
-    Map<String, dynamic> objMapp = doc.data();
+    Map<String, dynamic> objMapp = doc.data() as Map<String, dynamic>;
 
     Timestamp creationDateTimestamp = objMapp['creationDate'];
 

@@ -72,7 +72,11 @@ class _AlertDialogComponentState extends State<AlertDialogComponent> {
         barrierDismissible: false,
         barrierLabel: '',
         context: context,
-        pageBuilder: (context, animation1, animation2) {});
+        pageBuilder: (context, animation1, animation2) {
+          return const AlertDialog(
+            title: Text('data'),
+          );
+        });
   }
 
   closeDialog() {

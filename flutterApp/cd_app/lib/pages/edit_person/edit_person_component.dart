@@ -13,7 +13,7 @@ class EditPersonComponent extends StatefulWidget {
   final Person person;
   final Function switchRefresh;
 
-  EditPersonComponent({this.person, this.switchRefresh});
+  EditPersonComponent({required this.person, required this.switchRefresh});
 
   @override
   _EditPersonComponentState createState() => _EditPersonComponentState(
@@ -27,13 +27,13 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
   final Function switchRefresh;
   final _formKey = GlobalKey<FormState>();
 
-  PersonService _personService;
-  NewPersonForm newPersonForm;
-  String countrySelected;
-  List<String> countries;
-  bool loading;
+  late PersonService _personService;
+  late NewPersonForm newPersonForm;
+  late String countrySelected;
+  late List<String> countries;
+  late bool loading;
 
-  _EditPersonComponentState({this.person, this.switchRefresh}) {
+  _EditPersonComponentState({required this.person, required this.switchRefresh}) {
     this._personService = PersonService();
     this.newPersonForm = NewPersonForm();
     this.countries = Constants.countries;
@@ -88,7 +88,7 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
   }
 
   _openCountryBottomSheet() {
-    Future<String> selectedValue = showModalBottomSheet(
+    Future<dynamic> selectedValue = showModalBottomSheet(
         context: context,
         builder: (builder) {
           return CountryBottomSheetComponent(this.countries, countrySelected);
@@ -170,7 +170,7 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
                             controller: newPersonForm.name,
                             textCapitalization: TextCapitalization.words,
                             validator: (value) {
-                              if (value.isEmpty) {
+                              if (value!.isEmpty) {
                                 return Constants.getDefaultEmptyFieldMsg();
                               }
                               return null;
@@ -255,7 +255,7 @@ class _EditPersonComponentState extends State<EditPersonComponent> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       _saveChanges();
                     }
                   },

@@ -4,7 +4,7 @@ import 'package:cd_app/models/person.dart';
 import 'package:cd_app/utils/constants.dart';
 
 class PersonService {
-  PersonDao _personDao;
+  late PersonDao _personDao;
 
   PersonService() {
     this._personDao = PersonDao();
@@ -73,11 +73,11 @@ class PersonService {
     var sortedKeys = personLocaleMapLocal.keys.toList(growable: false)
       ..sort(
         (k1, k2) =>
-            personLocaleMapLocal[k2].compareTo(personLocaleMapLocal[k1]),
+            personLocaleMapLocal[k2]!.compareTo(personLocaleMapLocal[k1]!),
       );
 
     personLocaleMap = Map<String, double>.fromIterable(sortedKeys,
-        key: (k) => k, value: (k) => personLocaleMapLocal[k]);
+        key: (k) => k, value: (k) => personLocaleMapLocal[k]!);
 
     return personLocaleMap;
   }

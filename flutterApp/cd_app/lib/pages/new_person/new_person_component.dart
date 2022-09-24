@@ -16,12 +16,12 @@ class NewPersonComponent extends StatefulWidget {
 
 class _NewPersonComponentState extends State<NewPersonComponent> {
   final _formKey = GlobalKey<FormState>();
-  PersonService _personService;
-  NewPersonForm newPersonForm;
-  List<String> countries;
-  String countrySelected;
-  bool refresh;
-  bool loading;
+  late PersonService _personService;
+  late NewPersonForm newPersonForm;
+  late List<String> countries;
+  late String countrySelected;
+  late bool refresh;
+  late bool loading;
 
   _NewPersonComponentState() {
     this._personService = PersonService();
@@ -101,7 +101,7 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
   }
 
   _openCountryBottomSheet() {
-    Future<String> selectedValue = showModalBottomSheet(
+    Future<dynamic> selectedValue = showModalBottomSheet(
         context: context,
         builder: (builder) {
           return CountryBottomSheetComponent(this.countries, countrySelected);
@@ -150,7 +150,7 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
                               controller: newPersonForm.name,
                               textCapitalization: TextCapitalization.words,
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return Constants.getDefaultEmptyFieldMsg();
                                 }
                                 return null;
@@ -212,7 +212,7 @@ class _NewPersonComponentState extends State<NewPersonComponent> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState.validate()) {
+                      if (_formKey.currentState!.validate()) {
                         _saveNewPerson();
                       }
                     },

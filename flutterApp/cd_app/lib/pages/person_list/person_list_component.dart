@@ -7,18 +7,18 @@ import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class PersonListComponent extends StatefulWidget {
-  PersonListComponent({Key key}) : super(key: key);
+  PersonListComponent({required Key key}) : super(key: key);
 
   @override
   PersonListComponentState createState() => PersonListComponentState();
 }
 
 class PersonListComponentState extends State<PersonListComponent> {
-  List<Person> personList;
-  PersonService _personService;
+  late List<Person> personList;
+  late PersonService _personService;
 
-  bool loading = true;
-  bool refresh = false;
+  late bool loading = true;
+  late bool refresh = false;
 
   PersonListComponentState() {
     this.personList = [];

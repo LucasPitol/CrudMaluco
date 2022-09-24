@@ -60,11 +60,11 @@ class _MainComponentState extends State<MainComponent> {
   }
 
   _updateListPage() {
-    personListComponentGlobalKey.currentState.updatePageContent();
+    personListComponentGlobalKey.currentState?.updatePageContent();
   }
 
   _updateGraphPage() {
-    personLocaleGraphComponentGlobalKey.currentState.getGraphData();
+    personLocaleGraphComponentGlobalKey.currentState?.getGraphData();
   }
 
   updateAppBar() {

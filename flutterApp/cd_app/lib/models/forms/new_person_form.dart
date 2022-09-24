@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NewPersonForm {
-  TextEditingController name;
-  String country;
+  late TextEditingController name;
+  late String country;
 
   NewPersonForm() {
     this.name = TextEditingController();
+    this.country = '';
   }
 }

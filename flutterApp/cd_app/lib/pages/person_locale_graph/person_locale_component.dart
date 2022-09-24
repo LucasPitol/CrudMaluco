@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 import 'pie_chart_component.dart';
 
 class PersonLocaleComponent extends StatefulWidget {
-  PersonLocaleComponent({Key key}) : super(key: key);
+  PersonLocaleComponent({required Key key}) : super(key: key);
 
   @override
   PersonLocaleComponentState createState() => PersonLocaleComponentState();
 }
 
 class PersonLocaleComponentState extends State<PersonLocaleComponent> {
-  Map<String, double> personLocaleMap;
-  PersonService _personService;
+  late Map<String, double> personLocaleMap;
+  late PersonService _personService;
 
-  bool loading = true;
+  late bool loading = true;
 
   PersonLocaleComponentState() {
     this.personLocaleMap = Map<String, double>();
