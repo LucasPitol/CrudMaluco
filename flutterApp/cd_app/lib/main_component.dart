@@ -13,13 +13,16 @@ class MainComponent extends StatefulWidget {
   _MainComponentState createState() => _MainComponentState();
 }
 
-GlobalKey<PersonListComponentState> personListComponentGlobalKey = GlobalKey();
-GlobalKey<PersonLocaleComponentState> personLocaleGraphComponentGlobalKey = GlobalKey();
+// GlobalKey<PersonListComponentState> personListComponentGlobalKey = GlobalKey();
+GlobalKey<PersonLocaleComponentState> personLocaleGraphComponentGlobalKey =
+    GlobalKey();
 
 class _MainComponentState extends State<MainComponent> {
   final List<Widget> _widgetOptions = <Widget>[
-    PersonListComponent(key: personListComponentGlobalKey),
-    PersonLocaleComponent(key: personLocaleGraphComponentGlobalKey),
+    PersonListComponent(),
+    PersonLocaleComponent(
+      key: personLocaleGraphComponentGlobalKey,
+    ),
   ];
 
   int _selectedIndex = 0;
@@ -60,11 +63,11 @@ class _MainComponentState extends State<MainComponent> {
   }
 
   _updateListPage() {
-    personListComponentGlobalKey.currentState?.updatePageContent();
+    // personListComponentGlobalKey.currentState?.updatePageContent();
   }
 
   _updateGraphPage() {
-    personLocaleGraphComponentGlobalKey.currentState?.getGraphData();
+    // personLocaleGraphComponentGlobalKey.currentState?.getGraphData();
   }
 
   updateAppBar() {

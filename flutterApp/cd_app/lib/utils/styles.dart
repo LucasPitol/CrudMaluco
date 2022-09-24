@@ -9,14 +9,13 @@ class Styles {
       selectionColor: primaryColor,
     ),
     primaryColor: primaryColor,
-    accentColor: darkColor,
     scaffoldBackgroundColor: mainBackgroundColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
       foregroundColor: mainBackgroundColor,
     ),
     textTheme: GoogleFonts.montserratTextTheme(),
-    backgroundColor: mainBackgroundColor,
+    backgroundColor: mainBackgroundColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: darkColor),
   );
 
   static Color primaryColor = Color(0xff8B82FF);

@@ -19,8 +19,9 @@ class LoadingBlock extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 alignment: Alignment.center,
                 child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(accentColor: Styles.primaryColor),
+                  data: Theme.of(context).copyWith(
+                      colorScheme: ColorScheme.fromSwatch()
+                          .copyWith(secondary: Styles.primaryColor)),
                   child: CircularProgressIndicator(),
                 ),
               ),

@@ -14,9 +14,9 @@ class PersonDao {
         .get()
         .then((snapShot) {
       snapShot.docs.forEach((item) {
-        var spend = Person(item);
+        var person = Person(item);
 
-        personList.add(spend);
+        personList.add(person);
       });
     });
 
