@@ -13,16 +13,10 @@ class MainComponent extends StatefulWidget {
   _MainComponentState createState() => _MainComponentState();
 }
 
-// GlobalKey<PersonListComponentState> personListComponentGlobalKey = GlobalKey();
-GlobalKey<PersonLocaleComponentState> personLocaleGraphComponentGlobalKey =
-    GlobalKey();
-
 class _MainComponentState extends State<MainComponent> {
   final List<Widget> _widgetOptions = <Widget>[
     PersonListComponent(),
-    PersonLocaleComponent(
-      key: personLocaleGraphComponentGlobalKey,
-    ),
+    PersonLocaleComponent(),
   ];
 
   int _selectedIndex = 0;
@@ -50,11 +44,11 @@ class _MainComponentState extends State<MainComponent> {
   void _refreshData() {
     switch (_selectedIndex) {
       case Constants.listBottomBarOptionIndex:
-        _updateListPage();
+        // _updateListPage();
         break;
 
       case Constants.graphBottomBarOptionIndex:
-        _updateGraphPage();
+        // _updateGraphPage();
         break;
 
       default:

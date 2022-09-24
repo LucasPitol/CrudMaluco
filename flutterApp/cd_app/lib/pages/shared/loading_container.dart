@@ -17,8 +17,10 @@ class LoadingContainer extends StatelessWidget {
             alignment: Alignment.center,
             child: Theme(
               data: Theme.of(context).copyWith(
-                colorScheme: ColorScheme.fromSwatch()
-                    .copyWith(secondary: Styles.primaryColor),
+                colorScheme: ColorScheme.fromSwatch().copyWith(
+                  secondary: Styles.primaryColor,
+                  primary: Styles.primaryColor,
+                ),
               ),
               child: new CircularProgressIndicator(),
             ),

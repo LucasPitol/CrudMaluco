@@ -1,17 +1,10 @@
 import 'package:cd_app/utils/styles.dart';
-import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:flutter/material.dart';
 
-class PieChartComponent extends StatefulWidget {
+class PieChartComponent extends StatelessWidget {
   final Map<String, double> personLocaleMap;
 
-  PieChartComponent(this.personLocaleMap);
-
-  @override
-  _PieChartComponentState createState() => _PieChartComponentState();
-}
-
-class _PieChartComponentState extends State<PieChartComponent> {
   List<Color> colorList = [
     Styles.darkColor,
     Styles.primaryColor,
@@ -19,14 +12,16 @@ class _PieChartComponentState extends State<PieChartComponent> {
     Color(0xffE3E1FF),
   ];
 
+  PieChartComponent({required this.personLocaleMap});
+
   @override
   Widget build(BuildContext context) {
-    return (widget.personLocaleMap != null && widget.personLocaleMap.isNotEmpty)
+    return (personLocaleMap != null && personLocaleMap.isNotEmpty)
         ? Container(
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: 20),
             child: PieChart(
-              dataMap: this.widget.personLocaleMap,
+              dataMap: this.personLocaleMap,
               animationDuration: Duration(milliseconds: 800),
               chartLegendSpacing: 32.0,
               chartRadius: MediaQuery.of(context).size.width / 2.6,
