@@ -8,6 +8,8 @@ import 'controllers/person_list_controller.dart';
 import 'components/person_tile_widget.dart';
 
 class PersonListComponent extends StatelessWidget {
+  // PersonListComponent({required Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext buildContext) {
     return GetBuilder<PersonListController>(

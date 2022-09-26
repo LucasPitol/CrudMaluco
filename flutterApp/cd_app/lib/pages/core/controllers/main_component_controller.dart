@@ -1,14 +1,15 @@
 import 'package:cd_app/pages/person_locale_graph/person_locale_component.dart';
 import 'package:cd_app/pages/person_list/person_list_component.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cd_app/routes/app_pages.dart';
 import 'package:cd_app/utils/constants.dart';
 import 'package:cd_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class MainComponentController extends GetxController {
+  
   final List<Widget> widgetOptions = <Widget>[
     PersonListComponent(),
     PersonLocaleComponent(),
@@ -20,16 +21,11 @@ class MainComponentController extends GetxController {
       FloatingActionButtonLocation.centerDocked;
 
   goToNewPersonPage() async {
-    // var refresh = await Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => NewPersonComponent()),
-    // );
+    var refresh = await Get.toNamed(AppRoutes.newPerson);
 
-    Get.toNamed(AppRoutes.newPerson);
-
-    // if (refresh != null && refresh) {
-    //   this._refreshData();
-    // }
+    if (refresh != null && refresh) {
+      this._refreshData();
+    }
   }
 
   updateAppBar() {
@@ -45,20 +41,9 @@ class MainComponentController extends GetxController {
     update();
   }
 
-  // void _refreshData() {
-  //   switch (_selectedIndex) {
-  //     case Constants.listBottomBarOptionIndex:
-  //       // _updateListPage();
-  //       break;
-
-  //     case Constants.graphBottomBarOptionIndex:
-  //       // _updateGraphPage();
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }
+  void _refreshData() {
+    update();
+  }
 
   BottomAppBar buildBottomNavAppBar() {
     return BottomAppBar(

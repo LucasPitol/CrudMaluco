@@ -15,7 +15,8 @@ class Styles {
       foregroundColor: mainBackgroundColor,
     ),
     textTheme: GoogleFonts.montserratTextTheme(),
-    backgroundColor: mainBackgroundColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: darkColor),
+    backgroundColor: mainBackgroundColor,
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: darkColor),
   );
 
   static Color primaryColor = Color(0xff8B82FF);
@@ -62,11 +63,21 @@ class Styles {
 
   static getTextFieldDecorationUnderline(String value) {
     return InputDecoration(
-      border: UnderlineInputBorder(),
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: primaryColor,
+        ),
+      ),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.grey.shade400),
       ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: primaryColor,
+        ),
+      ),
       labelText: value,
+      focusColor: primaryColor,
       labelStyle: TextStyle(color: Colors.grey),
     );
   }

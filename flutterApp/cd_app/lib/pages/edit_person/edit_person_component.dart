@@ -1,6 +1,6 @@
 import 'package:cd_app/models/forms/new_person_form.dart';
 import 'package:cd_app/models/person.dart';
-import 'package:cd_app/pages/new_person/country_bottom_sheet_component.dart';
+import 'package:cd_app/pages/new_person/components/country_bottom_sheet_component.dart';
 import 'package:cd_app/pages/shared/loading_block.dart';
 import 'package:cd_app/services/person_service.dart';
 import 'package:cd_app/utils/constants.dart';
